@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\FinalProject.csproj": {}
+    "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\StudentInformationSystem.Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\FinalProject.csproj": {
+    "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\StudentInformationSystem.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\FinalProject.csproj",
-        "projectName": "FinalProject",
-        "projectPath": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\FinalProject.csproj",
+        "projectUniqueName": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\StudentInformationSystem.Domain.csproj",
+        "projectName": "StudentInformationSystem.Domain",
+        "projectPath": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\StudentInformationSystem.Domain.csproj",
         "packagesPath": "C:\\Users\\gunel\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\obj\\",
         "projectStyle": "PackageReference",

@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\gunel\\source\\repos\\FinalProject\\FinalProject\\FinalProject.csproj",
-      "projectName": "FinalProject",
-      "projectPath": "C:\\Users\\gunel\\source\\repos\\FinalProject\\FinalProject\\FinalProject.csproj",
+      "projectUniqueName": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\StudentInformationSystem.Domain.csproj",
+      "projectName": "StudentInformationSystem.Domain",
+      "projectPath": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\StudentInformationSystem.Domain.csproj",
       "packagesPath": "C:\\Users\\gunel\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\gunel\\source\\repos\\FinalProject\\FinalProject\\obj\\",
+      "outputPath": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

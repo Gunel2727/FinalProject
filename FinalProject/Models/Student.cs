@@ -1,17 +1,18 @@
 ﻿namespace StudentInformationSystem.Domain.Models
 {
-    public class Student
+    public class Student:BaseEntity
     {
-        public Guid Id { get; set; }
-
-        public string FullName { get; set; }
-
-        public string Email { get; set; }
-
+        public string FirstName { get; set; } = string.Empty;
+        public string LastName { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
+        public string Phone { get; set; } = string.Empty;
+        public DateTime DateOfBirth { get; set; }
         public int AcademicYear { get; set; }
+        public int ProgrammeId { get; set; }
 
-        public Guid ProgrammeId { get; set; }
-
-        public Programme Programme { get; set; }
+       
+        public Programme Programme { get; set; } = null!;
+        public IList<Enrollment> Enrollments { get; set; } = new List<Enrollment>();
+        public IList<Grade> Grades { get; set; } = new List<Grade>();
     }
 }

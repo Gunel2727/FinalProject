@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{097BAED6-0B75-3E3C-872F-59341FEEBFD1}|FinalProject\\StudentInformationSystem.Domain.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\finalproject\\interfaces\\istudentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{097BAED6-0B75-3E3C-872F-59341FEEBFD1}|FinalProject\\StudentInformationSystem.Domain.csproj|solutionrelative:finalproject\\interfaces\\istudentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{097BAED6-0B75-3E3C-872F-59341FEEBFD1}|FinalProject\\StudentInformationSystem.Domain.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\finalproject\\models\\announcement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{097BAED6-0B75-3E3C-872F-59341FEEBFD1}|FinalProject\\StudentInformationSystem.Domain.csproj|solutionrelative:finalproject\\models\\announcement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -83,6 +87,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "IStudentRepository.cs",
+              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Interfaces\\IStudentRepository.cs",
+              "RelativeDocumentMoniker": "FinalProject\\Interfaces\\IStudentRepository.cs",
+              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Interfaces\\IStudentRepository.cs",
+              "RelativeToolTip": "FinalProject\\Interfaces\\IStudentRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-17T18:46:05.759Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Announcement.cs",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Models\\Announcement.cs",
               "RelativeDocumentMoniker": "FinalProject\\Models\\Announcement.cs",
@@ -95,7 +112,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Attendance.cs",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Models\\Attendance.cs",
               "RelativeDocumentMoniker": "FinalProject\\Models\\Attendance.cs",
@@ -103,12 +120,11 @@
               "RelativeToolTip": "FinalProject\\Models\\Attendance.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-15T18:04:53.391Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-15T18:04:53.391Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Grade.cs",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Models\\Grade.cs",
               "RelativeDocumentMoniker": "FinalProject\\Models\\Grade.cs",
@@ -116,12 +132,11 @@
               "RelativeToolTip": "FinalProject\\Models\\Grade.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-15T18:01:57.176Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-15T18:01:57.176Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "Enrollment.cs",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Models\\Enrollment.cs",
               "RelativeDocumentMoniker": "FinalProject\\Models\\Enrollment.cs",
@@ -129,12 +144,11 @@
               "RelativeToolTip": "FinalProject\\Models\\Enrollment.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-15T18:01:31.047Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-15T18:01:31.047Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "BaseEntity.cs",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Models\\BaseEntity.cs",
               "RelativeDocumentMoniker": "FinalProject\\Models\\BaseEntity.cs",
@@ -142,12 +156,11 @@
               "RelativeToolTip": "FinalProject\\Models\\BaseEntity.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-15T18:01:01.325Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-15T18:01:01.325Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Course.cs",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Models\\Course.cs",
               "RelativeDocumentMoniker": "FinalProject\\Models\\Course.cs",
@@ -155,12 +168,11 @@
               "RelativeToolTip": "FinalProject\\Models\\Course.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-15T18:00:16.753Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-15T18:00:16.753Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "Teacher.cs",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Models\\Teacher.cs",
               "RelativeDocumentMoniker": "FinalProject\\Models\\Teacher.cs",
@@ -168,12 +180,11 @@
               "RelativeToolTip": "FinalProject\\Models\\Teacher.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-15T17:57:51.294Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-15T17:57:51.294Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Student.cs",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Models\\Student.cs",
               "RelativeDocumentMoniker": "FinalProject\\Models\\Student.cs",
@@ -181,12 +192,11 @@
               "RelativeToolTip": "FinalProject\\Models\\Student.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAABFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-15T17:51:42.232Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-15T17:51:42.232Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "AcademicTerm.cs",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Models\\AcademicTerm.cs",
               "RelativeDocumentMoniker": "FinalProject\\Models\\AcademicTerm.cs",
@@ -194,12 +204,11 @@
               "RelativeToolTip": "FinalProject\\Models\\AcademicTerm.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-15T17:56:37.743Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-15T17:56:37.743Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "Programme.cs",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Models\\Programme.cs",
               "RelativeDocumentMoniker": "FinalProject\\Models\\Programme.cs",
@@ -207,12 +216,11 @@
               "RelativeToolTip": "FinalProject\\Models\\Programme.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAABLAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-15T17:55:51.455Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-15T17:55:51.455Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "Department.cs",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Models\\Department.cs",
               "RelativeDocumentMoniker": "FinalProject\\Models\\Department.cs",
@@ -220,12 +228,11 @@
               "RelativeToolTip": "FinalProject\\Models\\Department.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-15T17:55:08.523Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-15T17:55:08.523Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "NotFoundException.cs",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Exceptions\\NotFoundException.cs",
               "RelativeDocumentMoniker": "FinalProject\\Exceptions\\NotFoundException.cs",
@@ -233,12 +240,11 @@
               "RelativeToolTip": "FinalProject\\Exceptions\\NotFoundException.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-15T17:51:07.502Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-15T17:51:07.502Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "DomainException.cs",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Exceptions\\DomainException.cs",
               "RelativeDocumentMoniker": "FinalProject\\Exceptions\\DomainException.cs",
@@ -246,12 +252,11 @@
               "RelativeToolTip": "FinalProject\\Exceptions\\DomainException.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAABCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-15T17:50:27.242Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-15T17:50:27.242Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "UserRole.cs",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Enums\\UserRole.cs",
               "RelativeDocumentMoniker": "FinalProject\\Enums\\UserRole.cs",
@@ -259,12 +264,11 @@
               "RelativeToolTip": "FinalProject\\Enums\\UserRole.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-15T17:47:32.752Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-15T17:47:32.752Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "AttendanceStatus.cs",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Enums\\AttendanceStatus.cs",
               "RelativeDocumentMoniker": "FinalProject\\Enums\\AttendanceStatus.cs",
@@ -272,12 +276,11 @@
               "RelativeToolTip": "FinalProject\\Enums\\AttendanceStatus.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-15T17:47:00.084Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-15T17:47:00.084Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "GradeLetter.cs",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Enums\\GradeLetter.cs",
               "RelativeDocumentMoniker": "FinalProject\\Enums\\GradeLetter.cs",
@@ -285,12 +288,11 @@
               "RelativeToolTip": "FinalProject\\Enums\\GradeLetter.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-15T17:46:09.758Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-15T17:46:09.758Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "FinalProject.http",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\FinalProject.http",
               "RelativeDocumentMoniker": "FinalProject\\FinalProject.http",
@@ -298,8 +300,7 @@
               "RelativeToolTip": "FinalProject\\FinalProject.http",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
-              "WhenOpened": "2026-06-15T17:44:51.111Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-15T17:44:51.111Z"
             }
           ]
         }

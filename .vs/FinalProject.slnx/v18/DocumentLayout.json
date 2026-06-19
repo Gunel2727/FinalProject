@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{097BAED6-0B75-3E3C-872F-59341FEEBFD1}|FinalProject\\StudentInformationSystem.Domain.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\finalproject\\interfaces\\icourserepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{097BAED6-0B75-3E3C-872F-59341FEEBFD1}|FinalProject\\StudentInformationSystem.Domain.csproj|solutionrelative:finalproject\\interfaces\\icourserepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{097BAED6-0B75-3E3C-872F-59341FEEBFD1}|FinalProject\\StudentInformationSystem.Domain.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\finalproject\\interfaces\\iteacherrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{097BAED6-0B75-3E3C-872F-59341FEEBFD1}|FinalProject\\StudentInformationSystem.Domain.csproj|solutionrelative:finalproject\\interfaces\\iteacherrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -91,6 +95,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "ICourseRepository.cs",
+              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Interfaces\\ICourseRepository.cs",
+              "RelativeDocumentMoniker": "FinalProject\\Interfaces\\ICourseRepository.cs",
+              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Interfaces\\ICourseRepository.cs",
+              "RelativeToolTip": "FinalProject\\Interfaces\\ICourseRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-19T19:32:57.563Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "ITeacherRepository.cs",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Interfaces\\ITeacherRepository.cs",
               "RelativeDocumentMoniker": "FinalProject\\Interfaces\\ITeacherRepository.cs",
@@ -103,7 +120,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "IStudentRepository.cs",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Interfaces\\IStudentRepository.cs",
               "RelativeDocumentMoniker": "FinalProject\\Interfaces\\IStudentRepository.cs",
@@ -111,12 +128,11 @@
               "RelativeToolTip": "FinalProject\\Interfaces\\IStudentRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-17T18:46:05.759Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-17T18:46:05.759Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Announcement.cs",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Models\\Announcement.cs",
               "RelativeDocumentMoniker": "FinalProject\\Models\\Announcement.cs",
@@ -128,7 +144,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Attendance.cs",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Models\\Attendance.cs",
               "RelativeDocumentMoniker": "FinalProject\\Models\\Attendance.cs",
@@ -140,7 +156,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Grade.cs",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Models\\Grade.cs",
               "RelativeDocumentMoniker": "FinalProject\\Models\\Grade.cs",
@@ -152,7 +168,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "Enrollment.cs",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Models\\Enrollment.cs",
               "RelativeDocumentMoniker": "FinalProject\\Models\\Enrollment.cs",
@@ -164,7 +180,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "BaseEntity.cs",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Models\\BaseEntity.cs",
               "RelativeDocumentMoniker": "FinalProject\\Models\\BaseEntity.cs",
@@ -176,7 +192,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "Course.cs",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Models\\Course.cs",
               "RelativeDocumentMoniker": "FinalProject\\Models\\Course.cs",
@@ -188,7 +204,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "Teacher.cs",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Models\\Teacher.cs",
               "RelativeDocumentMoniker": "FinalProject\\Models\\Teacher.cs",
@@ -200,7 +216,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "Student.cs",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Models\\Student.cs",
               "RelativeDocumentMoniker": "FinalProject\\Models\\Student.cs",
@@ -212,7 +228,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "AcademicTerm.cs",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Models\\AcademicTerm.cs",
               "RelativeDocumentMoniker": "FinalProject\\Models\\AcademicTerm.cs",
@@ -224,7 +240,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "Programme.cs",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Models\\Programme.cs",
               "RelativeDocumentMoniker": "FinalProject\\Models\\Programme.cs",
@@ -236,7 +252,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "Department.cs",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Models\\Department.cs",
               "RelativeDocumentMoniker": "FinalProject\\Models\\Department.cs",
@@ -248,7 +264,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "NotFoundException.cs",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Exceptions\\NotFoundException.cs",
               "RelativeDocumentMoniker": "FinalProject\\Exceptions\\NotFoundException.cs",
@@ -260,7 +276,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "DomainException.cs",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Exceptions\\DomainException.cs",
               "RelativeDocumentMoniker": "FinalProject\\Exceptions\\DomainException.cs",
@@ -272,7 +288,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "UserRole.cs",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Enums\\UserRole.cs",
               "RelativeDocumentMoniker": "FinalProject\\Enums\\UserRole.cs",
@@ -284,7 +300,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "AttendanceStatus.cs",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Enums\\AttendanceStatus.cs",
               "RelativeDocumentMoniker": "FinalProject\\Enums\\AttendanceStatus.cs",
@@ -296,7 +312,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 18,
               "Title": "GradeLetter.cs",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Enums\\GradeLetter.cs",
               "RelativeDocumentMoniker": "FinalProject\\Enums\\GradeLetter.cs",
@@ -308,7 +324,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": "FinalProject.http",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\FinalProject.http",
               "RelativeDocumentMoniker": "FinalProject\\FinalProject.http",

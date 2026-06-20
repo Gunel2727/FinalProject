@@ -1,0 +1,8 @@
+﻿namespace StudentInformationSystem.Domain.Exceptions
+{
+    public class NotFoundException:Exception
+    {
+        public NotFoundException(string entity, object id)
+       : base($"{entity} (id: {id}) tapılmadı.") { }
+    }
+}

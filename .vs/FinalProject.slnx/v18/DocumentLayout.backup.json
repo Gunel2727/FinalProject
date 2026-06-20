@@ -3,84 +3,52 @@
   "WorkspaceRootPath": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{097BAED6-0B75-3E3C-872F-59341FEEBFD1}|FinalProject\\StudentInformationSystem.Domain.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\finalproject\\interfaces\\icourserepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{097BAED6-0B75-3E3C-872F-59341FEEBFD1}|FinalProject\\StudentInformationSystem.Domain.csproj|solutionrelative:finalproject\\interfaces\\icourserepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{73A5BC15-57E9-43AD-AA1E-C5D473F79901}|SIS.Application\\SIS.Application.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\sis.application\\dtos\\studentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{73A5BC15-57E9-43AD-AA1E-C5D473F79901}|SIS.Application\\SIS.Application.csproj|solutionrelative:sis.application\\dtos\\studentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{097BAED6-0B75-3E3C-872F-59341FEEBFD1}|FinalProject\\StudentInformationSystem.Domain.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\finalproject\\interfaces\\iteacherrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{097BAED6-0B75-3E3C-872F-59341FEEBFD1}|FinalProject\\StudentInformationSystem.Domain.csproj|solutionrelative:finalproject\\interfaces\\iteacherrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{73A5BC15-57E9-43AD-AA1E-C5D473F79901}|SIS.Application\\SIS.Application.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\sis.application\\dtos\\dashboarddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{73A5BC15-57E9-43AD-AA1E-C5D473F79901}|SIS.Application\\SIS.Application.csproj|solutionrelative:sis.application\\dtos\\dashboarddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{097BAED6-0B75-3E3C-872F-59341FEEBFD1}|FinalProject\\StudentInformationSystem.Domain.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\finalproject\\interfaces\\istudentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{097BAED6-0B75-3E3C-872F-59341FEEBFD1}|FinalProject\\StudentInformationSystem.Domain.csproj|solutionrelative:finalproject\\interfaces\\istudentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{73A5BC15-57E9-43AD-AA1E-C5D473F79901}|SIS.Application\\SIS.Application.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\sis.application\\dtos\\academictermdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{73A5BC15-57E9-43AD-AA1E-C5D473F79901}|SIS.Application\\SIS.Application.csproj|solutionrelative:sis.application\\dtos\\academictermdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{097BAED6-0B75-3E3C-872F-59341FEEBFD1}|FinalProject\\StudentInformationSystem.Domain.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\finalproject\\models\\announcement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{097BAED6-0B75-3E3C-872F-59341FEEBFD1}|FinalProject\\StudentInformationSystem.Domain.csproj|solutionrelative:finalproject\\models\\announcement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{73A5BC15-57E9-43AD-AA1E-C5D473F79901}|SIS.Application\\SIS.Application.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\sis.application\\dtos\\programmedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{73A5BC15-57E9-43AD-AA1E-C5D473F79901}|SIS.Application\\SIS.Application.csproj|solutionrelative:sis.application\\dtos\\programmedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{097BAED6-0B75-3E3C-872F-59341FEEBFD1}|FinalProject\\StudentInformationSystem.Domain.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\finalproject\\models\\attendance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{097BAED6-0B75-3E3C-872F-59341FEEBFD1}|FinalProject\\StudentInformationSystem.Domain.csproj|solutionrelative:finalproject\\models\\attendance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{73A5BC15-57E9-43AD-AA1E-C5D473F79901}|SIS.Application\\SIS.Application.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\sis.application\\dtos\\departmentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{73A5BC15-57E9-43AD-AA1E-C5D473F79901}|SIS.Application\\SIS.Application.csproj|solutionrelative:sis.application\\dtos\\departmentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{097BAED6-0B75-3E3C-872F-59341FEEBFD1}|FinalProject\\StudentInformationSystem.Domain.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\finalproject\\models\\grade.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{097BAED6-0B75-3E3C-872F-59341FEEBFD1}|FinalProject\\StudentInformationSystem.Domain.csproj|solutionrelative:finalproject\\models\\grade.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{73A5BC15-57E9-43AD-AA1E-C5D473F79901}|SIS.Application\\SIS.Application.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\sis.application\\dtos\\announcementdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{73A5BC15-57E9-43AD-AA1E-C5D473F79901}|SIS.Application\\SIS.Application.csproj|solutionrelative:sis.application\\dtos\\announcementdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{097BAED6-0B75-3E3C-872F-59341FEEBFD1}|FinalProject\\StudentInformationSystem.Domain.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\finalproject\\models\\enrollment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{097BAED6-0B75-3E3C-872F-59341FEEBFD1}|FinalProject\\StudentInformationSystem.Domain.csproj|solutionrelative:finalproject\\models\\enrollment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{73A5BC15-57E9-43AD-AA1E-C5D473F79901}|SIS.Application\\SIS.Application.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\sis.application\\dtos\\attendancedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{73A5BC15-57E9-43AD-AA1E-C5D473F79901}|SIS.Application\\SIS.Application.csproj|solutionrelative:sis.application\\dtos\\attendancedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{097BAED6-0B75-3E3C-872F-59341FEEBFD1}|FinalProject\\StudentInformationSystem.Domain.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\finalproject\\models\\baseentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{097BAED6-0B75-3E3C-872F-59341FEEBFD1}|FinalProject\\StudentInformationSystem.Domain.csproj|solutionrelative:finalproject\\models\\baseentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{73A5BC15-57E9-43AD-AA1E-C5D473F79901}|SIS.Application\\SIS.Application.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\sis.application\\dtos\\gradedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{73A5BC15-57E9-43AD-AA1E-C5D473F79901}|SIS.Application\\SIS.Application.csproj|solutionrelative:sis.application\\dtos\\gradedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{097BAED6-0B75-3E3C-872F-59341FEEBFD1}|FinalProject\\StudentInformationSystem.Domain.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\finalproject\\models\\course.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{097BAED6-0B75-3E3C-872F-59341FEEBFD1}|FinalProject\\StudentInformationSystem.Domain.csproj|solutionrelative:finalproject\\models\\course.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9CCE2FC4-FD9E-4339-ADC1-79F0BB3F09FB}|SIS.Domain\\SIS.Domain.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\sis.domain\\models\\grade.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9CCE2FC4-FD9E-4339-ADC1-79F0BB3F09FB}|SIS.Domain\\SIS.Domain.csproj|solutionrelative:sis.domain\\models\\grade.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{097BAED6-0B75-3E3C-872F-59341FEEBFD1}|FinalProject\\StudentInformationSystem.Domain.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\finalproject\\models\\teacher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{097BAED6-0B75-3E3C-872F-59341FEEBFD1}|FinalProject\\StudentInformationSystem.Domain.csproj|solutionrelative:finalproject\\models\\teacher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{73A5BC15-57E9-43AD-AA1E-C5D473F79901}|SIS.Application\\SIS.Application.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\sis.application\\dtos\\enrollmentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{73A5BC15-57E9-43AD-AA1E-C5D473F79901}|SIS.Application\\SIS.Application.csproj|solutionrelative:sis.application\\dtos\\enrollmentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{097BAED6-0B75-3E3C-872F-59341FEEBFD1}|FinalProject\\StudentInformationSystem.Domain.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\finalproject\\models\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{097BAED6-0B75-3E3C-872F-59341FEEBFD1}|FinalProject\\StudentInformationSystem.Domain.csproj|solutionrelative:finalproject\\models\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{73A5BC15-57E9-43AD-AA1E-C5D473F79901}|SIS.Application\\SIS.Application.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\sis.application\\dtos\\coursedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{73A5BC15-57E9-43AD-AA1E-C5D473F79901}|SIS.Application\\SIS.Application.csproj|solutionrelative:sis.application\\dtos\\coursedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{097BAED6-0B75-3E3C-872F-59341FEEBFD1}|FinalProject\\StudentInformationSystem.Domain.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\finalproject\\models\\academicterm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{097BAED6-0B75-3E3C-872F-59341FEEBFD1}|FinalProject\\StudentInformationSystem.Domain.csproj|solutionrelative:finalproject\\models\\academicterm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{097BAED6-0B75-3E3C-872F-59341FEEBFD1}|FinalProject\\StudentInformationSystem.Domain.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\finalproject\\models\\programme.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{097BAED6-0B75-3E3C-872F-59341FEEBFD1}|FinalProject\\StudentInformationSystem.Domain.csproj|solutionrelative:finalproject\\models\\programme.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{097BAED6-0B75-3E3C-872F-59341FEEBFD1}|FinalProject\\StudentInformationSystem.Domain.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\finalproject\\models\\department.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{097BAED6-0B75-3E3C-872F-59341FEEBFD1}|FinalProject\\StudentInformationSystem.Domain.csproj|solutionrelative:finalproject\\models\\department.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{097BAED6-0B75-3E3C-872F-59341FEEBFD1}|FinalProject\\StudentInformationSystem.Domain.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\finalproject\\exceptions\\notfoundexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{097BAED6-0B75-3E3C-872F-59341FEEBFD1}|FinalProject\\StudentInformationSystem.Domain.csproj|solutionrelative:finalproject\\exceptions\\notfoundexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{097BAED6-0B75-3E3C-872F-59341FEEBFD1}|FinalProject\\StudentInformationSystem.Domain.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\finalproject\\exceptions\\domainexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{097BAED6-0B75-3E3C-872F-59341FEEBFD1}|FinalProject\\StudentInformationSystem.Domain.csproj|solutionrelative:finalproject\\exceptions\\domainexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{097BAED6-0B75-3E3C-872F-59341FEEBFD1}|FinalProject\\StudentInformationSystem.Domain.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\finalproject\\enums\\userrole.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{097BAED6-0B75-3E3C-872F-59341FEEBFD1}|FinalProject\\StudentInformationSystem.Domain.csproj|solutionrelative:finalproject\\enums\\userrole.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{097BAED6-0B75-3E3C-872F-59341FEEBFD1}|FinalProject\\StudentInformationSystem.Domain.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\finalproject\\enums\\attendancestatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{097BAED6-0B75-3E3C-872F-59341FEEBFD1}|FinalProject\\StudentInformationSystem.Domain.csproj|solutionrelative:finalproject\\enums\\attendancestatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{097BAED6-0B75-3E3C-872F-59341FEEBFD1}|FinalProject\\StudentInformationSystem.Domain.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\finalproject\\enums\\gradeletter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{097BAED6-0B75-3E3C-872F-59341FEEBFD1}|FinalProject\\StudentInformationSystem.Domain.csproj|solutionrelative:finalproject\\enums\\gradeletter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{097BAED6-0B75-3E3C-872F-59341FEEBFD1}|FinalProject\\StudentInformationSystem.Domain.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\finalproject\\finalproject.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
-      "RelativeMoniker": "D:0:0:{097BAED6-0B75-3E3C-872F-59341FEEBFD1}|FinalProject\\StudentInformationSystem.Domain.csproj|solutionrelative:finalproject\\finalproject.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+      "AbsoluteMoniker": "D:0:0:{73A5BC15-57E9-43AD-AA1E-C5D473F79901}|SIS.Application\\SIS.Application.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\sis.application\\dtos\\teacherdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{73A5BC15-57E9-43AD-AA1E-C5D473F79901}|SIS.Application\\SIS.Application.csproj|solutionrelative:sis.application\\dtos\\teacherdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -90,249 +58,163 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ICourseRepository.cs",
-              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Interfaces\\ICourseRepository.cs",
-              "RelativeDocumentMoniker": "FinalProject\\Interfaces\\ICourseRepository.cs",
-              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Interfaces\\ICourseRepository.cs",
-              "RelativeToolTip": "FinalProject\\Interfaces\\ICourseRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-19T19:32:57.563Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ITeacherRepository.cs",
-              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Interfaces\\ITeacherRepository.cs",
-              "RelativeDocumentMoniker": "FinalProject\\Interfaces\\ITeacherRepository.cs",
-              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Interfaces\\ITeacherRepository.cs",
-              "RelativeToolTip": "FinalProject\\Interfaces\\ITeacherRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAlAAAAAAAAAA==",
+              "Title": "DashboardDto.cs",
+              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\DTOs\\DashboardDto.cs",
+              "RelativeDocumentMoniker": "SIS.Application\\DTOs\\DashboardDto.cs",
+              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\DTOs\\DashboardDto.cs",
+              "RelativeToolTip": "SIS.Application\\DTOs\\DashboardDto.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAswB8AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-18T19:28:06.392Z",
+              "WhenOpened": "2026-06-20T14:39:43.705Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "IStudentRepository.cs",
-              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Interfaces\\IStudentRepository.cs",
-              "RelativeDocumentMoniker": "FinalProject\\Interfaces\\IStudentRepository.cs",
-              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Interfaces\\IStudentRepository.cs",
-              "RelativeToolTip": "FinalProject\\Interfaces\\IStudentRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAFAAAAAAAAAA==",
+              "Title": "AcademicTermDto.cs",
+              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\DTOs\\AcademicTermDto.cs",
+              "RelativeDocumentMoniker": "SIS.Application\\DTOs\\AcademicTermDto.cs",
+              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\DTOs\\AcademicTermDto.cs",
+              "RelativeToolTip": "SIS.Application\\DTOs\\AcademicTermDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-17T18:46:05.759Z"
+              "WhenOpened": "2026-06-20T14:39:13.856Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Announcement.cs",
-              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Models\\Announcement.cs",
-              "RelativeDocumentMoniker": "FinalProject\\Models\\Announcement.cs",
-              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Models\\Announcement.cs",
-              "RelativeToolTip": "FinalProject\\Models\\Announcement.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAHAAAAAAAAAA==",
+              "Title": "ProgrammeDto.cs",
+              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\DTOs\\ProgrammeDto.cs",
+              "RelativeDocumentMoniker": "SIS.Application\\DTOs\\ProgrammeDto.cs",
+              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\DTOs\\ProgrammeDto.cs",
+              "RelativeToolTip": "SIS.Application\\DTOs\\ProgrammeDto.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABcAAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-15T18:05:53.774Z"
+              "WhenOpened": "2026-06-20T14:38:47.131Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "Attendance.cs",
-              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Models\\Attendance.cs",
-              "RelativeDocumentMoniker": "FinalProject\\Models\\Attendance.cs",
-              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Models\\Attendance.cs",
-              "RelativeToolTip": "FinalProject\\Models\\Attendance.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAHAAAAAAAAAA==",
+              "Title": "DepartmentDto.cs",
+              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\DTOs\\DepartmentDto.cs",
+              "RelativeDocumentMoniker": "SIS.Application\\DTOs\\DepartmentDto.cs",
+              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\DTOs\\DepartmentDto.cs",
+              "RelativeToolTip": "SIS.Application\\DTOs\\DepartmentDto.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA4AAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-15T18:04:53.391Z"
+              "WhenOpened": "2026-06-20T14:38:21.273Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "StudentDto.cs",
+              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\DTOs\\StudentDto.cs",
+              "RelativeDocumentMoniker": "SIS.Application\\DTOs\\StudentDto.cs",
+              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\DTOs\\StudentDto.cs",
+              "RelativeToolTip": "SIS.Application\\DTOs\\StudentDto.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAAAmwCkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-20T14:14:28.147Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "Grade.cs",
-              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Models\\Grade.cs",
-              "RelativeDocumentMoniker": "FinalProject\\Models\\Grade.cs",
-              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Models\\Grade.cs",
-              "RelativeToolTip": "FinalProject\\Models\\Grade.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Title": "AnnouncementDto.cs",
+              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\DTOs\\AnnouncementDto.cs",
+              "RelativeDocumentMoniker": "SIS.Application\\DTOs\\AnnouncementDto.cs",
+              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\DTOs\\AnnouncementDto.cs",
+              "RelativeToolTip": "SIS.Application\\DTOs\\AnnouncementDto.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAkwBYAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-15T18:01:57.176Z"
+              "WhenOpened": "2026-06-20T14:37:23.782Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "Enrollment.cs",
-              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Models\\Enrollment.cs",
-              "RelativeDocumentMoniker": "FinalProject\\Models\\Enrollment.cs",
-              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Models\\Enrollment.cs",
-              "RelativeToolTip": "FinalProject\\Models\\Enrollment.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAzAAAAAAAAAA==",
+              "Title": "AttendanceDto.cs",
+              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\DTOs\\AttendanceDto.cs",
+              "RelativeDocumentMoniker": "SIS.Application\\DTOs\\AttendanceDto.cs",
+              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\DTOs\\AttendanceDto.cs",
+              "RelativeToolTip": "SIS.Application\\DTOs\\AttendanceDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-15T18:01:31.047Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "BaseEntity.cs",
-              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Models\\BaseEntity.cs",
-              "RelativeDocumentMoniker": "FinalProject\\Models\\BaseEntity.cs",
-              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Models\\BaseEntity.cs",
-              "RelativeToolTip": "FinalProject\\Models\\BaseEntity.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-15T18:01:01.325Z"
+              "WhenOpened": "2026-06-20T14:23:17.808Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "Course.cs",
-              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Models\\Course.cs",
-              "RelativeDocumentMoniker": "FinalProject\\Models\\Course.cs",
-              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Models\\Course.cs",
-              "RelativeToolTip": "FinalProject\\Models\\Course.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAUAAAAAAAAAA==",
+              "Title": "Grade.cs",
+              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Domain\\Models\\Grade.cs",
+              "RelativeDocumentMoniker": "SIS.Domain\\Models\\Grade.cs",
+              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Domain\\Models\\Grade.cs",
+              "RelativeToolTip": "SIS.Domain\\Models\\Grade.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-15T18:00:16.753Z"
+              "WhenOpened": "2026-06-20T14:19:56.807Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "GradeDto.cs",
+              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\DTOs\\GradeDto.cs",
+              "RelativeDocumentMoniker": "SIS.Application\\DTOs\\GradeDto.cs",
+              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\DTOs\\GradeDto.cs",
+              "RelativeToolTip": "SIS.Application\\DTOs\\GradeDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-20T14:19:34.421Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 9,
-              "Title": "Teacher.cs",
-              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Models\\Teacher.cs",
-              "RelativeDocumentMoniker": "FinalProject\\Models\\Teacher.cs",
-              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Models\\Teacher.cs",
-              "RelativeToolTip": "FinalProject\\Models\\Teacher.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAHAAAAAAAAAA==",
+              "Title": "EnrollmentDto.cs",
+              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\DTOs\\EnrollmentDto.cs",
+              "RelativeDocumentMoniker": "SIS.Application\\DTOs\\EnrollmentDto.cs",
+              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\DTOs\\EnrollmentDto.cs",
+              "RelativeToolTip": "SIS.Application\\DTOs\\EnrollmentDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-15T17:57:51.294Z"
+              "WhenOpened": "2026-06-20T14:19:00.878Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 10,
-              "Title": "Student.cs",
-              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Models\\Student.cs",
-              "RelativeDocumentMoniker": "FinalProject\\Models\\Student.cs",
-              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Models\\Student.cs",
-              "RelativeToolTip": "FinalProject\\Models\\Student.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAABFAAAAAAAAAA==",
+              "Title": "CourseDto.cs",
+              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\DTOs\\CourseDto.cs",
+              "RelativeDocumentMoniker": "SIS.Application\\DTOs\\CourseDto.cs",
+              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\DTOs\\CourseDto.cs",
+              "RelativeToolTip": "SIS.Application\\DTOs\\CourseDto.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAA/wA4AAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-15T17:51:42.232Z"
+              "WhenOpened": "2026-06-20T14:18:04.159Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 11,
-              "Title": "AcademicTerm.cs",
-              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Models\\AcademicTerm.cs",
-              "RelativeDocumentMoniker": "FinalProject\\Models\\AcademicTerm.cs",
-              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Models\\AcademicTerm.cs",
-              "RelativeToolTip": "FinalProject\\Models\\AcademicTerm.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Title": "TeacherDto.cs",
+              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\DTOs\\TeacherDto.cs",
+              "RelativeDocumentMoniker": "SIS.Application\\DTOs\\TeacherDto.cs",
+              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\DTOs\\TeacherDto.cs",
+              "RelativeToolTip": "SIS.Application\\DTOs\\TeacherDto.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAywCAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-15T17:56:37.743Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "Programme.cs",
-              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Models\\Programme.cs",
-              "RelativeDocumentMoniker": "FinalProject\\Models\\Programme.cs",
-              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Models\\Programme.cs",
-              "RelativeToolTip": "FinalProject\\Models\\Programme.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAABLAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-15T17:55:51.455Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "Department.cs",
-              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Models\\Department.cs",
-              "RelativeDocumentMoniker": "FinalProject\\Models\\Department.cs",
-              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Models\\Department.cs",
-              "RelativeToolTip": "FinalProject\\Models\\Department.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAUAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-15T17:55:08.523Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "NotFoundException.cs",
-              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Exceptions\\NotFoundException.cs",
-              "RelativeDocumentMoniker": "FinalProject\\Exceptions\\NotFoundException.cs",
-              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Exceptions\\NotFoundException.cs",
-              "RelativeToolTip": "FinalProject\\Exceptions\\NotFoundException.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAA0AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-15T17:51:07.502Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "DomainException.cs",
-              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Exceptions\\DomainException.cs",
-              "RelativeDocumentMoniker": "FinalProject\\Exceptions\\DomainException.cs",
-              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Exceptions\\DomainException.cs",
-              "RelativeToolTip": "FinalProject\\Exceptions\\DomainException.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAABCAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-15T17:50:27.242Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "UserRole.cs",
-              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Enums\\UserRole.cs",
-              "RelativeDocumentMoniker": "FinalProject\\Enums\\UserRole.cs",
-              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Enums\\UserRole.cs",
-              "RelativeToolTip": "FinalProject\\Enums\\UserRole.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-15T17:47:32.752Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "AttendanceStatus.cs",
-              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Enums\\AttendanceStatus.cs",
-              "RelativeDocumentMoniker": "FinalProject\\Enums\\AttendanceStatus.cs",
-              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Enums\\AttendanceStatus.cs",
-              "RelativeToolTip": "FinalProject\\Enums\\AttendanceStatus.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-15T17:47:00.084Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "GradeLetter.cs",
-              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Enums\\GradeLetter.cs",
-              "RelativeDocumentMoniker": "FinalProject\\Enums\\GradeLetter.cs",
-              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\Enums\\GradeLetter.cs",
-              "RelativeToolTip": "FinalProject\\Enums\\GradeLetter.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-15T17:46:09.758Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "FinalProject.http",
-              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\FinalProject.http",
-              "RelativeDocumentMoniker": "FinalProject\\FinalProject.http",
-              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\FinalProject\\FinalProject.http",
-              "RelativeToolTip": "FinalProject\\FinalProject.http",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
-              "WhenOpened": "2026-06-15T17:44:51.111Z"
+              "WhenOpened": "2026-06-20T14:16:36.424Z",
+              "EditorCaption": ""
             }
           ]
         }

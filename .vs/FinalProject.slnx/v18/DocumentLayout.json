@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{73A5BC15-57E9-43AD-AA1E-C5D473F79901}|SIS.Application\\SIS.Application.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\sis.application\\interfaces\\istudentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{73A5BC15-57E9-43AD-AA1E-C5D473F79901}|SIS.Application\\SIS.Application.csproj|solutionrelative:sis.application\\interfaces\\istudentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{73A5BC15-57E9-43AD-AA1E-C5D473F79901}|SIS.Application\\SIS.Application.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\sis.application\\dtos\\studentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{73A5BC15-57E9-43AD-AA1E-C5D473F79901}|SIS.Application\\SIS.Application.csproj|solutionrelative:sis.application\\dtos\\studentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -58,11 +62,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "IStudentService.cs",
+              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\Interfaces\\IStudentService.cs",
+              "RelativeDocumentMoniker": "SIS.Application\\Interfaces\\IStudentService.cs",
+              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\Interfaces\\IStudentService.cs",
+              "RelativeToolTip": "SIS.Application\\Interfaces\\IStudentService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-21T19:43:47.249Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "DashboardDto.cs",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\DTOs\\DashboardDto.cs",
               "RelativeDocumentMoniker": "SIS.Application\\DTOs\\DashboardDto.cs",
@@ -70,12 +87,11 @@
               "RelativeToolTip": "SIS.Application\\DTOs\\DashboardDto.cs",
               "ViewState": "AgIAAAwAAAAAAAAAAAAswB8AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-20T14:39:43.705Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-20T14:39:43.705Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "AcademicTermDto.cs",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\DTOs\\AcademicTermDto.cs",
               "RelativeDocumentMoniker": "SIS.Application\\DTOs\\AcademicTermDto.cs",
@@ -83,12 +99,11 @@
               "RelativeToolTip": "SIS.Application\\DTOs\\AcademicTermDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-20T14:39:13.856Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-20T14:39:13.856Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "ProgrammeDto.cs",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\DTOs\\ProgrammeDto.cs",
               "RelativeDocumentMoniker": "SIS.Application\\DTOs\\ProgrammeDto.cs",
@@ -96,12 +111,11 @@
               "RelativeToolTip": "SIS.Application\\DTOs\\ProgrammeDto.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAABcAAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-20T14:38:47.131Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-20T14:38:47.131Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "DepartmentDto.cs",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\DTOs\\DepartmentDto.cs",
               "RelativeDocumentMoniker": "SIS.Application\\DTOs\\DepartmentDto.cs",
@@ -109,25 +123,24 @@
               "RelativeToolTip": "SIS.Application\\DTOs\\DepartmentDto.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAAA4AAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-20T14:38:21.273Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-20T14:38:21.273Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "StudentDto.cs",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\DTOs\\StudentDto.cs",
               "RelativeDocumentMoniker": "SIS.Application\\DTOs\\StudentDto.cs",
               "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\DTOs\\StudentDto.cs",
               "RelativeToolTip": "SIS.Application\\DTOs\\StudentDto.cs",
-              "ViewState": "AgIAABoAAAAAAAAAAAAmwCkAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABoAAAAAAAAAAAA6wCkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-20T14:14:28.147Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "AnnouncementDto.cs",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\DTOs\\AnnouncementDto.cs",
               "RelativeDocumentMoniker": "SIS.Application\\DTOs\\AnnouncementDto.cs",
@@ -135,12 +148,11 @@
               "RelativeToolTip": "SIS.Application\\DTOs\\AnnouncementDto.cs",
               "ViewState": "AgIAAAUAAAAAAAAAAAAkwBYAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-20T14:37:23.782Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-20T14:37:23.782Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "AttendanceDto.cs",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\DTOs\\AttendanceDto.cs",
               "RelativeDocumentMoniker": "SIS.Application\\DTOs\\AttendanceDto.cs",
@@ -148,12 +160,11 @@
               "RelativeToolTip": "SIS.Application\\DTOs\\AttendanceDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-20T14:23:17.808Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-20T14:23:17.808Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "Grade.cs",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Domain\\Models\\Grade.cs",
               "RelativeDocumentMoniker": "SIS.Domain\\Models\\Grade.cs",
@@ -161,12 +172,11 @@
               "RelativeToolTip": "SIS.Domain\\Models\\Grade.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-20T14:19:56.807Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-20T14:19:56.807Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "GradeDto.cs",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\DTOs\\GradeDto.cs",
               "RelativeDocumentMoniker": "SIS.Application\\DTOs\\GradeDto.cs",
@@ -174,12 +184,11 @@
               "RelativeToolTip": "SIS.Application\\DTOs\\GradeDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-20T14:19:34.421Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-20T14:19:34.421Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "EnrollmentDto.cs",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\DTOs\\EnrollmentDto.cs",
               "RelativeDocumentMoniker": "SIS.Application\\DTOs\\EnrollmentDto.cs",
@@ -187,12 +196,11 @@
               "RelativeToolTip": "SIS.Application\\DTOs\\EnrollmentDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-20T14:19:00.878Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-20T14:19:00.878Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "CourseDto.cs",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\DTOs\\CourseDto.cs",
               "RelativeDocumentMoniker": "SIS.Application\\DTOs\\CourseDto.cs",
@@ -200,12 +208,11 @@
               "RelativeToolTip": "SIS.Application\\DTOs\\CourseDto.cs",
               "ViewState": "AgIAABMAAAAAAAAAAAA/wA4AAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-20T14:18:04.159Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-20T14:18:04.159Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "TeacherDto.cs",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\DTOs\\TeacherDto.cs",
               "RelativeDocumentMoniker": "SIS.Application\\DTOs\\TeacherDto.cs",
@@ -213,8 +220,7 @@
               "RelativeToolTip": "SIS.Application\\DTOs\\TeacherDto.cs",
               "ViewState": "AgIAABUAAAAAAAAAAAAywCAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-20T14:16:36.424Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-20T14:16:36.424Z"
             }
           ]
         }

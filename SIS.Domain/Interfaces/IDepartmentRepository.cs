@@ -1,12 +1,11 @@
-﻿using StudentInformationSystem.Domain.Models;
+﻿using SIS.Domain.Interfaces;
+using StudentInformationSystem.Domain.Models;
 
 namespace StudentInformationSystem.Domain.Interfaces
 {
-    public interface IDepartmentRepository
+    public interface IDepartmentRepository:IGenericRepository<Department>
     {
-        Task<IList<Department>> GetAllAsync();
-        Task<Department?> GetByIdAsync(int id);
-        Task AddAsync(Department department);
+       
         void Update(Department department);
         void Delete(Department department);
     }

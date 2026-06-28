@@ -1,14 +1,11 @@
-﻿using StudentInformationSystem.Domain.Models;
+﻿using SIS.Domain.Interfaces;
+using StudentInformationSystem.Domain.Models;
 
 namespace StudentInformationSystem.Domain.Interfaces
 {
-    public interface IAcademicTermRepository
+    public interface IAcademicTermRepository:IGenericRepository<AcademicTerm>
     {
-        Task<IList<AcademicTerm>> GetAllAsync();
-        Task<AcademicTerm?> GetByIdAsync(int id);
-        
         Task<AcademicTerm?> GetActiveTermAsync();
-        Task AddAsync(AcademicTerm term);
         void Update(AcademicTerm term);
     }
 }

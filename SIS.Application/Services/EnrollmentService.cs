@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using SIS.Application.Common;
 using SIS.Application.DTOs;
 using SIS.Application.Interfaces;
 using StudentInformationSystem.Domain.Interfaces;
+using StudentInformationSystem.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,19 +22,37 @@ namespace SIS.Application.Services
             _uow = uow;
             _mapper = mapper;
         }
-        public Task<EnrollmentDto> EnrollAsync(CreateEnrollmentDto dto)
+        public async Task<EnrollmentDto> EnrollAsync(CreateEnrollmentDto dto)
         {
-            throw new NotImplementedException();
+            
+            var existing = await _uow.Enrollments.GetByStudentAndCourseAsync(
+                dto.StudentId, dto.CourseId);
+
+            if (existing != null)
+                throw new ConflictException(ErrorMessages.AlreadyEnrolled);
+
+            var enrollment = _mapper.Map<Enrollment>(dto);
+            await _uow.Enrollments.AddAsync(enrollment);
+            await _uow.SaveChangesAsync();
+
+            return _mapper.Map<EnrollmentDto>(enrollment);
         }
 
-        public Task<IList<EnrollmentDto>> GetByStudentIdAsync(int studentId)
+        public async Task<IList<EnrollmentDto>> GetByStudentIdAsync(int studentId)
         {
-            throw new NotImplementedException();
+            var enrollments = await _uow.Enrollments.GetByStudentIdAsync(studentId);
+            return _mapper.Map<IList<EnrollmentDto>>(enrollments);
         }
 
-        public Task UnenrollAsync(int enrollmentId)
+        public async Task UnenrollAsync(int enrollmentId)
         {
-            throw new NotImplementedException();
+            var enrollment = await _uow.Enrollments.GetByIdAsync(enrollmentId);
+
+            if (enrollment == null)
+                throw new NotFoundException(ErrorMessages.EnrollmentNotFound);
+
+            _uow.Enrollments.Delete(enrollment);
+            await _uow.SaveChangesAsync();
         }
     }
 }

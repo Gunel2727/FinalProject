@@ -1,0 +1,39 @@
+﻿using FluentValidation;
+using Microsoft.Extensions.DependencyInjection;
+using AutoMapper;
+using SIS.Application.Interfaces;
+using SIS.Application.Profiles;
+using SIS.Application.Services;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace SIS.Application
+{
+    public static class DependencyInjection
+    {
+        public static IServiceCollection AddApplication(
+       this IServiceCollection services)
+        {
+
+            services.AddAutoMapper(typeof(MapperProfile).Assembly);
+
+
+            services.AddValidatorsFromAssembly(
+                typeof(DependencyInjection).Assembly);
+
+           
+            services.AddScoped<IStudentService, StudentService>();
+            services.AddScoped<IGradeService, GradeService>();
+            services.AddScoped<IEnrollmentService, EnrollmentService>();
+            services.AddScoped<IAttendanceService, AttendanceService>();
+            services.AddScoped<IAnnouncementService, AnnouncementService>();
+            services.AddScoped<IDashboardService, DashboardService>();
+            services.AddScoped<IGpaCalculatorService, GpaCalculatorService>();
+
+            return services;
+        }
+    }
+}

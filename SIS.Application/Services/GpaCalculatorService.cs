@@ -13,11 +13,9 @@ namespace SIS.Application.Services
         {
             var list = scores.ToList();
 
-            
-            if (!list.Any()) return 0.0;
+            if (list.Count == 0) return 0.0;
 
-            
-            var points = list.Select(GetGpaPoint);
+            var points = list.Select(s => GetGpaPoint(s));
             return Math.Round(points.Average(), 2);
         }
 

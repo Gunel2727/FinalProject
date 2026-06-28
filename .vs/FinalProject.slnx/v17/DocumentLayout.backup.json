@@ -1,12 +1,88 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{73A5BC15-57E9-43AD-AA1E-C5D473F79901}|SIS.Application\\SIS.Application.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\sis.application\\dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{73A5BC15-57E9-43AD-AA1E-C5D473F79901}|SIS.Application\\SIS.Application.csproj|solutionrelative:sis.application\\dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{73A5BC15-57E9-43AD-AA1E-C5D473F79901}|SIS.Application\\SIS.Application.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\sis.application\\sis.application.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{73A5BC15-57E9-43AD-AA1E-C5D473F79901}|SIS.Application\\SIS.Application.csproj|solutionrelative:sis.application\\sis.application.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{73A5BC15-57E9-43AD-AA1E-C5D473F79901}|SIS.Application\\SIS.Application.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\sis.application\\interfaces\\igpacalculatorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{73A5BC15-57E9-43AD-AA1E-C5D473F79901}|SIS.Application\\SIS.Application.csproj|solutionrelative:sis.application\\interfaces\\igpacalculatorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{73A5BC15-57E9-43AD-AA1E-C5D473F79901}|SIS.Application\\SIS.Application.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\sis.application\\services\\gpacalculatorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{73A5BC15-57E9-43AD-AA1E-C5D473F79901}|SIS.Application\\SIS.Application.csproj|solutionrelative:sis.application\\services\\gpacalculatorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "SIS.Application",
+              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\SIS.Application.csproj",
+              "RelativeDocumentMoniker": "SIS.Application\\SIS.Application.csproj",
+              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\SIS.Application.csproj",
+              "RelativeToolTip": "SIS.Application\\SIS.Application.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-06-28T13:16:25.589Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DependencyInjection.cs",
+              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\DependencyInjection.cs",
+              "RelativeDocumentMoniker": "SIS.Application\\DependencyInjection.cs",
+              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\DependencyInjection.cs",
+              "RelativeToolTip": "SIS.Application\\DependencyInjection.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-28T13:08:10.96Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "IGpaCalculatorService.cs",
+              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\Interfaces\\IGpaCalculatorService.cs",
+              "RelativeDocumentMoniker": "SIS.Application\\Interfaces\\IGpaCalculatorService.cs",
+              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\Interfaces\\IGpaCalculatorService.cs",
+              "RelativeToolTip": "SIS.Application\\Interfaces\\IGpaCalculatorService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-28T13:07:13.695Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "GpaCalculatorService.cs",
+              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\Services\\GpaCalculatorService.cs",
+              "RelativeDocumentMoniker": "SIS.Application\\Services\\GpaCalculatorService.cs",
+              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\Services\\GpaCalculatorService.cs",
+              "RelativeToolTip": "SIS.Application\\Services\\GpaCalculatorService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-28T13:07:03.119Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

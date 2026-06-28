@@ -1,12 +1,10 @@
-﻿using StudentInformationSystem.Domain.Models;
+﻿using SIS.Domain.Interfaces;
+using StudentInformationSystem.Domain.Models;
 
 namespace StudentInformationSystem.Domain.Interfaces
 {
-    public interface ITeacherRepository
+    public interface ITeacherRepository:IGenericRepository<Teacher>
     {
-        Task<Teacher?> GetByIdAsync(int id);
-        Task<IList<Teacher>> GetAllAsync();
-        Task AddAsync(Teacher teacher);
         void Update(Teacher teacher);
         void Delete(Teacher teacher);
     }

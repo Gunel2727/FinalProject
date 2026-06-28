@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "1LZl/irbfDM=",
+  "dgSpecHash": "RRqBbicdhXw=",
   "success": true,
   "projectFilePath": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\SIS.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\gunel\\.nuget\\packages\\automapper\\16.1.1\\automapper.16.1.1.nupkg.sha512",
+    "C:\\Users\\gunel\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "C:\\Users\\gunel\\.nuget\\packages\\fluentvalidation\\12.1.1\\fluentvalidation.12.1.1.nupkg.sha512",
     "C:\\Users\\gunel\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\12.1.1\\fluentvalidation.dependencyinjectionextensions.12.1.1.nupkg.sha512",
     "C:\\Users\\gunel\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\10.0.0\\microsoft.extensions.dependencyinjection.abstractions.10.0.0.nupkg.sha512",
@@ -17,5 +18,18 @@
     "C:\\Users\\gunel\\.nuget\\packages\\microsoft.identitymodel.tokens\\8.14.0\\microsoft.identitymodel.tokens.8.14.0.nupkg.sha512",
     "C:\\Users\\gunel\\.nuget\\packages\\system.diagnostics.diagnosticsource\\10.0.0\\system.diagnostics.diagnosticsource.10.0.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1608",
+      "level": "Warning",
+      "message": "Detected package version outside of dependency constraint: AutoMapper.Extensions.Microsoft.DependencyInjection 12.0.1 requires AutoMapper (= 12.0.1) but version AutoMapper 16.1.1 was resolved.",
+      "projectPath": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\SIS.Application.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\SIS.Application.csproj",
+      "libraryId": "AutoMapper",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    }
+  ]
 }

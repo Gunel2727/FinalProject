@@ -1,0 +1,12 @@
+C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Domain\bin\Debug\net8.0\SIS.Domain.deps.json
+C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Domain\bin\Debug\net8.0\SIS.Domain.dll
+C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Domain\bin\Debug\net8.0\SIS.Domain.pdb
+C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Domain\obj\Debug\net8.0\SIS.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Domain\obj\Debug\net8.0\SIS.Domain.AssemblyInfoInputs.cache
+C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Domain\obj\Debug\net8.0\SIS.Domain.AssemblyInfo.cs
+C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Domain\obj\Debug\net8.0\SIS.Domain.csproj.CoreCompileInputs.cache
+C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Domain\obj\Debug\net8.0\SIS.Domain.sourcelink.json
+C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Domain\obj\Debug\net8.0\SIS.Domain.dll
+C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Domain\obj\Debug\net8.0\refint\SIS.Domain.dll
+C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Domain\obj\Debug\net8.0\SIS.Domain.pdb
+C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Domain\obj\Debug\net8.0\ref\SIS.Domain.dll

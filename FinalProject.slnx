@@ -1,4 +1,5 @@
 <Solution>
   <Project Path="SIS.Application/SIS.Application.csproj" Id="73a5bc15-57e9-43ad-aa1e-c5d473f79901" />
   <Project Path="SIS.Domain/SIS.Domain.csproj" Id="9cce2fc4-fd9e-4339-adc1-79f0bb3f09fb" />
+  <Project Path="SIS.Infrastructure/SIS.Infrastructure.csproj" Id="20825702-498f-4425-a5d2-a06176750f9c" />
 </Solution>

@@ -19,19 +19,19 @@ namespace SIS.Infrastructure.Persistence.SqlServer.Repositories
             _context = context;
             _dbSet = context.Set<T>();
         }
-        public Task AddAsync(T entity)
+        public async Task AddAsync(T entity)
         {
-            throw new NotImplementedException();
+            await _dbSet.AddAsync(entity);
         }
 
-        public Task<IList<T>> GetAllAsync()
+        public async Task<IList<T>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _dbSet.ToListAsync();
         }
 
-        public Task<T?> GetByIdAsync(int id)
+        public async Task<T?> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _dbSet.FindAsync(id);
         }
     }
 }

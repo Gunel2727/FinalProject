@@ -13,17 +13,17 @@ namespace SIS.Infrastructure.Persistence.SqlServer
         public AppDbContext(DbContextOptions<AppDbContext> options)
         : base(options) { }
 
-       
-        public DbSet<Student> Students => Set<Student>();
-        public DbSet<Teacher> Teachers => Set<Teacher>();
-        public DbSet<Course> Courses => Set<Course>();
-        public DbSet<Enrollment> Enrollments => Set<Enrollment>();
-        public DbSet<Grade> Grades => Set<Grade>();
-        public DbSet<Attendance> Attendances => Set<Attendance>();
-        public DbSet<Announcement> Announcements => Set<Announcement>();
-        public DbSet<Department> Departments => Set<Department>();
-        public DbSet<Programme> Programmes => Set<Programme>();
-        public DbSet<AcademicTerm> AcademicTerms => Set<AcademicTerm>();
+
+        public DbSet<Student> Students { get; set; }
+        public DbSet<Teacher> Teachers { get; set; }
+        public DbSet<Course> Courses { get; set; }
+        public DbSet<Enrollment> Enrollments { get; set; }
+        public DbSet<Grade> Grades { get; set; }
+        public DbSet<Attendance> Attendances { get; set; }
+        public DbSet<Announcement> Announcements { get; set; }
+        public DbSet<Department> Departments { get; set; }
+        public DbSet<Programme> Programmes { get; set; }
+        public DbSet<AcademicTerm> AcademicTerms { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

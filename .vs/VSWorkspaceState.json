@@ -2,8 +2,11 @@
   "ExpandedNodes": [
     "",
     "\\FinalProject",
-    "\\FinalProject\\Interfaces"
+    "\\SIS.Infrastructure",
+    "\\SIS.Infrastructure\\Persistence",
+    "\\SIS.Infrastructure\\Persistence\\SqlServer",
+    "\\SIS.Infrastructure\\Persistence\\SqlServer\\Repositories"
   ],
-  "SelectedNode": "\\FinalProject\\Interfaces\\IStudentRepository.cs",
+  "SelectedNode": "\\SIS.Infrastructure\\Persistence\\SqlServer\\Repositories\\GenericRepository.cs",
   "PreviewInSolutionExplorer": false
 }

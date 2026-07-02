@@ -35,6 +35,6 @@ namespace SIS.Infrastructure.Persistence.SqlServer.Configurations
                 .HasForeignKey(g => g.CourseId)
                 .OnDelete(DeleteBehavior.Restrict);
         }
-    {
+    
     }
 }

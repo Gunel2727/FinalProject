@@ -23,7 +23,7 @@ namespace SIS.Infrastructure.Persistence.SqlServer.Repositories
         public async Task<Enrollment?> GetByStudentAndCourseAsync(int studentId, int courseId)
         {
             return await _context.Enrollments
-                .FirstOrDefaultAsync(e => e.StudentId == studentId && e.CourseId == courseId)
+                .FirstOrDefaultAsync(e => e.StudentId == studentId && e.CourseId == courseId);
         }
 
         public async Task<IList<Enrollment>> GetByStudentIdAsync(int studentId)

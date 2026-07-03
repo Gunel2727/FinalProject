@@ -24,14 +24,17 @@ namespace SIS.Application
             services.AddValidatorsFromAssembly(
                 typeof(DependencyInjection).Assembly);
 
-           
+
             services.AddScoped<IStudentService, StudentService>();
+            services.AddScoped<ICourseService, CourseService>();
             services.AddScoped<IGradeService, GradeService>();
             services.AddScoped<IEnrollmentService, EnrollmentService>();
             services.AddScoped<IAttendanceService, AttendanceService>();
             services.AddScoped<IAnnouncementService, AnnouncementService>();
             services.AddScoped<IDashboardService, DashboardService>();
             services.AddScoped<IGpaCalculatorService, GpaCalculatorService>();
+            services.AddScoped<IAdminService, AdminService>();
+            services.AddScoped<ITeacherService, TeacherService>();
 
             return services;
         }

@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using SIS.Application.Common;
 using SIS.Application.DTOs;
 using SIS.Application.Interfaces;
 using StudentInformationSystem.Domain.Interfaces;
+using StudentInformationSystem.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,24 +22,38 @@ namespace SIS.Application.Services
             _uow = uow;
             _mapper = mapper;
         }
-        public Task<DepartmentDto> CreateDepartmentAsync(CreateDepartmentDto dto)
+        public async Task<DepartmentDto> CreateDepartmentAsync(CreateDepartmentDto dto)
         {
-            throw new NotImplementedException();
+            var department = _mapper.Map<Department>(dto);
+            await _uow.Departments.AddAsync(department);
+            await _uow.SaveChangesAsync();
+            return _mapper.Map<DepartmentDto>(department);
         }
 
-        public Task<ProgrammeDto> CreateProgrammeAsync(CreateProgrammeDto dto)
+        public async Task<ProgrammeDto> CreateProgrammeAsync(CreateProgrammeDto dto)
         {
-            throw new NotImplementedException();
+            var programme = _mapper.Map<Programme>(dto);
+            await _uow.Programmes.AddAsync(programme);
+            await _uow.SaveChangesAsync();
+            return _mapper.Map<ProgrammeDto>(programme);
         }
 
-        public Task<AcademicTermDto> CreateTermAsync(CreateAcademicTermDto dto)
+        public async Task<AcademicTermDto> CreateTermAsync(CreateAcademicTermDto dto)
         {
-            throw new NotImplementedException();
+            var term = _mapper.Map<AcademicTerm>(dto);
+            await _uow.AcademicTerms.AddAsync(term);
+            await _uow.SaveChangesAsync();
+            return _mapper.Map<AcademicTermDto>(term);
         }
 
-        public Task DeleteDepartmentAsync(int id)
+        public async Task DeleteDepartmentAsync(int id)
         {
-            throw new NotImplementedException();
+            var department = await _uow.Departments.GetByIdAsync(id);
+            if (department == null)
+                throw new NotFoundException(ErrorMessages.DepartmentNotFound);
+
+            _uow.Departments.Delete(department);
+            await _uow.SaveChangesAsync();
         }
 
         public async Task<IList<DepartmentDto>> GetAllDepartmentsAsync()
@@ -46,29 +62,61 @@ namespace SIS.Application.Services
             return _mapper.Map<IList<DepartmentDto>>(departments);
         }
 
-        public Task<IList<ProgrammeDto>> GetAllProgrammesAsync()
+        public async Task<IList<ProgrammeDto>> GetAllProgrammesAsync()
         {
-            throw new NotImplementedException();
+            var programmes = await _uow.Programmes.GetAllAsync();
+            return _mapper.Map<IList<ProgrammeDto>>(programmes);
         }
 
-        public Task<IList<AcademicTermDto>> GetAllTermsAsync()
+        public async Task<IList<AcademicTermDto>> GetAllTermsAsync()
         {
-            throw new NotImplementedException();
+            var terms = await _uow.AcademicTerms.GetAllAsync();
+            return _mapper.Map<IList<AcademicTermDto>>(terms);
         }
 
-        public Task<DepartmentDto> UpdateDepartmentAsync(int id, UpdateDepartmentDto dto)
+        public async Task<DepartmentDto> UpdateDepartmentAsync(int id, UpdateDepartmentDto dto)
         {
-            throw new NotImplementedException();
+            var department = await _uow.Departments.GetByIdAsync(id);
+            if (department == null)
+                throw new NotFoundException(ErrorMessages.DepartmentNotFound);
+
+            department.Name = dto.Name;
+            department.UpdatedAt = DateTime.UtcNow;
+
+            _uow.Departments.Update(department);
+            await _uow.SaveChangesAsync();
+            return _mapper.Map<DepartmentDto>(department);
         }
 
-        public Task<ProgrammeDto> UpdateProgrammeAsync(int id, UpdateProgrammeDto dto)
+        public async Task<ProgrammeDto> UpdateProgrammeAsync(int id, UpdateProgrammeDto dto)
         {
-            throw new NotImplementedException();
+            var programme = await _uow.Programmes.GetByIdAsync(id);
+            if (programme == null)
+                throw new NotFoundException(ErrorMessages.ProgrammeNotFound);
+
+            programme.Name = dto.Name;
+            programme.UpdatedAt = DateTime.UtcNow;
+
+            _uow.Programmes.Update(programme);
+            await _uow.SaveChangesAsync();
+            return _mapper.Map<ProgrammeDto>(programme);
         }
 
-        public Task<AcademicTermDto> UpdateTermAsync(int id, AcademicTermDto dto)
+        public async Task<AcademicTermDto> UpdateTermAsync(int id, AcademicTermDto dto)
         {
-            throw new NotImplementedException();
+            var term = await _uow.AcademicTerms.GetByIdAsync(id);
+            if (term == null)
+                throw new NotFoundException(ErrorMessages.TermNotFound);
+
+            term.Name = dto.Name;
+            term.StartDate = dto.StartDate;
+            term.EndDate = dto.EndDate;
+            term.IsActive = dto.IsActive;
+            term.UpdatedAt = DateTime.UtcNow;
+
+            _uow.AcademicTerms.Update(term);
+            await _uow.SaveChangesAsync();
+            return _mapper.Map<AcademicTermDto>(term);
         }
     }
 }

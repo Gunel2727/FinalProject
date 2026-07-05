@@ -1,4 +1,5 @@
-﻿using SIS.Infrastructure.Persistence.SqlServer.Repositories;
+﻿using SIS.Domain.Interfaces;
+using SIS.Infrastructure.Persistence.SqlServer.Repositories;
 using StudentInformationSystem.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,7 @@ namespace SIS.Infrastructure.Persistence.SqlServer
         private IDepartmentRepository? _departments;
         private IProgrammeRepository? _programmes;
         private IAcademicTermRepository? _academicTerms;
+        private IUserRepository? _users;
 
         public UnitOfWork(AppDbContext context)
         {
@@ -58,6 +60,10 @@ namespace SIS.Infrastructure.Persistence.SqlServer
 
         public IAcademicTermRepository AcademicTerms =>
             _academicTerms ??= new AcademicTermRepository(_context);
+
+        public IUserRepository Users =>
+        _users ??= new UserRepository(_context);
+
         public void Dispose()
         {
             _context.Dispose();

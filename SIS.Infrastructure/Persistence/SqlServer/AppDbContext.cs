@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SIS.Domain.Models;
 using StudentInformationSystem.Domain.Models;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,7 @@ namespace SIS.Infrastructure.Persistence.SqlServer
         public DbSet<Department> Departments { get; set; }
         public DbSet<Programme> Programmes { get; set; }
         public DbSet<AcademicTerm> AcademicTerms { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

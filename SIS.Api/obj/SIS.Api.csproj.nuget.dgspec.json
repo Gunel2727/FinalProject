@@ -282,6 +282,9 @@
             "framework": "net8.0",
             "targetAlias": "net8.0",
             "projectReferences": {
+              "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\SIS.Application.csproj": {
+                "projectPath": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\SIS.Application.csproj"
+              },
               "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Domain\\SIS.Domain.csproj": {
                 "projectPath": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Domain\\SIS.Domain.csproj"
               }
@@ -305,6 +308,14 @@
           "framework": "net8.0",
           "targetAlias": "net8.0",
           "dependencies": {
+            "BCrypt.Net-Next": {
+              "target": "Package",
+              "version": "[4.2.0, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.0.0, )"
@@ -327,9 +338,9 @@
               "target": "Package",
               "version": "[8.0.0, )"
             },
-            "Microsoft.Extensions.DependencyInjection.Abstractions": {
+            "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
-              "version": "[8.0.0, )"
+              "version": "[8.19.1, )"
             }
           },
           "imports": [

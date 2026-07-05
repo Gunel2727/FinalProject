@@ -1,14 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SIS.Application.Interfaces;
+using SIS.Infrastructure.Identity;
 using SIS.Infrastructure.Persistence.SqlServer;
+using StudentInformationSystem.Domain.Interfaces;
 using StudentInformationSystem.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using StudentInformationSystem.Domain.Interfaces;
 
 namespace SIS.Infrastructure
 {
@@ -25,6 +27,12 @@ namespace SIS.Infrastructure
 
             
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            services.Configure<JwtSettings>(
+           configuration.GetSection("JwtSettings"));
+
+            services.AddScoped<IJwtTokenService, JwtTokenService>();
+            services.AddScoped<IPasswordHasher, PasswordHasher>();
 
             return services;
         }

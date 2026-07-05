@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SIS.Application.Common;
 using SIS.Application.DTOs;
@@ -8,6 +9,7 @@ namespace SIS.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class EnrollmentsController : ControllerBase
     {
         private readonly IEnrollmentService _enrollmentService;
@@ -25,6 +27,7 @@ namespace SIS.Api.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin,Student")]
         public async Task<IActionResult> Enroll([FromBody] CreateEnrollmentDto dto)
         {
             var enrollment = await _enrollmentService.EnrollAsync(dto);
@@ -32,6 +35,7 @@ namespace SIS.Api.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin,Student")]
         public async Task<IActionResult> Unenroll(int id)
         {
             await _enrollmentService.UnenrollAsync(id);

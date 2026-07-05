@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SIS.Application.Common;
 using SIS.Application.DTOs;
@@ -8,6 +9,7 @@ namespace SIS.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class TeachersController : ControllerBase
     {
         private readonly ITeacherService _teacherService;
@@ -32,6 +34,7 @@ namespace SIS.Api.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create([FromBody] CreateTeacherDto dto)
         {
             var teacher = await _teacherService.CreateAsync(dto);
@@ -39,6 +42,7 @@ namespace SIS.Api.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Update(int id, [FromBody] UpdateTeacherDto dto)
         {
             var teacher = await _teacherService.UpdateAsync(id, dto);
@@ -46,6 +50,7 @@ namespace SIS.Api.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int id)
         {
             await _teacherService.DeleteAsync(id);

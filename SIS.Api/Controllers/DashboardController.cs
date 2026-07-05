@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SIS.Application.Common;
 using SIS.Application.DTOs;
@@ -8,6 +9,7 @@ namespace SIS.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class DashboardController : ControllerBase
     {
         private readonly IDashboardService _dashboardService;
@@ -25,6 +27,7 @@ namespace SIS.Api.Controllers
         }
 
         [HttpGet("teacher/{teacherId}")]
+        [Authorize(Roles = "Teacher,Admin")]
         public async Task<IActionResult> GetTeacherDashboard(int teacherId)
         {
             var dashboard = await _dashboardService.GetTeacherDashboardAsync(teacherId);
@@ -32,6 +35,7 @@ namespace SIS.Api.Controllers
         }
 
         [HttpGet("admin")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetAdminDashboard()
         {
             var dashboard = await _dashboardService.GetAdminDashboardAsync();

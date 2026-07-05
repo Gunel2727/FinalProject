@@ -35,6 +35,7 @@ namespace SIS.Application
             services.AddScoped<IGpaCalculatorService, GpaCalculatorService>();
             services.AddScoped<IAdminService, AdminService>();
             services.AddScoped<ITeacherService, TeacherService>();
+            services.AddScoped<IAuthService, AuthService>();
 
             return services;
         }

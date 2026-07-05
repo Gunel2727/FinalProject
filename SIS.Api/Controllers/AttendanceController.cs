@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SIS.Application.Common;
 using SIS.Application.DTOs;
@@ -8,6 +9,7 @@ namespace SIS.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class AttendanceController : ControllerBase
     {
         private readonly IAttendanceService _attendanceService;
@@ -24,7 +26,8 @@ namespace SIS.Api.Controllers
             return Ok(ResponseModel<IList<AttendanceDto>>.Ok(records));
         }
 
-        [HttpGet("course/{courseId}")] 
+        [HttpGet("course/{courseId}")]
+        [Authorize(Roles = "Teacher,Admin")]
         public async Task<IActionResult> GetByCourse(int courseId)
         {
             var records = await _attendanceService.GetByCourseIdAsync(courseId);
@@ -32,6 +35,7 @@ namespace SIS.Api.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Teacher")]
         public async Task<IActionResult> Record([FromBody] CreateAttendanceDto dto)
         {
             var record = await _attendanceService.RecordAsync(dto);
@@ -39,6 +43,7 @@ namespace SIS.Api.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Teacher")]
         public async Task<IActionResult> Update(int id, [FromBody] UpdateAttendanceDto dto)
         {
             var record = await _attendanceService.UpdateAsync(id, dto);

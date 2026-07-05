@@ -1,7 +1,11 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using SIS.Api.Middleware;
 using SIS.Application;
 using SIS.Infrastructure;
+using SIS.Infrastructure.Identity;
+using System.Text;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +15,40 @@ builder.Services.AddControllers();
 builder.Services.AddApplication();
 
 builder.Services.AddInfrastructure(builder.Configuration);
+
+var jwtSettings = builder.Configuration
+    .GetSection("JwtSettings")
+    .Get<JwtSettings>();
+
+builder.Services.AddAuthentication(options =>
+{
+
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+ {
+    
+     options.TokenValidationParameters = new TokenValidationParameters
+     {
+       
+         ValidateIssuer = true,
+         ValidIssuer = jwtSettings!.Issuer,
+
+         ValidateAudience = true,
+         ValidAudience = jwtSettings.Audience,
+
+         
+         ValidateLifetime = true,
+
+         
+         ValidateIssuerSigningKey = true,
+         IssuerSigningKey = new SymmetricSecurityKey(
+             Encoding.UTF8.GetBytes(jwtSettings.Secret))
+     };
+ });
+
+builder.Services.AddAuthorization();
 
 
 builder.Services.AddEndpointsApiExplorer();
@@ -22,7 +60,38 @@ builder.Services.AddSwaggerGen(options =>
         Version = "v1",
         Description = "SIS layihəsi üçün REST API"
     });
+
+    
+    options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Name = "Authorization",
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer",
+        BearerFormat = "JWT",
+        In = ParameterLocation.Header,
+        Description = "Bearer {token}"
+    });
+
+    options.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            Array.Empty<string>()
+        }
+    });
 });
+
+
+
+
+
 
 builder.Services.AddCors(options =>
 {
@@ -53,6 +122,7 @@ app.UseMiddleware<ExceptionHandlingMiddleware>();
 app.UseHttpsRedirection();
 app.UseCors("AllowAll");
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

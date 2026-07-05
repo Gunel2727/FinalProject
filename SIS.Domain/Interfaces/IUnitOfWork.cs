@@ -1,4 +1,6 @@
-﻿namespace StudentInformationSystem.Domain.Interfaces
+﻿using SIS.Domain.Interfaces;
+
+namespace StudentInformationSystem.Domain.Interfaces
 {
     public interface IUnitOfWork : IDisposable
     {
@@ -12,6 +14,7 @@
         IDepartmentRepository Departments { get; }
         IProgrammeRepository Programmes { get; }
         IAcademicTermRepository AcademicTerms { get; }
+        IUserRepository Users { get; }
 
         Task<int> SaveChangesAsync();
     }

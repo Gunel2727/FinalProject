@@ -8,6 +8,9 @@ namespace SIS.Application.Common
 {
     public static class ErrorMessages
     {
+
+        public const string EmailAlreadyExists = "Bu email artıq qeydiyyatdadır";
+
         public const string StudentNotFound = "Tələbə tapılmadı";
         public const string StudentEmailExists = "Bu email artıq qeydiyyatdadır";
 

@@ -5,6 +5,7 @@ using SIS.Api.Middleware;
 using SIS.Application;
 using SIS.Infrastructure;
 using SIS.Infrastructure.Identity;
+using SIS.Infrastructure.Persistence.SqlServer;
 using System.Text;
 
 
@@ -126,5 +127,11 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    await DataSeeder.SeedAsync(context);
+}
 
 app.Run();

@@ -13,5 +13,7 @@ namespace SIS.Domain.Interfaces
         Task<User?> GetByEmailAsync(string email);
       
         Task<bool> EmailExistsAsync(string email);
+        Task<bool> TeacherIdExistsAsync(int teacherId);
+        Task<bool> StudentIdExistsAsync(int studentId);
     }
 }

@@ -8,7 +8,9 @@ C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Infrastructure\bin\Debug\net8.0
 C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Infrastructure\bin\Debug\net8.0\SIS.Infrastructure.runtimeconfig.json
 C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Infrastructure\bin\Debug\net8.0\SIS.Infrastructure.dll
 C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Infrastructure\bin\Debug\net8.0\SIS.Infrastructure.pdb
+C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Infrastructure\bin\Debug\net8.0\SIS.Application.dll
 C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Infrastructure\bin\Debug\net8.0\SIS.Domain.dll
+C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Infrastructure\bin\Debug\net8.0\SIS.Application.pdb
 C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Infrastructure\bin\Debug\net8.0\SIS.Domain.pdb
 C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Infrastructure\obj\Debug\net8.0\SIS.Infr.EFC70D7C.Up2Date
 C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Infrastructure\obj\Debug\net8.0\SIS.Infrastructure.dll
@@ -16,5 +18,3 @@ C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Infrastructure\obj\Debug\net8.0
 C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Infrastructure\obj\Debug\net8.0\SIS.Infrastructure.pdb
 C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Infrastructure\obj\Debug\net8.0\SIS.Infrastructure.genruntimeconfig.cache
 C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Infrastructure\obj\Debug\net8.0\ref\SIS.Infrastructure.dll
-C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Infrastructure\bin\Debug\net8.0\SIS.Application.dll
-C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Infrastructure\bin\Debug\net8.0\SIS.Application.pdb

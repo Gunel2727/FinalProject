@@ -18,7 +18,7 @@ namespace SIS.Application
        this IServiceCollection services)
         {
 
-            services.AddAutoMapper(typeof(MapperProfile).Assembly);
+            services.AddAutoMapper(cfg => cfg.AddProfile<MapperProfile>());
 
 
             services.AddValidatorsFromAssembly(

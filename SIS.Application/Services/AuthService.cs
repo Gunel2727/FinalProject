@@ -59,6 +59,35 @@ namespace SIS.Application.Services
 
             var role = Enum.Parse<UserRole>(dto.Role, ignoreCase: true);
 
+            if (role == UserRole.Teacher)
+            {
+                if (dto.TeacherId == null)
+                    throw new BadRequestException("Teacher rolü üçün TeacherId mütləqdir");
+
+                var teacher = await _uow.Teachers.GetByIdAsync(dto.TeacherId.Value);
+                if (teacher == null)
+                    throw new NotFoundException(ErrorMessages.TeacherNotFound);
+
+                var alreadyLinked = await _uow.Users.TeacherIdExistsAsync(dto.TeacherId.Value);
+                if (alreadyLinked)
+                    throw new ConflictException("Bu müəllim üçün artıq hesab yaradılıb");
+            }
+
+            if (role == UserRole.Student)
+            {
+                if (dto.StudentId == null)
+                    throw new BadRequestException("Student rolü üçün StudentId mütləqdir");
+
+                var student = await _uow.Students.GetByIdAsync(dto.StudentId.Value);
+                if (student == null)
+                    throw new NotFoundException(ErrorMessages.StudentNotFound);
+
+                var alreadyLinked = await _uow.Users.StudentIdExistsAsync(dto.StudentId.Value);
+                if (alreadyLinked)
+                    throw new ConflictException("Bu tələbə üçün artıq hesab yaradılıb");
+            }
+
+
 
             var user = new User
             {

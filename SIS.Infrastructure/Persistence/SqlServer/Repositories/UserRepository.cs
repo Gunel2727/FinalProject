@@ -21,5 +21,16 @@ namespace SIS.Infrastructure.Persistence.SqlServer.Repositories
         {
             return await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
         }
+
+        public async Task<bool> TeacherIdExistsAsync(int teacherId)
+        {
+           return await _context.Users.AnyAsync(u => u.TeacherId == teacherId);
+        }
+
+
+        public async Task<bool> StudentIdExistsAsync(int studentId)
+        {
+           return await _context.Users.AnyAsync(u => u.StudentId == studentId);
+        }
     }
 }

@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using QuestPDF.Infrastructure;
 using SIS.Application.Interfaces;
+using SIS.Infrastructure.ExternalServices;
 using SIS.Infrastructure.Identity;
 using SIS.Infrastructure.Persistence.SqlServer;
 using StudentInformationSystem.Domain.Interfaces;
@@ -20,7 +22,9 @@ namespace SIS.Infrastructure
        this IServiceCollection services,
        IConfiguration configuration)
         {
-           
+            QuestPDF.Settings.License = LicenseType.Community;
+
+
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(
                     configuration.GetConnectionString("DefaultConnection")));
@@ -33,6 +37,7 @@ namespace SIS.Infrastructure
 
             services.AddScoped<IJwtTokenService, JwtTokenService>();
             services.AddScoped<IPasswordHasher, PasswordHasher>();
+            services.AddScoped<ITranscriptService, TranscriptService>();
 
             return services;
         }

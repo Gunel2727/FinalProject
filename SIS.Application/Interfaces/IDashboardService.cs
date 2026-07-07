@@ -12,5 +12,6 @@ namespace SIS.Application.Interfaces
         Task<StudentDashboardDto> GetStudentDashboardAsync(int studentId);
         Task<TeacherDashboardDto> GetTeacherDashboardAsync(int teacherId);
         Task<AdminDashboardDto> GetAdminDashboardAsync();
+        Task<AdvisorStudentOverviewDto> GetAdvisorOverviewAsync(int studentId);
     }
 }

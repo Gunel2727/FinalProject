@@ -422,6 +422,22 @@
   },
   {
     "ContainingType": "SIS.Api.Controllers.DashboardController",
+    "Method": "GetAdvisorOverview",
+    "RelativePath": "api/Dashboard/advisor/{studentId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "studentId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SIS.Api.Controllers.DashboardController",
     "Method": "GetStudentDashboard",
     "RelativePath": "api/Dashboard/student/{studentId}",
     "HttpMethod": "GET",
@@ -557,6 +573,22 @@
     "ContainingType": "SIS.Api.Controllers.GradesController",
     "Method": "GetByStudent",
     "RelativePath": "api/Grades/student/{studentId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "studentId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SIS.Api.Controllers.GradesController",
+    "Method": "DownloadTranscript",
+    "RelativePath": "api/Grades/student/{studentId}/transcript",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

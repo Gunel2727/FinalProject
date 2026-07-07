@@ -13,10 +13,12 @@ namespace SIS.Api.Controllers
     public class GradesController : ControllerBase
     {
         private readonly IGradeService _gradeService;
+        private readonly ITranscriptService _transcriptService;
 
-        public GradesController(IGradeService gradeService)
+        public GradesController(IGradeService gradeService, ITranscriptService transcriptService)
         {
             _gradeService = gradeService;
+            _transcriptService = transcriptService;
         }
 
         [HttpGet("student/{studentId}")]
@@ -48,6 +50,19 @@ namespace SIS.Api.Controllers
         {
             var grade = await _gradeService.UpdateAsync(id, dto);
             return Ok(ResponseModel<GradeDto>.Ok(grade));
-        }   
+        }
+
+        [HttpGet("student/{studentId}/transcript")]
+        public async Task<IActionResult> DownloadTranscript(int studentId)
+        {
+            var pdfBytes = await _transcriptService.GenerateTranscriptAsync(studentId);
+
+            
+            return File(
+                pdfBytes,
+                "application/pdf",
+                $"transcript_{studentId}.pdf"
+            );
+        }
     }
 }

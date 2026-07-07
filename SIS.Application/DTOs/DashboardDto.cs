@@ -30,4 +30,17 @@ namespace SIS.Application.DTOs
         public int TotalDepartments { get; set; }
         public List<AnnouncementDto> RecentAnnouncements { get; set; } = new();
     }
+
+    public class AdvisorStudentOverviewDto
+    {
+        public string FullName { get; set; } = string.Empty;
+        public string ProgrammeName { get; set; } = string.Empty;
+        public int AcademicYear { get; set; }
+        public double Gpa { get; set; }
+        public List<GradeDto> Grades { get; set; } = new();
+        public int TotalAttendanceRecords { get; set; }
+        public int PresentCount { get; set; }
+        public int AbsentCount { get; set; }
+        public int LateCount { get; set; }
+    }
 }

@@ -44,7 +44,10 @@ namespace SIS.Application.Services
             {
                 Token = token,
                 Email = user.Email,
-                Role = user.Role.ToString()
+                Role = user.Role.ToString(),
+                UserId = user.Id,
+                StudentId = user.StudentId,
+                TeacherId = user.TeacherId
             };
         }
 
@@ -108,7 +111,10 @@ namespace SIS.Application.Services
             {
                 Token = token,
                 Email = user.Email,
-                Role = user.Role.ToString()
+                Role = user.Role.ToString(),
+                UserId = user.Id,
+                StudentId = user.StudentId,
+                TeacherId = user.TeacherId
             };
         }
     }

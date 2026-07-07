@@ -42,5 +42,13 @@ namespace SIS.Api.Controllers
             return Ok(ResponseModel<AdminDashboardDto>.Ok(dashboard));
         }
 
+        [HttpGet("advisor/{studentId}")]
+        [Authorize(Roles = "Teacher,Admin")]
+        public async Task<IActionResult> GetAdvisorOverview(int studentId)
+        {
+            var overview = await _dashboardService.GetAdvisorOverviewAsync(studentId);
+            return Ok(ResponseModel<AdvisorStudentOverviewDto>.Ok(overview));
+        }
+
     }
 }

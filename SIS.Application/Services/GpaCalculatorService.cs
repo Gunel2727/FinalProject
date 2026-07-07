@@ -19,23 +19,47 @@ namespace SIS.Application.Services
             return Math.Round(points.Average(), 2);
         }
 
-        public string GetLetterGrade(double score) => score switch
+        public string GetLetterGrade(double score)
         {
-            >= 90 => "A",
-            >= 80 => "B",
-            >= 70 => "C",
-            >= 60 => "D",
-            _ => "F"
-        };
+            switch (score)
+            {
+                case >= 90:
+                    return "A";
 
-        private static double GetGpaPoint(double score) => score switch
+                case >= 80:
+                    return "B";
+
+                case >= 70:
+                    return "C";
+
+                case >= 60:
+                    return "D";
+
+                default:
+                    return "F";
+            }
+        }
+
+        public static double GetGpaPoint(double score)
         {
-            >= 90 => 4.0,
-            >= 80 => 3.0,
-            >= 70 => 2.0,
-            >= 60 => 1.0,
-            _ => 0.0
-        };
+            switch (score)
+            {
+                case >= 90:
+                    return 4.0;
+
+                case >= 80:
+                    return 3.0;
+
+                case >= 70:
+                    return 2.0;
+
+                case >= 60:
+                    return 1.0;
+
+                default:
+                    return 0.0;
+            }
+        }
 
 
     }

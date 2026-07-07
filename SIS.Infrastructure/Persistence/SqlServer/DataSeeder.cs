@@ -93,6 +93,16 @@ namespace SIS.Infrastructure.Persistence.SqlServer
             await context.SaveChangesAsync();
 
            
+            var grade = new Grade
+            {
+                StudentId = student.Id,
+                CourseId = course.Id,
+                Score = 88,
+                Letter = GradeLetter.B
+            };
+            context.Grades.Add(grade);
+            await context.SaveChangesAsync();
+
             var adminUser = new User
             {
                 Email = "admin@sis.edu.az",

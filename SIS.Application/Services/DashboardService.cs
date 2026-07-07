@@ -2,6 +2,7 @@
 using SIS.Application.Common;
 using SIS.Application.DTOs;
 using SIS.Application.Interfaces;
+using StudentInformationSystem.Domain.Enums;
 using StudentInformationSystem.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -45,6 +46,34 @@ namespace SIS.Application.Services
                 RecentAnnouncements = _mapper.Map<List<AnnouncementDto>>(recent)
             };
         }
+
+        public async Task<AdvisorStudentOverviewDto> GetAdvisorOverviewAsync(int studentId)
+        {
+            var student = await _uow.Students.GetByIdAsync(studentId);
+            if (student == null)
+                throw new NotFoundException(ErrorMessages.StudentNotFound);
+
+            var grades = await _uow.Grades.GetByStudentIdAsync(studentId);
+            var gradesList = grades.ToList();
+            var scores = gradesList.Select(g => g.Score).ToList(); 
+
+            var attendance = await _uow.Attendances.GetByStudentIdAsync(studentId);
+            var attendanceList = attendance.ToList();
+
+            return new AdvisorStudentOverviewDto
+            {
+                FullName = $"{student.FirstName} {student.LastName}",
+                ProgrammeName = student.Programme?.Name ?? string.Empty,
+                AcademicYear = student.AcademicYear,
+                Gpa = _gpaCalculator.Calculate(scores),
+                Grades = _mapper.Map<List<GradeDto>>(gradesList),
+                TotalAttendanceRecords = attendanceList.Count,
+                PresentCount = attendanceList.Count(a => a.Status == AttendanceStatus.Present),
+                AbsentCount = attendanceList.Count(a => a.Status == AttendanceStatus.Absent),
+                LateCount = attendanceList.Count(a => a.Status == AttendanceStatus.Late)
+            };
+        }
+        
 
         public async Task<StudentDashboardDto> GetStudentDashboardAsync(int studentId)
         {

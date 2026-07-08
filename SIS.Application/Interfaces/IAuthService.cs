@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SIS.Application.DTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,5 +12,7 @@ namespace SIS.Application.Interfaces
     {
         Task<AuthResponseDto> LoginAsync(LoginDto dto);
         Task<AuthResponseDto> RegisterAsync(RegisterDto dto);
+        Task<bool> ForgotPasswordAsync(ForgotPasswordDto dto);
+        Task<bool> ResetPasswordAsync(ResetPasswordDto dto);
     }
 }

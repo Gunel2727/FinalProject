@@ -18,15 +18,39 @@ namespace SIS.Application.Services
         private readonly IUnitOfWork _uow;
         private readonly IPasswordHasher _passwordHasher;
         private readonly IJwtTokenService _jwtTokenService;
+        private readonly IEmailService _emailService;
 
         public AuthService(
             IUnitOfWork uow,
             IPasswordHasher passwordHasher,
-            IJwtTokenService jwtTokenService)
+            IJwtTokenService jwtTokenService,
+            IEmailService emailService
+            )
         {
             _uow = uow;
             _passwordHasher = passwordHasher;
             _jwtTokenService = jwtTokenService;
+            _emailService = emailService;
+        }
+
+        public async Task<bool> ForgotPasswordAsync(ForgotPasswordDto dto)
+        {
+            var user = await _uow.Users.GetByEmailAsync(dto.Email);
+
+            if(user==null)
+                return false;
+
+
+            var newToken = Guid.NewGuid().ToString();
+            user.ResetTokenExpiry=DateTime.UtcNow.AddMinutes(15);
+            user.ResetToken = newToken;
+
+            _uow.Users.Update(user);
+            await _uow.SaveChangesAsync();
+
+            await _emailService.SendPasswordResetEmailAsync(user.Email, newToken);
+            return true;
+            
         }
 
         public async Task<AuthResponseDto> LoginAsync(LoginDto dto)
@@ -116,6 +140,38 @@ namespace SIS.Application.Services
                 StudentId = user.StudentId,
                 TeacherId = user.TeacherId
             };
+        }
+
+        public async Task<bool> ResetPasswordAsync(ResetPasswordDto dto)
+        {
+           var user = await _uow.Users.GetByEmailAsync(dto.Email);
+
+            if(user==null)
+            {
+                throw new NotFoundException(ErrorMessages.UserNotFound);
+            }
+
+            if(user.ResetToken != dto.ResetToken)
+            {
+                throw new BadRequestException("Reset token yanlışdır");
+            }
+
+            if (user.ResetTokenExpiry < DateTime.UtcNow)
+            {
+                throw new BadRequestException("Reset token  vaxtı keçib");
+            }
+
+            user.PasswordHash = _passwordHasher.Hash(dto.NewPassword);  
+            user.ResetToken = null;
+            user.ResetTokenExpiry = null;
+
+            _uow.Users.Update(user);
+           await  _uow.SaveChangesAsync();
+
+            return true;
+
+
+
         }
     }
 }

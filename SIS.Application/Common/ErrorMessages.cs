@@ -9,6 +9,9 @@ namespace SIS.Application.Common
     public static class ErrorMessages
     {
 
+       
+        public const string UserNotFound = "İstifadəçi tapılmadı";
+
         public const string EmailAlreadyExists = "Bu email artıq qeydiyyatdadır";
 
         public const string StudentNotFound = "Tələbə tapılmadı";

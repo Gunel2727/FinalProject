@@ -35,9 +35,13 @@ namespace SIS.Infrastructure
             services.Configure<JwtSettings>(
            configuration.GetSection("JwtSettings"));
 
+            services.Configure<EmailSettings>(
+                configuration.GetSection("EmailSettings"));
+
             services.AddScoped<IJwtTokenService, JwtTokenService>();
             services.AddScoped<IPasswordHasher, PasswordHasher>();
             services.AddScoped<ITranscriptService, TranscriptService>();
+            services.AddScoped<IEmailService, EmailService>();
 
             return services;
         }

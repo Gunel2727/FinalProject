@@ -60,9 +60,9 @@ namespace SIS.Infrastructure.Persistence.SqlServer
           
             var student = new Student
             {
-                FirstName = "Əli",
-                LastName = "Həsənov",
-                Email = "eli.hasanov@sis.edu.az",
+                FirstName = "Gunel",
+                LastName = "Musazade",
+                Email = "gunelmusazade03@gmail.com",
                 Phone = "0501234567",
                 DateOfBirth = new DateTime(2003, 5, 15),
                 AcademicYear = 2,

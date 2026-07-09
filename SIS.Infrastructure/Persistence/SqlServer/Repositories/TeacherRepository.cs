@@ -1,4 +1,5 @@
-﻿using StudentInformationSystem.Domain.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using StudentInformationSystem.Domain.Interfaces;
 using StudentInformationSystem.Domain.Models;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,11 @@ namespace SIS.Infrastructure.Persistence.SqlServer.Repositories
         public void Delete(Teacher teacher)
         {
             _context.Teachers.Remove(teacher);
+        }
+
+        public async Task<Teacher?> GetByEmailAsync(string email)
+        {
+            return await _context.Teachers.FirstOrDefaultAsync(t => t.Email == email);
         }
 
         public void Update(Teacher teacher)

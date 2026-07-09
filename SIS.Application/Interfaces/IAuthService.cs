@@ -14,5 +14,7 @@ namespace SIS.Application.Interfaces
         Task<AuthResponseDto> RegisterAsync(RegisterDto dto);
         Task<bool> ForgotPasswordAsync(ForgotPasswordDto dto);
         Task<bool> ResetPasswordAsync(ResetPasswordDto dto);
+        Task<AuthResponseDto> GoogleLoginAsync(GoogleLoginDto dto);
+
     }
 }

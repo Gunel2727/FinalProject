@@ -1,4 +1,5 @@
-﻿using SIS.Application.Common;
+﻿using Microsoft.Extensions.Options;
+using SIS.Application.Common;
 using SIS.Application.DTOs;
 using SIS.Application.Interfaces;
 using SIS.Domain.Models;
@@ -19,18 +20,22 @@ namespace SIS.Application.Services
         private readonly IPasswordHasher _passwordHasher;
         private readonly IJwtTokenService _jwtTokenService;
         private readonly IEmailService _emailService;
+        private readonly IGoogleAuthService _googleAuthService;
 
         public AuthService(
             IUnitOfWork uow,
             IPasswordHasher passwordHasher,
             IJwtTokenService jwtTokenService,
-            IEmailService emailService
+            IEmailService emailService,
+            IGoogleAuthService googleAuthService
+
             )
         {
             _uow = uow;
             _passwordHasher = passwordHasher;
             _jwtTokenService = jwtTokenService;
             _emailService = emailService;
+            _googleAuthService = googleAuthService;
         }
 
         public async Task<bool> ForgotPasswordAsync(ForgotPasswordDto dto)
@@ -53,14 +58,44 @@ namespace SIS.Application.Services
             
         }
 
+        public async Task<AuthResponseDto> GoogleLoginAsync(GoogleLoginDto dto)
+        {
+            var email = await _googleAuthService.ValidateTokenAndGetEmailAsync(dto.IdToken);
+
+            if (email == null)
+                throw new UnauthorizedException("Google token doğrulanmadı");
+
+            var user = await _uow.Users.GetByEmailAsync(email);
+            if (user == null)
+                throw new UnauthorizedException(
+                     "Bu Google hesabı ilə sistemdə qeydiyyat yoxdur.");
+
+            var token = _jwtTokenService.GenerateToken(user);
+
+            return new AuthResponseDto
+            {
+                Token = token,
+                Email = user.Email,
+                Role = user.Role.ToString(),
+                UserId = user.Id,
+                StudentId = user.StudentId,
+                TeacherId = user.TeacherId
+            };
+
+        }
+
         public async Task<AuthResponseDto> LoginAsync(LoginDto dto)
         {
             var user = await _uow.Users.GetByEmailAsync(dto.Email);
 
-            if (user==null || !_passwordHasher.Verify(dto.Password,user.PasswordHash))
-            {
+            if (user == null)
                 throw new UnauthorizedException(ErrorMessages.InvalidCredentials);
-            }
+
+            if (user.IsGoogleAccount || user.PasswordHash == null)
+                throw new BadRequestException("Bu hesab Google ilə yaradılıb. Zəhmət olmasa 'Google ilə daxil ol' düyməsini işlədin.");
+
+            if (!_passwordHasher.Verify(dto.Password, user.PasswordHash))
+                throw new UnauthorizedException(ErrorMessages.InvalidCredentials);
 
             var token = _jwtTokenService.GenerateToken(user);
 
@@ -77,58 +112,56 @@ namespace SIS.Application.Services
 
         public async Task<AuthResponseDto> RegisterAsync(RegisterDto dto)
         {
-           var exists= await _uow.Users.EmailExistsAsync(dto.Email);
-
-            if(exists)
-            {
+            var exists = await _uow.Users.EmailExistsAsync(dto.Email);
+            if (exists)
                 throw new ConflictException(ErrorMessages.EmailAlreadyExists);
-            }
 
             var role = Enum.Parse<UserRole>(dto.Role, ignoreCase: true);
 
+            
+            int? studentId = null;
+            int? teacherId = null;
+
             if (role == UserRole.Teacher)
             {
-                if (dto.TeacherId == null)
-                    throw new BadRequestException("Teacher rolü üçün TeacherId mütləqdir");
-
-                var teacher = await _uow.Teachers.GetByIdAsync(dto.TeacherId.Value);
+                var teacher = await _uow.Teachers.GetByEmailAsync(dto.Email);
                 if (teacher == null)
-                    throw new NotFoundException(ErrorMessages.TeacherNotFound);
+                    throw new NotFoundException(
+                        "Bu email ilə qeydə alınmış müəllim tapılmadı. Əvvəlcə Admin sizi sistemə əlavə etməlidir.");
 
-                var alreadyLinked = await _uow.Users.TeacherIdExistsAsync(dto.TeacherId.Value);
+                var alreadyLinked = await _uow.Users.TeacherIdExistsAsync(teacher.Id);
                 if (alreadyLinked)
                     throw new ConflictException("Bu müəllim üçün artıq hesab yaradılıb");
+
+                teacherId = teacher.Id;
             }
 
             if (role == UserRole.Student)
             {
-                if (dto.StudentId == null)
-                    throw new BadRequestException("Student rolü üçün StudentId mütləqdir");
-
-                var student = await _uow.Students.GetByIdAsync(dto.StudentId.Value);
+                var student = await _uow.Students.GetByEmailAsync(dto.Email);
                 if (student == null)
-                    throw new NotFoundException(ErrorMessages.StudentNotFound);
+                    throw new NotFoundException(
+                        "Bu email ilə qeydə alınmış tələbə tapılmadı. Əvvəlcə Admin sizi sistemə əlavə etməlidir.");
 
-                var alreadyLinked = await _uow.Users.StudentIdExistsAsync(dto.StudentId.Value);
+                var alreadyLinked = await _uow.Users.StudentIdExistsAsync(student.Id);
                 if (alreadyLinked)
                     throw new ConflictException("Bu tələbə üçün artıq hesab yaradılıb");
+
+                studentId = student.Id;
             }
-
-
 
             var user = new User
             {
                 Email = dto.Email,
                 PasswordHash = _passwordHasher.Hash(dto.Password),
                 Role = role,
-                StudentId = dto.StudentId,
-                TeacherId = dto.TeacherId
+                StudentId = studentId,  
+                TeacherId = teacherId   
             };
 
             await _uow.Users.AddAsync(user);
             await _uow.SaveChangesAsync();
 
-          
             var token = _jwtTokenService.GenerateToken(user);
 
             return new AuthResponseDto

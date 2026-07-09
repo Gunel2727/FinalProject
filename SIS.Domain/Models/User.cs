@@ -12,11 +12,13 @@ namespace SIS.Domain.Models
     {
         public string Email { get; set; } = string.Empty;
        
-        public string PasswordHash { get; set; } = string.Empty;
+        public string? PasswordHash { get; set; } = string.Empty;
         public UserRole Role { get; set; }
         public int? StudentId { get; set; }
         public int? TeacherId { get; set; }
         public string? ResetToken { get; set; }
         public DateTime? ResetTokenExpiry { get; set; }
+
+        public bool IsGoogleAccount { get; set; } = false;
     }
 }

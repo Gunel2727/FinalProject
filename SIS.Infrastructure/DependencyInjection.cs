@@ -38,10 +38,14 @@ namespace SIS.Infrastructure
             services.Configure<EmailSettings>(
                 configuration.GetSection("EmailSettings"));
 
+            services.Configure<GoogleAuthSettings>(
+                configuration.GetSection("GoogleAuthSettings"));
+
             services.AddScoped<IJwtTokenService, JwtTokenService>();
             services.AddScoped<IPasswordHasher, PasswordHasher>();
             services.AddScoped<ITranscriptService, TranscriptService>();
             services.AddScoped<IEmailService, EmailService>();
+            services.AddScoped<IGoogleAuthService, GoogleAuthService>();
 
             return services;
         }

@@ -7,5 +7,6 @@ namespace StudentInformationSystem.Domain.Interfaces
     {
         void Update(Teacher teacher);
         void Delete(Teacher teacher);
+        Task<Teacher?> GetByEmailAsync(string email);
     }
 }

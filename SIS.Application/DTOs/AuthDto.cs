@@ -22,8 +22,7 @@ namespace SIS.Application.DTOs
             public string Password { get; set; } = string.Empty;
            
             public string Role { get; set; } = string.Empty;
-            public int? StudentId { get; set; }
-            public int? TeacherId { get; set; }
+           
         }
 
 
@@ -35,6 +34,11 @@ namespace SIS.Application.DTOs
             public int UserId { get; set; }
             public int? StudentId { get; set; }
             public int? TeacherId { get; set; }
+        }
+
+        public class GoogleLoginDto
+        {
+            public string IdToken { get; set; } = string.Empty;
         }
     }
 }

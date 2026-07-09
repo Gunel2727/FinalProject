@@ -46,5 +46,12 @@ namespace SIS.Api.Controllers
             var result = await _authService.ResetPasswordAsync(dto);
             return Ok(ResponseModel<bool>.Ok(result));
         }
+
+        [HttpPost("google-login")]
+        public async Task<IActionResult> GoogleLogin([FromBody] GoogleLoginDto dto)
+        {
+            var result = await _authService.GoogleLoginAsync(dto);
+            return Ok(ResponseModel<AuthResponseDto>.Ok(result));
+        }
     }
 }

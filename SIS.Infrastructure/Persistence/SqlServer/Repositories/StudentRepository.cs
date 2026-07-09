@@ -35,5 +35,10 @@ namespace SIS.Infrastructure.Persistence.SqlServer.Repositories
             => await _context.Students
                 .Include(s => s.Programme)
                 .FirstOrDefaultAsync(s => s.Id == id);
+
+        public async Task<Student?> GetByEmailAsync(string email)
+        {
+            return await _context.Students.FirstOrDefaultAsync(s => s.Email == email);
+        }
     }
 }

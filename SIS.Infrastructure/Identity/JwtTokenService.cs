@@ -27,7 +27,8 @@ namespace SIS.Infrastructure.Identity
             var claims = new List<Claim>
             {
                 new Claim("userId", user.Id.ToString()),
-                new Claim(ClaimTypes.Role, user.Role.ToString())
+                new Claim(ClaimTypes.Role, user.Role.ToString()),
+                new Claim("mustChangePassword", user.MustChangePassword.ToString())
              };
 
             var key = new SymmetricSecurityKey(

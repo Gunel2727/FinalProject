@@ -9,5 +9,6 @@ namespace SIS.Application.Interfaces
     public interface IEmailService
     {
         Task SendPasswordResetEmailAsync(string toEmail, string resetToken);
+        Task SendWelcomeEmailAsync(string toEmail, string fullName, string temporaryPassword);
     }
 }

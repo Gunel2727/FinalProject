@@ -1,4 +1,5 @@
-﻿using StudentInformationSystem.Domain.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using StudentInformationSystem.Domain.Interfaces;
 using StudentInformationSystem.Domain.Models;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,13 @@ namespace SIS.Infrastructure.Persistence.SqlServer.Repositories
         public void Update(Programme programme)
         {
             _context.Programmes.Update(programme);
+        }
+
+        public new async Task<IList<Programme>> GetAllAsync()
+        {
+            return await _context.Programmes
+                .Include(p => p.Department)
+                .ToListAsync();
         }
     }
 }

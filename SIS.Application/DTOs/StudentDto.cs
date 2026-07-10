@@ -16,6 +16,7 @@ namespace SIS.Application.DTOs
         public int AcademicYear { get; set; }
         public string ProgrammeName { get; set; } = string.Empty;
         public DateTime CreatedAt { get; set; }
+        public string? TemporaryPassword { get; set; }
     }
 
     public class CreateStudentDto

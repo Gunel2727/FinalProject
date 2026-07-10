@@ -38,6 +38,26 @@ namespace SIS.Application.Services
             _googleAuthService = googleAuthService;
         }
 
+        public async Task<bool> ChangePasswordAsync(int userId, ChangePasswordDto dto)
+        {
+            var user = await _uow.Users.GetByIdAsync(userId);
+            if (user == null)
+                throw new NotFoundException(ErrorMessages.UserNotFound);
+
+            if (user.IsGoogleAccount || user.PasswordHash == null)
+                throw new BadRequestException("Bu hesab üçün şifrə dəyişikliyi tələb olunmur.");
+
+            if (!_passwordHasher.Verify(dto.OldPassword, user.PasswordHash))
+                throw new UnauthorizedException("Köhnə şifrə yanlışdır");
+
+            user.PasswordHash = _passwordHasher.Hash(dto.NewPassword);
+            user.MustChangePassword = false;
+
+            _uow.Users.Update(user);
+            await _uow.SaveChangesAsync();
+            return true;
+        }
+
         public async Task<bool> ForgotPasswordAsync(ForgotPasswordDto dto)
         {
             var user = await _uow.Users.GetByEmailAsync(dto.Email);
@@ -79,7 +99,8 @@ namespace SIS.Application.Services
                 Role = user.Role.ToString(),
                 UserId = user.Id,
                 StudentId = user.StudentId,
-                TeacherId = user.TeacherId
+                TeacherId = user.TeacherId,
+                MustChangePassword = user.MustChangePassword
             };
 
         }
@@ -106,74 +127,12 @@ namespace SIS.Application.Services
                 Role = user.Role.ToString(),
                 UserId = user.Id,
                 StudentId = user.StudentId,
-                TeacherId = user.TeacherId
+                TeacherId = user.TeacherId,
+                MustChangePassword = user.MustChangePassword
             };
         }
 
-        public async Task<AuthResponseDto> RegisterAsync(RegisterDto dto)
-        {
-            var exists = await _uow.Users.EmailExistsAsync(dto.Email);
-            if (exists)
-                throw new ConflictException(ErrorMessages.EmailAlreadyExists);
-
-            var role = Enum.Parse<UserRole>(dto.Role, ignoreCase: true);
-
-            
-            int? studentId = null;
-            int? teacherId = null;
-
-            if (role == UserRole.Teacher)
-            {
-                var teacher = await _uow.Teachers.GetByEmailAsync(dto.Email);
-                if (teacher == null)
-                    throw new NotFoundException(
-                        "Bu email ilə qeydə alınmış müəllim tapılmadı. Əvvəlcə Admin sizi sistemə əlavə etməlidir.");
-
-                var alreadyLinked = await _uow.Users.TeacherIdExistsAsync(teacher.Id);
-                if (alreadyLinked)
-                    throw new ConflictException("Bu müəllim üçün artıq hesab yaradılıb");
-
-                teacherId = teacher.Id;
-            }
-
-            if (role == UserRole.Student)
-            {
-                var student = await _uow.Students.GetByEmailAsync(dto.Email);
-                if (student == null)
-                    throw new NotFoundException(
-                        "Bu email ilə qeydə alınmış tələbə tapılmadı. Əvvəlcə Admin sizi sistemə əlavə etməlidir.");
-
-                var alreadyLinked = await _uow.Users.StudentIdExistsAsync(student.Id);
-                if (alreadyLinked)
-                    throw new ConflictException("Bu tələbə üçün artıq hesab yaradılıb");
-
-                studentId = student.Id;
-            }
-
-            var user = new User
-            {
-                Email = dto.Email,
-                PasswordHash = _passwordHasher.Hash(dto.Password),
-                Role = role,
-                StudentId = studentId,  
-                TeacherId = teacherId   
-            };
-
-            await _uow.Users.AddAsync(user);
-            await _uow.SaveChangesAsync();
-
-            var token = _jwtTokenService.GenerateToken(user);
-
-            return new AuthResponseDto
-            {
-                Token = token,
-                Email = user.Email,
-                Role = user.Role.ToString(),
-                UserId = user.Id,
-                StudentId = user.StudentId,
-                TeacherId = user.TeacherId
-            };
-        }
+       
 
         public async Task<bool> ResetPasswordAsync(ResetPasswordDto dto)
         {

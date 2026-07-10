@@ -2,6 +2,8 @@
 using SIS.Application.Common;
 using SIS.Application.DTOs;
 using SIS.Application.Interfaces;
+using SIS.Domain.Models;
+using StudentInformationSystem.Domain.Enums;
 using StudentInformationSystem.Domain.Interfaces;
 using StudentInformationSystem.Domain.Models;
 using System;
@@ -16,19 +18,49 @@ namespace SIS.Application.Services
     {
         private readonly IUnitOfWork _uow;
         private readonly IMapper _mapper;
+        private readonly IPasswordHasher _passwordHasher;
+        private readonly IEmailService _emailService;
 
-        public StudentService(IUnitOfWork uow, IMapper mapper)
+        public StudentService(IUnitOfWork uow, IMapper mapper, IPasswordHasher passwordHasher, IEmailService emailService)
         {
             _uow = uow;
             _mapper = mapper;
+            _passwordHasher = passwordHasher;
+            _emailService = emailService;
         }
         public async Task<StudentDto> CreateAsync(CreateStudentDto dto)
         {
-            
+            var emailExists = await _uow.Users.EmailExistsAsync(dto.Email);
+            if (emailExists)
+                throw new ConflictException(ErrorMessages.EmailAlreadyExists);
+
             var student = _mapper.Map<Student>(dto);
             await _uow.Students.AddAsync(student);
             await _uow.SaveChangesAsync();
-            return _mapper.Map<StudentDto>(student);
+
+            var studentWithDetails = await _uow.Students.GetByIdAsync(student.Id);
+
+            var tempPassword = PasswordGenerator.Generate();
+            var user = new User
+            {
+                Email = student.Email,
+                PasswordHash = _passwordHasher.Hash(tempPassword),
+                Role = UserRole.Student,
+                StudentId = student.Id,
+                MustChangePassword = true
+            };
+            await _uow.Users.AddAsync(user);
+            await _uow.SaveChangesAsync();
+
+            await _emailService.SendWelcomeEmailAsync(
+           student.Email,
+           $"{student.FirstName} {student.LastName}",
+           tempPassword);
+
+
+            var resultDto = _mapper.Map<StudentDto>(studentWithDetails);
+            resultDto.TemporaryPassword = tempPassword;  
+            return resultDto;
         }
 
         public async Task DeleteAsync(int id)

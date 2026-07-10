@@ -20,5 +20,6 @@ namespace SIS.Domain.Models
         public DateTime? ResetTokenExpiry { get; set; }
 
         public bool IsGoogleAccount { get; set; } = false;
+        public bool MustChangePassword { get; set; } = true;
     }
 }

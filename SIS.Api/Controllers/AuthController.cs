@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SIS.Application.Common;
 using SIS.Application.DTOs;
@@ -25,11 +26,13 @@ namespace SIS.Api.Controllers
             return Ok(ResponseModel<AuthResponseDto>.Ok(result));
         }
 
-        [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] RegisterDto dto)
+        [HttpPost("change-password")]
+        [Authorize]
+        public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordDto dto)
         {
-            var result = await _authService.RegisterAsync(dto);
-            return StatusCode(201, ResponseModel<AuthResponseDto>.Created(result));
+            var userId = int.Parse(User.FindFirst("userId")!.Value);
+            var result = await _authService.ChangePasswordAsync(userId, dto);
+            return Ok(ResponseModel<bool>.Ok(result));
         }
 
         [HttpPost("forgot-password")]

@@ -124,6 +124,9 @@ app.UseHttpsRedirection();
 app.UseCors("AllowAll");
 
 app.UseAuthentication();
+
+app.UseMiddleware<PasswordChangeEnforcementMiddleware>();
+
 app.UseAuthorization();
 
 app.MapControllers();

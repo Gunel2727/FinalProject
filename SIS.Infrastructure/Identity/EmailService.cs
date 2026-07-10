@@ -46,5 +46,32 @@ namespace SIS.Infrastructure.Identity
 
             await client.SendMailAsync(message);
         }
+
+        public async Task SendWelcomeEmailAsync(string toEmail, string fullName, string temporaryPassword)
+        {
+            var message = new MailMessage
+            {
+                From = new MailAddress(_emailSettings.SenderEmail, _emailSettings.SenderName),
+                Subject = "Sistemə Xoş Gəldiniz — Student Information System",
+                Body = $@"
+            <h2>Salam, {fullName}!</h2>
+            <p>Sizin üçün Student Information System-də hesab yaradıldı.</p>
+            <p><b>Giriş məlumatlarınız:</b></p>
+            <p>Email: {toEmail}<br>
+               Müvəqqəti şifrə: <b>{temporaryPassword}</b></p>
+            <p>Zəhmət olmasa ilk daxil olduğunuzda şifrənizi dəyişin.</p>
+        ",
+                IsBodyHtml = true
+            };
+            message.To.Add(toEmail);
+
+            using var client = new SmtpClient(_emailSettings.SmtpServer, _emailSettings.Port)
+            {
+                Credentials = new NetworkCredential(_emailSettings.SenderEmail, _emailSettings.SenderPassword),
+                EnableSsl = true
+            };
+
+            await client.SendMailAsync(message);
+        }
     }
 }

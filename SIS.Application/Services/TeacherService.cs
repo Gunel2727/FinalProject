@@ -2,6 +2,8 @@
 using SIS.Application.Common;
 using SIS.Application.DTOs;
 using SIS.Application.Interfaces;
+using SIS.Domain.Models;
+using StudentInformationSystem.Domain.Enums;
 using StudentInformationSystem.Domain.Interfaces;
 using StudentInformationSystem.Domain.Models;
 using System;
@@ -16,19 +18,47 @@ namespace SIS.Application.Services
     {
         private readonly IUnitOfWork _uow;
         private readonly IMapper _mapper;
+        private readonly IPasswordHasher _passwordHasher;
+        private readonly IEmailService _emailService;
 
-        public TeacherService(IUnitOfWork uow, IMapper mapper)
+        public TeacherService(IUnitOfWork uow, IMapper mapper, IPasswordHasher passwordHasher, IEmailService emailService)
         {
             _uow = uow;
             _mapper = mapper;
+            _passwordHasher = passwordHasher;
+            _emailService = emailService;
         }
 
         public async Task<TeacherDto> CreateAsync(CreateTeacherDto dto)
         {
+            var emailExists = await _uow.Users.EmailExistsAsync(dto.Email);
+            if (emailExists)
+                throw new ConflictException(ErrorMessages.EmailAlreadyExists);
+
             var teacher = _mapper.Map<Teacher>(dto);
             await _uow.Teachers.AddAsync(teacher);
             await _uow.SaveChangesAsync();
-            return _mapper.Map<TeacherDto>(teacher); 
+
+            var tempPassword = PasswordGenerator.Generate();
+            var user = new User
+            {
+                Email = teacher.Email,
+                PasswordHash = _passwordHasher.Hash(tempPassword),
+                Role = UserRole.Teacher,
+                TeacherId = teacher.Id,
+                MustChangePassword=true
+            };
+            await _uow.Users.AddAsync(user);
+            await _uow.SaveChangesAsync();
+
+            await _emailService.SendWelcomeEmailAsync(
+           teacher.Email,
+           $"{teacher.FirstName} {teacher.LastName}",
+           tempPassword);
+
+            var resultDto = _mapper.Map<TeacherDto>(teacher);
+            resultDto.TemporaryPassword = tempPassword;
+            return resultDto;
         }
 
         public async Task DeleteAsync(int id)

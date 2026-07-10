@@ -13,6 +13,7 @@ namespace SIS.Application.DTOs
         public string LastName { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
         public string DepartmentName { get; set; } = string.Empty;
+        public string? TemporaryPassword { get; set; }
     }
 
     public class CreateTeacherDto

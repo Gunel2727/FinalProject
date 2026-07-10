@@ -15,14 +15,11 @@ namespace SIS.Application.DTOs
             public string Password { get; set; } = string.Empty;
         }
 
-       
-        public class RegisterDto
+
+        public class ChangePasswordDto
         {
-            public string Email { get; set; } = string.Empty;
-            public string Password { get; set; } = string.Empty;
-           
-            public string Role { get; set; } = string.Empty;
-           
+            public string OldPassword { get; set; } = string.Empty;
+            public string NewPassword { get; set; } = string.Empty;
         }
 
 
@@ -34,6 +31,7 @@ namespace SIS.Application.DTOs
             public int UserId { get; set; }
             public int? StudentId { get; set; }
             public int? TeacherId { get; set; }
+            public bool MustChangePassword { get; set; }
         }
 
         public class GoogleLoginDto

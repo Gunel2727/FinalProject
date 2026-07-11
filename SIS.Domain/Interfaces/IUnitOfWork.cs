@@ -15,6 +15,7 @@ namespace StudentInformationSystem.Domain.Interfaces
         IProgrammeRepository Programmes { get; }
         IAcademicTermRepository AcademicTerms { get; }
         IUserRepository Users { get; }
+        IChatMessageRepository ChatMessages { get; }
 
         Task<int> SaveChangesAsync();
     }

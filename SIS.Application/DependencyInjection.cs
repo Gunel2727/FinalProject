@@ -36,6 +36,7 @@ namespace SIS.Application
             services.AddScoped<IAdminService, AdminService>();
             services.AddScoped<ITeacherService, TeacherService>();
             services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<IMessageService, MessageService>();
 
             return services;
         }

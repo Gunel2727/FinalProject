@@ -25,6 +25,7 @@ namespace SIS.Infrastructure.Persistence.SqlServer
         private IProgrammeRepository? _programmes;
         private IAcademicTermRepository? _academicTerms;
         private IUserRepository? _users;
+        private IChatMessageRepository? _chatMessages;
 
         public UnitOfWork(AppDbContext context)
         {
@@ -63,6 +64,9 @@ namespace SIS.Infrastructure.Persistence.SqlServer
 
         public IUserRepository Users =>
         _users ??= new UserRepository(_context);
+
+        public IChatMessageRepository ChatMessages => 
+            _chatMessages ??new ChatMessagesRepository(_context);
 
         public void Dispose()
         {

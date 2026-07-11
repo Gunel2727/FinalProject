@@ -1,9 +1,12 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using SIS.Api.Hubs;
 using SIS.Api.Middleware;
 using SIS.Application;
+using SIS.Application.Interfaces;
 using SIS.Infrastructure;
+using SIS.Infrastructure.Chat;
 using SIS.Infrastructure.Identity;
 using SIS.Infrastructure.Persistence.SqlServer;
 using System.Text;
@@ -98,11 +101,17 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
     {
-        policy.AllowAnyOrigin()
+        policy.WithOrigins("http://localhost:5500") 
               .AllowAnyMethod()
-              .AllowAnyHeader();
+              .AllowAnyHeader()
+              .AllowCredentials();  
     });
 });
+
+builder.Services.AddSignalR();
+
+
+builder.Services.AddScoped<IChatNotifier, SignalRChatNotifier>();
 
 var app = builder.Build();
 
@@ -136,5 +145,6 @@ using (var scope = app.Services.CreateScope())
     var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
     await DataSeeder.SeedAsync(context);
 }
+app.MapHub<ChatHub>("/chatHub");
 
 app.Run();

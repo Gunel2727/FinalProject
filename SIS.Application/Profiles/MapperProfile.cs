@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using SIS.Application.DTOs;
+using SIS.Domain.Models;
 using StudentInformationSystem.Domain.Models;
 using System;
 using System.Collections.Generic;
@@ -108,6 +109,14 @@ namespace SIS.Application.Profiles
            
             CreateMap<AcademicTerm, AcademicTermDto>();
             CreateMap<CreateAcademicTermDto, AcademicTerm>();
+
+            CreateMap<ChatMessage, ChatMessageDto>()
+            .ForMember(
+                dest => dest.SenderEmail,
+                opt => opt.MapFrom(src => src.Sender.Email))
+            .ForMember(
+                dest => dest.SentAt,
+                opt => opt.MapFrom(src => src.CreatedAt));
 
         }
     }

@@ -26,6 +26,7 @@ namespace SIS.Infrastructure.Persistence.SqlServer
         public DbSet<Programme> Programmes { get; set; }
         public DbSet<AcademicTerm> AcademicTerms { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<ChatMessage> ChatMessages { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

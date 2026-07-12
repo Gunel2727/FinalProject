@@ -42,7 +42,6 @@ namespace SIS.Application.Services
             if (receiver == null)
                 throw new NotFoundException(ErrorMessages.UserNotFound);
 
-            // ── YENİ: Kim kimlə yaza bilər yoxlaması ──────────────────
             var allowed = await CanCommunicateAsync(sender, receiver);
             if (!allowed)
                 throw new ForbiddenException(
@@ -58,7 +57,7 @@ namespace SIS.Application.Services
             await _uow.ChatMessages.AddAsync(message);
             await _uow.SaveChangesAsync();
 
-            var sender = await _uow.Users.GetByIdAsync(senderId);
+           
             var messageDto = new ChatMessageDto
             {
                 Id = message.Id,

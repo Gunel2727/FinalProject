@@ -203,3 +203,4 @@ C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Api\bin\Debug\net8.0\Microsoft.
 C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Api\bin\Debug\net8.0\Microsoft.Extensions.Hosting.Abstractions.dll
 C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Api\bin\Debug\net8.0\Microsoft.Extensions.ObjectPool.dll
 C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Api\bin\Debug\net8.0\System.Net.WebSockets.WebSocketProtocol.dll
+C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Api\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

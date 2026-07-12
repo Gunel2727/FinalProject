@@ -18,6 +18,7 @@ namespace SIS.Infrastructure.Persistence.SqlServer.Repositories
         public async Task<IList<ChatMessage>> GetConversationAsync(int userId1, int userId2)
         {
             return await _context.ChatMessages
+                .Include(m => m.Sender)
                 .Where(m => (m.SenderId == userId1 && m.ReceiverId == userId2)
                 || (m.SenderId == userId2 && m.ReceiverId == userId1))
                 .OrderBy(m => m.CreatedAt)

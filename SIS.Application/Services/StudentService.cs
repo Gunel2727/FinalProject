@@ -52,14 +52,21 @@ namespace SIS.Application.Services
             await _uow.Users.AddAsync(user);
             await _uow.SaveChangesAsync();
 
-            await _emailService.SendWelcomeEmailAsync(
-           student.Email,
-           $"{student.FirstName} {student.LastName}",
-           tempPassword);
-
+            
+            try
+            {
+                await _emailService.SendWelcomeEmailAsync(
+                    student.Email,
+                    $"{student.FirstName} {student.LastName}",
+                    tempPassword);
+            }
+            catch (Exception)
+            {
+                
+            }
 
             var resultDto = _mapper.Map<StudentDto>(studentWithDetails);
-            resultDto.TemporaryPassword = tempPassword;  
+            resultDto.TemporaryPassword = tempPassword;
             return resultDto;
         }
 

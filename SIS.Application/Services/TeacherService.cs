@@ -51,10 +51,20 @@ namespace SIS.Application.Services
             await _uow.Users.AddAsync(user);
             await _uow.SaveChangesAsync();
 
-            await _emailService.SendWelcomeEmailAsync(
-           teacher.Email,
-           $"{teacher.FirstName} {teacher.LastName}",
-           tempPassword);
+            try
+            {
+                await _emailService.SendWelcomeEmailAsync(
+             teacher.Email,
+             $"{teacher.FirstName} {teacher.LastName}",
+             tempPassword);
+
+            }
+            catch (Exception)
+            {
+                
+            }
+
+
 
             var resultDto = _mapper.Map<TeacherDto>(teacher);
             resultDto.TemporaryPassword = tempPassword;

@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using SIS.Api.Hubs;
 using SIS.Api.Middleware;
 using SIS.Application;
 using SIS.Application.Interfaces;

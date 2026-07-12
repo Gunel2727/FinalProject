@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using SIS.Application.DTOs;
-using SIS.Application.Interfaces;
+using SIS.Application.Interfaces;  
 using System;
 using System.Collections.Generic;
 using System.Linq;

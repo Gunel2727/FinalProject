@@ -96,6 +96,12 @@ namespace SIS.Application.Services
             return _mapper.Map<StudentDto>(student);
         }
 
+        public async Task<IList<StudentDto>> GetFilteredAsync(string? search, int? programmeId, int? departmentId)
+        {
+            var students = await _uow.Students.GetFilteredAsync(search, programmeId, departmentId);
+            return _mapper.Map<IList<StudentDto>>(students);
+        }
+
         public async Task<StudentDto> UpdateAsync(int id, UpdateStudentDto dto)
         {
             var student = await _uow.Students.GetByIdAsync(id);

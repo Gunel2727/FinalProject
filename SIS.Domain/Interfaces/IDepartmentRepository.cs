@@ -8,5 +8,6 @@ namespace StudentInformationSystem.Domain.Interfaces
        
         void Update(Department department);
         void Delete(Department department);
+        Task<IList<Department>> GetFilteredAsync(string? search);
     }
 }

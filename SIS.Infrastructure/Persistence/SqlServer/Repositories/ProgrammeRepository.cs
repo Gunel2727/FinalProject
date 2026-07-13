@@ -31,5 +31,31 @@ namespace SIS.Infrastructure.Persistence.SqlServer.Repositories
                 .Include(p => p.Department)
                 .ToListAsync();
         }
+
+        public new async Task<Programme?> GetByIdAsync(int id)
+        { 
+            return await _context.Programmes
+            .Include(p => p.Department)
+            .FirstOrDefaultAsync(p => p.Id == id);
+        }
+
+        public async Task<IList<Programme>> GetFilteredAsync(string? search, int? departmentId)
+        {
+            var query = _context.Programmes
+                .Include(p => p.Department)
+                .AsQueryable();
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                query = query.Where(p => p.Name.Contains(search));
+            }
+
+            if (departmentId.HasValue)
+            {
+                query = query.Where(p => p.DepartmentId == departmentId.Value);
+            }
+
+            return await query.ToListAsync();
+        }
     }
 }

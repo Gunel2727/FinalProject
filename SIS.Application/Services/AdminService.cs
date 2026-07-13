@@ -35,7 +35,10 @@ namespace SIS.Application.Services
             var programme = _mapper.Map<Programme>(dto);
             await _uow.Programmes.AddAsync(programme);
             await _uow.SaveChangesAsync();
-            return _mapper.Map<ProgrammeDto>(programme);
+
+            var programmeWithDetails = await _uow.Programmes.GetByIdAsync(programme.Id);
+
+            return _mapper.Map<ProgrammeDto>(programmeWithDetails);
         }
 
         public async Task<AcademicTermDto> CreateTermAsync(CreateAcademicTermDto dto)
@@ -72,6 +75,18 @@ namespace SIS.Application.Services
         {
             var terms = await _uow.AcademicTerms.GetAllAsync();
             return _mapper.Map<IList<AcademicTermDto>>(terms);
+        }
+
+        public async Task<IList<ProgrammeDto>> GetFilteredAsync(string? search, int? departmentId)
+        {
+            var programmes = await _uow.Programmes.GetFilteredAsync(search, departmentId);
+            return _mapper.Map<IList<ProgrammeDto>>(programmes);
+        }
+
+        public async Task<IList<DepartmentDto>> GetFilteredAsync(string? search)
+        {
+           var departments = await _uow.Departments.GetFilteredAsync(search);
+            return _mapper.Map<IList<DepartmentDto>>(departments);
         }
 
         public async Task<DepartmentDto> UpdateDepartmentAsync(int id, UpdateDepartmentDto dto)

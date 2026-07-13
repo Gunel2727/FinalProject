@@ -9,5 +9,6 @@ namespace StudentInformationSystem.Domain.Interfaces
         void Update(Student student);
         void Delete(Student student);
         Task<Student?> GetByEmailAsync(string email);
+        Task<IList<Student>> GetFilteredAsync(string? search, int? programmeId,int? departmentId);
     }
 }

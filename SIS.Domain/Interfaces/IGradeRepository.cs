@@ -9,5 +9,6 @@ namespace StudentInformationSystem.Domain.Interfaces
         Task<IList<Grade>> GetByCourseIdAsync(int courseId);
         Task<Grade?> GetByStudentAndCourseAsync(int studentId, int courseId);
         void Update(Grade grade);
+        Task<IList<Grade>> GetFilteredAsync(string? search, int? courseId);
     }
 }

@@ -15,5 +15,6 @@ namespace SIS.Application.Interfaces
         Task<CourseDto> CreateAsync(CreateCourseDto dto);
         Task<CourseDto> UpdateAsync(int id, UpdateCourseDto dto);
         Task DeleteAsync(int id);
+        Task<IList<CourseDto>> GetFilteredAsync(string? search, int? teacherId, int? academicTermId);
     }
 }

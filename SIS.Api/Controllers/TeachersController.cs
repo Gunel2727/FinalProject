@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using SIS.Application.Common;
 using SIS.Application.DTOs;
 using SIS.Application.Interfaces;
+using StudentInformationSystem.Domain.Models;
 
 namespace SIS.Api.Controllers
 {
@@ -23,6 +24,13 @@ namespace SIS.Api.Controllers
         public async Task<IActionResult> GetAll()
         {
             var teachers = await _teacherService.GetAllAsync();
+            return Ok(ResponseModel<IList<TeacherDto>>.Ok(teachers));
+        }
+
+        [HttpGet("filtered")]
+        public async Task<IActionResult> GetFiltered([FromQuery]string? search, [FromQuery]int? departmentId)
+        {
+            var teachers=await _teacherService.GetFilteredAsync(search, departmentId);
             return Ok(ResponseModel<IList<TeacherDto>>.Ok(teachers));
         }
 

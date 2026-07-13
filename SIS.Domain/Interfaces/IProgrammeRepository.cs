@@ -7,5 +7,6 @@ namespace StudentInformationSystem.Domain.Interfaces
     {
         void Update(Programme programme);
         void Delete(Programme programme);
+        Task<IList<Programme>> GetFilteredAsync(string? search, int? departmentId);
     }
 }

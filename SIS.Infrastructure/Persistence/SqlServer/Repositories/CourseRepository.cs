@@ -40,7 +40,32 @@ namespace SIS.Infrastructure.Persistence.SqlServer.Repositories
            .ToListAsync();
 
         }
-        
 
+        public async Task<IList<Course>> GetFilteredAsync(string? search, int? teacherId,int? academicTermId)
+        {
+            var query = _context.Courses
+                .Include(c => c.Teacher)
+                .Include(c => c.AcademicTerm)
+                .AsQueryable();
+
+            if(!string.IsNullOrEmpty(search))
+            {
+                query=query.Where(c=>c.Name.Contains(search) 
+                || c.Code.Contains(search));
+            }
+
+            if(teacherId.HasValue)
+            {
+                query=query.Where(c=>c.TeacherId==teacherId.Value);
+            }
+            
+            if(academicTermId.HasValue)
+            {
+                query=query.Where(c=>c.AcademicTermId==academicTermId.Value);
+            }
+    
+            return await query.ToListAsync();
+
+        }
     }
 }

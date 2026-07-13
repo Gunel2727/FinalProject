@@ -61,6 +61,12 @@ namespace SIS.Application.Services
             return _mapper.Map<IList<GradeDto>>(grades);
         }
 
+        public async Task<IList<GradeDto>> GetFilteredAsync(string? search, int? courseId)
+        {
+            var grades = await _uow.Grades.GetFilteredAsync(search, courseId);
+            return _mapper.Map<IList<GradeDto>>(grades);  
+        }
+
         public async Task<GradeDto> UpdateAsync(int id, UpdateGradeDto dto)
         {
             var grade = await _uow.Grades.GetByIdAsync(id);

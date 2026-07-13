@@ -14,13 +14,15 @@ namespace SIS.Application.Interfaces
         Task<DepartmentDto> CreateDepartmentAsync(CreateDepartmentDto dto);
         Task<DepartmentDto> UpdateDepartmentAsync(int id, UpdateDepartmentDto dto);
         Task DeleteDepartmentAsync(int id);
+        Task<IList<DepartmentDto>> GetFilteredAsync(string? search);
 
-       
+
         Task<IList<ProgrammeDto>> GetAllProgrammesAsync();
         Task<ProgrammeDto> CreateProgrammeAsync(CreateProgrammeDto dto);
         Task<ProgrammeDto> UpdateProgrammeAsync(int id, UpdateProgrammeDto dto);
+        Task<IList<ProgrammeDto>> GetFilteredAsync(string? search, int? departmentId);
 
-       
+
         Task<IList<AcademicTermDto>> GetAllTermsAsync();
         Task<AcademicTermDto> CreateTermAsync(CreateAcademicTermDto dto);
         Task<AcademicTermDto> UpdateTermAsync(int id, AcademicTermDto dto);

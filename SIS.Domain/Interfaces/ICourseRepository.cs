@@ -8,5 +8,6 @@ namespace StudentInformationSystem.Domain.Interfaces
         Task<IList<Course>> GetByTeacherIdAsync(int teacherId);
         void Update(Course course);
         void Delete(Course course);
+        Task<IList<Course>> GetFilteredAsync(string? search,int? teacherId,int? academicTermId);
     }
 }

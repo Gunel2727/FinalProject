@@ -1,4 +1,5 @@
-﻿using StudentInformationSystem.Domain.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using StudentInformationSystem.Domain.Interfaces;
 using StudentInformationSystem.Domain.Models;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,18 @@ namespace SIS.Infrastructure.Persistence.SqlServer.Repositories
         public void Delete(Department department)
         {
             _context.Departments.Remove(department);
+        }
+
+        public async Task<IList<Department>> GetFilteredAsync(string? search)
+        {
+            var query = _context.Departments.AsQueryable();
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                query = query.Where(d => d.Name.Contains(search));
+            }
+
+            return await query.ToListAsync();
         }
 
         public void Update(Department department)

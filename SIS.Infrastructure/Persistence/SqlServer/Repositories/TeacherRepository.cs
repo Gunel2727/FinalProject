@@ -25,6 +25,28 @@ namespace SIS.Infrastructure.Persistence.SqlServer.Repositories
             return await _context.Teachers.FirstOrDefaultAsync(t => t.Email == email);
         }
 
+        public async Task<IList<Teacher>> GetFilteredAsync(string? search, int? departmentId)
+        {
+            var query = _context.Teachers
+                .Include(t => t.Department)
+                .AsQueryable();
+
+            if(!string.IsNullOrEmpty(search))
+            {
+                query=query.Where(t=>t.FirstName.Contains(search)
+                || t.LastName.Contains(search)
+                || t.Email.Contains(search)
+                );
+            }
+
+            if(departmentId.HasValue)
+            {
+                query=query.Where(t=>t.DepartmentId==departmentId.Value);
+            }
+
+            return await query.ToListAsync();
+        }
+
         public void Update(Teacher teacher)
         {
             _context.Teachers.Update(teacher);

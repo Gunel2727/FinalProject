@@ -25,6 +25,12 @@ namespace SIS.Api.Controllers
             var departments = await _adminService.GetAllDepartmentsAsync();
             return Ok(ResponseModel<IList<DepartmentDto>>.Ok(departments));
         }
+        [HttpGet("departments/filtered")]
+        public async Task<IActionResult> GetFilteredDepartments([FromQuery] string? search)
+        {
+            var departments = await _adminService.GetFilteredAsync(search);
+            return Ok(ResponseModel<IList<DepartmentDto>>.Ok(departments));
+        }
 
         [HttpPost("departments")]
         public async Task<IActionResult> CreateDepartment([FromBody] CreateDepartmentDto dto)
@@ -51,6 +57,13 @@ namespace SIS.Api.Controllers
         public async Task<IActionResult> GetAllProgrammes()
         {
             var programmes = await _adminService.GetAllProgrammesAsync();
+            return Ok(ResponseModel<IList<ProgrammeDto>>.Ok(programmes));
+        }
+
+        [HttpGet("programmes/filtered")]
+        public async Task<IActionResult> GetFilteredProgrammes([FromQuery] string? search, [FromQuery] int? departmentId)
+        {
+            var programmes = await _adminService.GetFilteredAsync(search, departmentId);
             return Ok(ResponseModel<IList<ProgrammeDto>>.Ok(programmes));
         }
 

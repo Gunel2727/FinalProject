@@ -28,6 +28,14 @@ namespace SIS.Api.Controllers
             return Ok(ResponseModel<IList<StudentDto>>.Ok(students));
         }
 
+        [HttpGet("filter")]
+        [Authorize(Roles = "Admin,Teacher")]
+        public async Task<IActionResult> GetFiltered([FromQuery] string? search, [FromQuery] int? programmeId, [FromQuery] int? departmentId)
+        {
+           var students= await _studentService.GetFilteredAsync(search, programmeId, departmentId);
+            return Ok(ResponseModel<IList<StudentDto>>.Ok(students));
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {

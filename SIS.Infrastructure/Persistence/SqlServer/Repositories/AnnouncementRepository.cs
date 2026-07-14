@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using StudentInformationSystem.Domain.Enums;
 using StudentInformationSystem.Domain.Interfaces;
 using StudentInformationSystem.Domain.Models;
 using System;
@@ -26,6 +27,25 @@ namespace SIS.Infrastructure.Persistence.SqlServer.Repositories
             .Where(a => a.CourseId == courseId || a.IsGlobal)
             .OrderByDescending(a => a.CreatedAt)
             .ToListAsync();
+        }
+
+        public async Task<IList<Announcement>> GetFilteredAsync(string? targetRole, int? courseId)
+        {
+            var query = _context.Announcements
+                .AsQueryable();
+
+            if (!string.IsNullOrEmpty(targetRole))
+            {
+                var role = Enum.Parse<UserRole>(targetRole, ignoreCase: true);
+                query = query.Where(a => a.TargetRole == role);
+            }
+
+            if (courseId.HasValue)
+            {
+                query = query.Where(a => a.CourseId == courseId.Value || a.IsGlobal);
+            }
+
+            return await query.OrderByDescending(a => a.CreatedAt).ToListAsync();
         }
     }
 }

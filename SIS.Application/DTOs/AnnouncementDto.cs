@@ -14,6 +14,7 @@ namespace SIS.Application.DTOs
         public bool IsGlobal { get; set; }
         public int? CourseId { get; set; }
         public DateTime CreatedAt { get; set; }
+        public string? TargetRole { get; set; }
     }
 
     public class CreateAnnouncementDto
@@ -22,5 +23,6 @@ namespace SIS.Application.DTOs
         public string Content { get; set; } = string.Empty;
         public bool IsGlobal { get; set; }
         public int? CourseId { get; set; }
+        public string? TargetRole { get; set; }
     }
 }

@@ -367,6 +367,35 @@
         }
       }
     },
+    "/api/Announcements/filtered": {
+      "get": {
+        "tags": [
+          "Announcements"
+        ],
+        "parameters": [
+          {
+            "name": "targetRole",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "courseId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Announcements/course/{courseId}": {
       "get": {
         "tags": [
@@ -1648,6 +1677,10 @@
           "courseId": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "targetRole": {
+            "type": "string",
             "nullable": true
           }
         },

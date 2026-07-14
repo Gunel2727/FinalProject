@@ -26,6 +26,13 @@ namespace SIS.Api.Controllers
             return Ok(ResponseModel<IList<AnnouncementDto>>.Ok(announcements));
         }
 
+        [HttpGet("filtered")]
+        public async Task<IActionResult> GetFiltered([FromQuery] string? targetRole, [FromQuery] int? courseId)
+        {
+            var announcements = await _announcementService.GetFilteredAsync(targetRole, courseId);
+            return Ok(ResponseModel<IList<AnnouncementDto>>.Ok(announcements));
+        }
+
         [HttpGet("course/{courseId}")]
         public async Task<IActionResult> GetByCourse(int courseId)
         {

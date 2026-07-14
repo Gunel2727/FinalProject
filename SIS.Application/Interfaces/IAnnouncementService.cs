@@ -13,5 +13,6 @@ namespace SIS.Application.Interfaces
         Task<IList<AnnouncementDto>> GetByCourseIdAsync(int courseId);
         Task<AnnouncementDto> CreateAsync(CreateAnnouncementDto dto);
         Task DeleteAsync(int id);
+        Task<IList<AnnouncementDto>> GetFilteredAsync(string? targetRole, int? courseId);
     }
 }

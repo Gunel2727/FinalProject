@@ -1,4 +1,6 @@
-﻿namespace StudentInformationSystem.Domain.Models
+﻿using StudentInformationSystem.Domain.Enums;
+
+namespace StudentInformationSystem.Domain.Models
 {
     public class Announcement:BaseEntity
     {
@@ -9,6 +11,7 @@
         public bool IsGlobal { get; set; }
        
         public int? CourseId { get; set; }
-       
+        public UserRole? TargetRole { get; set; }
+
     }
 }

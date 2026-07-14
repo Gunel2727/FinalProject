@@ -252,6 +252,27 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "SIS.Api.Controllers.AnnouncementsController",
+    "Method": "GetFiltered",
+    "RelativePath": "api/Announcements/filtered",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "targetRole",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "courseId",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "SIS.Api.Controllers.AttendanceController",
     "Method": "Record",
     "RelativePath": "api/Attendance",

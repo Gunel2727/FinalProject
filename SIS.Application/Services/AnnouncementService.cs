@@ -2,6 +2,7 @@
 using SIS.Application.Common;
 using SIS.Application.DTOs;
 using SIS.Application.Interfaces;
+using StudentInformationSystem.Domain.Enums;
 using StudentInformationSystem.Domain.Interfaces;
 using StudentInformationSystem.Domain.Models;
 using System;
@@ -25,6 +26,8 @@ namespace SIS.Application.Services
         public async Task<AnnouncementDto> CreateAsync(CreateAnnouncementDto dto)
         {
             var announcement = _mapper.Map<Announcement>(dto);
+            if (!string.IsNullOrEmpty(dto.TargetRole))
+                announcement.TargetRole = Enum.Parse<UserRole>(dto.TargetRole, ignoreCase: true);
             await _uow.Announcements.AddAsync(announcement);
             await _uow.SaveChangesAsync();
             return _mapper.Map<AnnouncementDto>(announcement);
@@ -50,6 +53,12 @@ namespace SIS.Application.Services
         public async Task<IList<AnnouncementDto>> GetByCourseIdAsync(int courseId)
         {
             var announcements = await _uow.Announcements.GetByCourseIdAsync(courseId);
+            return _mapper.Map<IList<AnnouncementDto>>(announcements);
+        }
+
+        public async Task<IList<AnnouncementDto>> GetFilteredAsync(string? targetRole, int? courseId)
+        {
+            var announcements = await _uow.Announcements.GetFilteredAsync(targetRole, courseId);
             return _mapper.Map<IList<AnnouncementDto>>(announcements);
         }
     }

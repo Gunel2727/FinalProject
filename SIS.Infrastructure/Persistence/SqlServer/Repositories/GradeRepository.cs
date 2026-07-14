@@ -35,6 +35,7 @@ namespace SIS.Infrastructure.Persistence.SqlServer.Repositories
         {
             return await _context.Grades
                 .Include(x => x.Course)
+                    .ThenInclude(c => c.AcademicTerm)
                 .Where(g => g.StudentId == studentId)
                 .ToListAsync();
         }

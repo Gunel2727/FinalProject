@@ -13,5 +13,10 @@ namespace SIS.Application.Interfaces
         Task<TeacherDashboardDto> GetTeacherDashboardAsync(int teacherId);
         Task<AdminDashboardDto> GetAdminDashboardAsync();
         Task<AdvisorStudentOverviewDto> GetAdvisorOverviewAsync(int studentId);
+        Task<IList<ChartDataPointDto>> GetStudentsByProgrammeAsync();
+        Task<IList<ChartDataPointDto>> GetStudentsByDepartmentAsync();
+        Task<IList<ChartDataPointDto>> GetGradeDistributionAsync();
+        Task<IList<CourseAverageDto>> GetAverageGradePerCourseAsync(int teacherId);
+        Task<IList<SemesterGpaDto>> GetGpaProgressAsync(int studentId);
     }
 }

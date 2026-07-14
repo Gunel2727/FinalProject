@@ -73,7 +73,54 @@ namespace SIS.Application.Services
                 LateCount = attendanceList.Count(a => a.Status == AttendanceStatus.Late)
             };
         }
-        
+
+        public async Task<IList<CourseAverageDto>> GetAverageGradePerCourseAsync(int teacherId)
+        {
+            var courses= await _uow.Courses.GetByTeacherIdAsync(teacherId);
+            var result = new List<CourseAverageDto>();
+
+            foreach (var course in courses)
+            {
+                var grades = await _uow.Grades.GetByCourseIdAsync(course.Id);
+                var scores = grades.Select(g => g.Score).ToList();
+                var average = scores.Count > 0 ? scores.Average() : 0;
+
+                result.Add(new CourseAverageDto
+                {
+                    CourseName = course.Name,
+                    AverageScore = Math.Round(average, 2)  
+                });
+
+            }
+            return result;
+                
+        }
+
+        public async Task<IList<SemesterGpaDto>> GetGpaProgressAsync(int studentId)
+        {
+           var grades = await _uow.Grades.GetByStudentIdAsync(studentId);
+            var grouped = grades.GroupBy(g => g.Course.AcademicTerm.Name)
+                     .Select(g => new SemesterGpaDto
+                     {
+                         SemesterName = g.Key,
+                         Gpa = _gpaCalculator.Calculate(g.Select(x => x.Score).ToList())
+                     })
+                     .ToList();
+            return grouped;
+        }
+
+        public async Task<IList<ChartDataPointDto>> GetGradeDistributionAsync()
+        {
+            var grades= await _uow.Grades.GetAllAsync();
+            var grouped = grades.GroupBy(g => g.Letter.ToString())
+                .Select(g => new ChartDataPointDto
+                {
+                    Label = g.Key,
+                    Count = g.Count()
+                })
+                .ToList();
+            return grouped;
+        }
 
         public async Task<StudentDashboardDto> GetStudentDashboardAsync(int studentId)
         {
@@ -103,6 +150,32 @@ namespace SIS.Application.Services
                 Courses = _mapper.Map<List<CourseDto>>(courses),
                 RecentAnnouncements = _mapper.Map<List<AnnouncementDto>>(recent)
             };
+        }
+
+        public async Task<IList<ChartDataPointDto>> GetStudentsByDepartmentAsync()
+        {
+            var students = await _uow.Students.GetAllAsync();
+            var grouped=students.GroupBy(s=>s.Programme.Department.Name)
+                .Select(g => new ChartDataPointDto
+                {
+                    Label=g.Key,
+                    Count=g.Count()
+                })
+                .ToList();
+            return grouped;
+        }
+
+        public async Task<IList<ChartDataPointDto>> GetStudentsByProgrammeAsync()
+        {
+            var students = await _uow.Students.GetAllAsync();
+            var grouped=students.GroupBy(s=>s.Programme.Name)
+                .Select(g=>new ChartDataPointDto
+                {
+                    Label = g.Key,
+                    Count = g.Count()
+                })
+                .ToList();
+            return grouped;
         }
 
         public async Task<TeacherDashboardDto> GetTeacherDashboardAsync(int teacherId)

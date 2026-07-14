@@ -26,6 +26,16 @@ namespace SIS.Api.Controllers
             return Ok(ResponseModel<StudentDashboardDto>.Ok(dashboard));
         }
 
+
+        [HttpGet("chart/gpa-progress/{studentId}")]
+        [Authorize(Roles = "Student,Admin")]
+        public async Task<IActionResult> GetGpaProgress(int studentId)
+        {
+            var data = await _dashboardService.GetGpaProgressAsync(studentId);
+            return Ok(ResponseModel<IList<SemesterGpaDto>>.Ok(data));
+        }
+
+
         [HttpGet("teacher/{teacherId}")]
         [Authorize(Roles = "Teacher,Admin")]
         public async Task<IActionResult> GetTeacherDashboard(int teacherId)
@@ -34,12 +44,46 @@ namespace SIS.Api.Controllers
             return Ok(ResponseModel<TeacherDashboardDto>.Ok(dashboard));
         }
 
+
+        [HttpGet("chart/average-grade-per-course/{teacherId}")]
+        [Authorize(Roles = "Teacher,Admin")]
+        public async Task<IActionResult> GetAverageGradePerCourse(int teacherId)
+        {
+            var data = await _dashboardService.GetAverageGradePerCourseAsync(teacherId);
+            return Ok(ResponseModel<IList<CourseAverageDto>>.Ok(data));
+        }
+
+
         [HttpGet("admin")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetAdminDashboard()
         {
             var dashboard = await _dashboardService.GetAdminDashboardAsync();
             return Ok(ResponseModel<AdminDashboardDto>.Ok(dashboard));
+        }
+
+        [HttpGet("chart/students-by-programme")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> GetStudentsByProgramme()
+        {
+            var chartData = await _dashboardService.GetStudentsByProgrammeAsync();
+            return Ok(ResponseModel<IList<ChartDataPointDto>>.Ok(chartData));
+        }
+
+        [HttpGet("chart/students-by-department")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> GetStudentsByDepartment()
+        {
+            var chartData = await _dashboardService.GetStudentsByDepartmentAsync();
+            return Ok(ResponseModel<IList<ChartDataPointDto>>.Ok(chartData));
+        }
+
+        [HttpGet("chart/grade-distribution")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> GetGradeDistribution()
+        {
+            var chartData = await _dashboardService.GetGradeDistributionAsync();
+            return Ok(ResponseModel<IList<ChartDataPointDto>>.Ok(chartData));
         }
 
         [HttpGet("advisor/{studentId}")]

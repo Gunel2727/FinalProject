@@ -91,7 +91,10 @@ namespace SIS.Application.Profiles
             CreateMap<CreateAttendanceDto, Attendance>();
             CreateMap<UpdateAttendanceDto, Attendance>();
 
-            CreateMap<Announcement, AnnouncementDto>();
+            CreateMap<Announcement, AnnouncementDto>()
+            .ForMember(d => d.TargetRole, 
+            o => o.MapFrom(s => s.TargetRole.HasValue ? s.TargetRole.Value.ToString() : null));
+
             CreateMap<CreateAnnouncementDto, Announcement>();
 
             CreateMap<Department, DepartmentDto>();

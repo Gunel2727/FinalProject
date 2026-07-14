@@ -26,9 +26,12 @@ namespace SIS.Infrastructure.Persistence.SqlServer.Repositories
             _context.Students.Update(student);
         }
         public new async Task<IList<Student>> GetAllAsync()
-       => await _context.Students
+        {
+            return await _context.Students
            .Include(s => s.Programme)
+            .ThenInclude(p => p.Department)
            .ToListAsync();
+        }
 
         
         public new async Task<Student?> GetByIdAsync(int id)

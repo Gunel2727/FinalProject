@@ -570,6 +570,68 @@
   },
   {
     "ContainingType": "SIS.Api.Controllers.DashboardController",
+    "Method": "GetAverageGradePerCourse",
+    "RelativePath": "api/Dashboard/chart/average-grade-per-course/{teacherId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "teacherId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SIS.Api.Controllers.DashboardController",
+    "Method": "GetGpaProgress",
+    "RelativePath": "api/Dashboard/chart/gpa-progress/{studentId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "studentId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SIS.Api.Controllers.DashboardController",
+    "Method": "GetGradeDistribution",
+    "RelativePath": "api/Dashboard/chart/grade-distribution",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SIS.Api.Controllers.DashboardController",
+    "Method": "GetStudentsByDepartment",
+    "RelativePath": "api/Dashboard/chart/students-by-department",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SIS.Api.Controllers.DashboardController",
+    "Method": "GetStudentsByProgramme",
+    "RelativePath": "api/Dashboard/chart/students-by-programme",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SIS.Api.Controllers.DashboardController",
     "Method": "GetStudentDashboard",
     "RelativePath": "api/Dashboard/student/{studentId}",
     "HttpMethod": "GET",

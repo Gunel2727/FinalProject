@@ -29,6 +29,7 @@ namespace SIS.Infrastructure.Persistence.SqlServer.Repositories
         public async Task<IList<Enrollment>> GetByStudentIdAsync(int studentId)
         {
             return await _context.Enrollments
+                 .Include(e => e.Student)
                 .Include(e =>e.Course)
                     .ThenInclude(c => c.Teacher)
                 .Where(e => e.StudentId == studentId)

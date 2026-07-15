@@ -28,7 +28,10 @@ namespace SIS.Application.Services
             var course = _mapper.Map<Course>(dto);
             await _uow.Courses.AddAsync(course);
             await _uow.SaveChangesAsync();
-            return _mapper.Map<CourseDto>(course);
+
+            var courseWithDetails = await _uow.Courses.GetByIdAsync(course.Id);
+
+            return _mapper.Map<CourseDto>(courseWithDetails);
         }
 
         public async Task DeleteAsync(int id)

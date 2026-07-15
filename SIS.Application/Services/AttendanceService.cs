@@ -56,7 +56,10 @@ namespace SIS.Application.Services
             await _uow.Attendances.AddAsync(attendance);
             await _uow.SaveChangesAsync();
 
-            return _mapper.Map<AttendanceDto>(attendance);
+            var attendancesForStudent = await _uow.Attendances.GetByStudentIdAsync(dto.StudentId);
+            var attendanceWithDetails = attendancesForStudent.First(a => a.Id == attendance.Id);
+
+            return _mapper.Map<AttendanceDto>(attendanceWithDetails);
         }
 
         public async Task<AttendanceDto> UpdateAsync(int id, UpdateAttendanceDto dto)

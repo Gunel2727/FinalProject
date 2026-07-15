@@ -53,7 +53,8 @@ namespace SIS.Application.Profiles
                opt => opt.MapFrom(src => src.Course.Name))
            .ForMember(
                dest => dest.CourseCode,
-               opt => opt.MapFrom(src => src.Course.Code));
+               opt => opt.MapFrom(src => src.Course.Code))
+           .ForMember(d => d.EnrolledAt, o => o.MapFrom(s => s.CreatedAt));
 
 
             CreateMap<CreateEnrollmentDto, Enrollment>();

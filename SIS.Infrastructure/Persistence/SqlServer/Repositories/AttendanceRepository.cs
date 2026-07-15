@@ -27,6 +27,7 @@ namespace SIS.Infrastructure.Persistence.SqlServer.Repositories
         {
             return await _context.Attendances
                 .Include(a => a.Student)
+                .Include(a => a.Course)
                 .Where(a => a.CourseId == courseId)
                 .ToListAsync();
         }

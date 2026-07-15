@@ -67,5 +67,13 @@ namespace SIS.Infrastructure.Persistence.SqlServer.Repositories
             return await query.ToListAsync();
 
         }
+
+        public new async Task<Course> GetByIdAsync(int id)
+        {
+            return await _context.Courses
+                .Include(c => c.Teacher)
+                .Include(c => c.AcademicTerm)
+                .FirstOrDefaultAsync(c => c.Id == id);
+        }
     }
 }

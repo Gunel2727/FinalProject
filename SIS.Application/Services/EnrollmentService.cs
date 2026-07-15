@@ -35,7 +35,10 @@ namespace SIS.Application.Services
             await _uow.Enrollments.AddAsync(enrollment);
             await _uow.SaveChangesAsync();
 
-            return _mapper.Map<EnrollmentDto>(enrollment);
+            var enrollments = await _uow.Enrollments.GetByStudentIdAsync(dto.StudentId);
+            var enrollmentWithDetails = enrollments.First(e => e.Id == enrollment.Id);
+
+            return _mapper.Map<EnrollmentDto>(enrollmentWithDetails);
         }
 
         public async Task<IList<EnrollmentDto>> GetByStudentIdAsync(int studentId)

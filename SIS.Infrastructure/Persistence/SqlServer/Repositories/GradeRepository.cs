@@ -18,7 +18,8 @@ namespace SIS.Infrastructure.Persistence.SqlServer.Repositories
         public async Task<IList<Grade>> GetByCourseIdAsync(int courseId)
         {
             return await _context.Grades
-                .Include(x => x.Student)
+                .Include(g => g.Student)
+                .Include(g => g.Course)
                 .Where(g => g.CourseId == courseId)
                 .ToListAsync();
         }
@@ -34,7 +35,8 @@ namespace SIS.Infrastructure.Persistence.SqlServer.Repositories
         public async Task<IList<Grade>> GetByStudentIdAsync(int studentId)
         {
             return await _context.Grades
-                .Include(x => x.Course)
+                 .Include(g => g.Student)
+                .Include(g => g.Course)
                     .ThenInclude(c => c.AcademicTerm)
                 .Where(g => g.StudentId == studentId)
                 .ToListAsync();

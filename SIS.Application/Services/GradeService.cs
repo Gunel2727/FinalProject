@@ -46,7 +46,10 @@ namespace SIS.Application.Services
             await _uow.Grades.AddAsync(grade);
             await _uow.SaveChangesAsync();
 
-            return _mapper.Map<GradeDto>(grade);
+            var gradesForStudent = await _uow.Grades.GetByStudentIdAsync(dto.StudentId);
+            var gradeWithDetails = gradesForStudent.First(g => g.Id == grade.Id);
+
+            return _mapper.Map<GradeDto>(gradeWithDetails); 
         }
 
         public async Task<IList<GradeDto>> GetByCourseIdAsync(int courseId)
@@ -83,7 +86,10 @@ namespace SIS.Application.Services
             _uow.Grades.Update(grade);
             await _uow.SaveChangesAsync();
 
-            return _mapper.Map<GradeDto>(grade);
+            var gradesForStudent = await _uow.Grades.GetByStudentIdAsync(grade.StudentId);
+            var gradeWithDetails = gradesForStudent.First(g => g.Id == grade.Id);
+
+            return _mapper.Map<GradeDto>(gradeWithDetails);
         }
     }
 }

@@ -194,6 +194,16 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "SIS.Api.Controllers.AdminController",
+    "Method": "GetActiveTerm",
+    "RelativePath": "api/Admin/terms/active",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "SIS.Api.Controllers.AnnouncementsController",
     "Method": "GetAll",
     "RelativePath": "api/Announcements",

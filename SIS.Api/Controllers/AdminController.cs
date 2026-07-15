@@ -103,5 +103,12 @@ namespace SIS.Api.Controllers
             var term = await _adminService.UpdateTermAsync(id, dto);
             return Ok(ResponseModel<AcademicTermDto>.Ok(term));
         }
+
+        [HttpGet("terms/active")]
+        public async Task<IActionResult> GetActiveTerm()
+        {
+            var term = await _adminService.GetActiveTermAsync();
+            return Ok(ResponseModel<AcademicTermDto>.Ok(term));
+        }
     }
 }

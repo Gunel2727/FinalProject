@@ -3,60 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{73A5BC15-57E9-43AD-AA1E-C5D473F79901}|SIS.Application\\SIS.Application.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\sis.application\\services\\dashboardservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{73A5BC15-57E9-43AD-AA1E-C5D473F79901}|SIS.Application\\SIS.Application.csproj|solutionrelative:sis.application\\services\\dashboardservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{73A5BC15-57E9-43AD-AA1E-C5D473F79901}|SIS.Application\\SIS.Application.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\sis.application\\services\\adminservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{73A5BC15-57E9-43AD-AA1E-C5D473F79901}|SIS.Application\\SIS.Application.csproj|solutionrelative:sis.application\\services\\adminservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{73A5BC15-57E9-43AD-AA1E-C5D473F79901}|SIS.Application\\SIS.Application.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\sis.application\\interfaces\\idashboardservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{73A5BC15-57E9-43AD-AA1E-C5D473F79901}|SIS.Application\\SIS.Application.csproj|solutionrelative:sis.application\\interfaces\\idashboardservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1CFCC321-E45D-4C95-B53F-5CCF2FC6F404}|SIS.Api\\SIS.Api.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\sis.api\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1CFCC321-E45D-4C95-B53F-5CCF2FC6F404}|SIS.Api\\SIS.Api.csproj|solutionrelative:sis.api\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1CFCC321-E45D-4C95-B53F-5CCF2FC6F404}|SIS.Api\\SIS.Api.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\sis.api\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1CFCC321-E45D-4C95-B53F-5CCF2FC6F404}|SIS.Api\\SIS.Api.csproj|solutionrelative:sis.api\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{73A5BC15-57E9-43AD-AA1E-C5D473F79901}|SIS.Application\\SIS.Application.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\sis.application\\interfaces\\iadminservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{73A5BC15-57E9-43AD-AA1E-C5D473F79901}|SIS.Application\\SIS.Application.csproj|solutionrelative:sis.application\\interfaces\\iadminservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{20825702-498F-4425-A5D2-A06176750F9C}|SIS.Infrastructure\\SIS.Infrastructure.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\sis.infrastructure\\persistence\\sqlserver\\repositories\\graderepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{20825702-498F-4425-A5D2-A06176750F9C}|SIS.Infrastructure\\SIS.Infrastructure.csproj|solutionrelative:sis.infrastructure\\persistence\\sqlserver\\repositories\\graderepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{73A5BC15-57E9-43AD-AA1E-C5D473F79901}|SIS.Application\\SIS.Application.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\sis.application\\dtos\\chartdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{73A5BC15-57E9-43AD-AA1E-C5D473F79901}|SIS.Application\\SIS.Application.csproj|solutionrelative:sis.application\\dtos\\chartdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{20825702-498F-4425-A5D2-A06176750F9C}|SIS.Infrastructure\\SIS.Infrastructure.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\sis.infrastructure\\persistence\\sqlserver\\repositories\\studentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{20825702-498F-4425-A5D2-A06176750F9C}|SIS.Infrastructure\\SIS.Infrastructure.csproj|solutionrelative:sis.infrastructure\\persistence\\sqlserver\\repositories\\studentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{20825702-498F-4425-A5D2-A06176750F9C}|SIS.Infrastructure\\SIS.Infrastructure.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\sis.infrastructure\\migrations\\20260714112626_addtargetroletoannouncement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{20825702-498F-4425-A5D2-A06176750F9C}|SIS.Infrastructure\\SIS.Infrastructure.csproj|solutionrelative:sis.infrastructure\\migrations\\20260714112626_addtargetroletoannouncement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9CCE2FC4-FD9E-4339-ADC1-79F0BB3F09FB}|SIS.Domain\\SIS.Domain.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\sis.domain\\models\\announcement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9CCE2FC4-FD9E-4339-ADC1-79F0BB3F09FB}|SIS.Domain\\SIS.Domain.csproj|solutionrelative:sis.domain\\models\\announcement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{73A5BC15-57E9-43AD-AA1E-C5D473F79901}|SIS.Application\\SIS.Application.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\sis.application\\services\\announcementservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{73A5BC15-57E9-43AD-AA1E-C5D473F79901}|SIS.Application\\SIS.Application.csproj|solutionrelative:sis.application\\services\\announcementservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1CFCC321-E45D-4C95-B53F-5CCF2FC6F404}|SIS.Api\\SIS.Api.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\sis.api\\controllers\\announcementscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1CFCC321-E45D-4C95-B53F-5CCF2FC6F404}|SIS.Api\\SIS.Api.csproj|solutionrelative:sis.api\\controllers\\announcementscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{73A5BC15-57E9-43AD-AA1E-C5D473F79901}|SIS.Application\\SIS.Application.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\sis.application\\interfaces\\iannouncementservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{73A5BC15-57E9-43AD-AA1E-C5D473F79901}|SIS.Application\\SIS.Application.csproj|solutionrelative:sis.application\\interfaces\\iannouncementservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9CCE2FC4-FD9E-4339-ADC1-79F0BB3F09FB}|SIS.Domain\\SIS.Domain.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\sis.domain\\interfaces\\iannouncementrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9CCE2FC4-FD9E-4339-ADC1-79F0BB3F09FB}|SIS.Domain\\SIS.Domain.csproj|solutionrelative:sis.domain\\interfaces\\iannouncementrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{73A5BC15-57E9-43AD-AA1E-C5D473F79901}|SIS.Application\\SIS.Application.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\sis.application\\profiles\\mapperprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{73A5BC15-57E9-43AD-AA1E-C5D473F79901}|SIS.Application\\SIS.Application.csproj|solutionrelative:sis.application\\profiles\\mapperprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{73A5BC15-57E9-43AD-AA1E-C5D473F79901}|SIS.Application\\SIS.Application.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\sis.application\\dtos\\announcementdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{73A5BC15-57E9-43AD-AA1E-C5D473F79901}|SIS.Application\\SIS.Application.csproj|solutionrelative:sis.application\\dtos\\announcementdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{20825702-498F-4425-A5D2-A06176750F9C}|SIS.Infrastructure\\SIS.Infrastructure.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\sis.infrastructure\\persistence\\sqlserver\\repositories\\academictermrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{20825702-498F-4425-A5D2-A06176750F9C}|SIS.Infrastructure\\SIS.Infrastructure.csproj|solutionrelative:sis.infrastructure\\persistence\\sqlserver\\repositories\\academictermrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -66,182 +26,59 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "GradeRepository.cs",
-              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Infrastructure\\Persistence\\SqlServer\\Repositories\\GradeRepository.cs",
-              "RelativeDocumentMoniker": "SIS.Infrastructure\\Persistence\\SqlServer\\Repositories\\GradeRepository.cs",
-              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Infrastructure\\Persistence\\SqlServer\\Repositories\\GradeRepository.cs",
-              "RelativeToolTip": "SIS.Infrastructure\\Persistence\\SqlServer\\Repositories\\GradeRepository.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAYwCUAAAA1AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-14T19:59:24.949Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "IDashboardService.cs",
-              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\Interfaces\\IDashboardService.cs",
-              "RelativeDocumentMoniker": "SIS.Application\\Interfaces\\IDashboardService.cs",
-              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\Interfaces\\IDashboardService.cs",
-              "RelativeToolTip": "SIS.Application\\Interfaces\\IDashboardService.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAIA+wBIAAAAIAAAAAAAAAA==",
+              "Title": "AdminController.cs",
+              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Api\\Controllers\\AdminController.cs",
+              "RelativeDocumentMoniker": "SIS.Api\\Controllers\\AdminController.cs",
+              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Api\\Controllers\\AdminController.cs",
+              "RelativeToolTip": "SIS.Api\\Controllers\\AdminController.cs",
+              "ViewState": "AgIAAFkAAAAAAAAAAAAcwG8AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-14T19:54:26.856Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ChartDto.cs",
-              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\DTOs\\ChartDto.cs",
-              "RelativeDocumentMoniker": "SIS.Application\\DTOs\\ChartDto.cs",
-              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\DTOs\\ChartDto.cs",
-              "RelativeToolTip": "SIS.Application\\DTOs\\ChartDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-14T19:54:16.661Z",
+              "WhenOpened": "2026-07-15T15:48:15.802Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "DashboardController.cs",
-              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Api\\Controllers\\DashboardController.cs",
-              "RelativeDocumentMoniker": "SIS.Api\\Controllers\\DashboardController.cs",
-              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Api\\Controllers\\DashboardController.cs",
-              "RelativeToolTip": "SIS.Api\\Controllers\\DashboardController.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAADwvyQAAAAAAAAAAAAAAA==",
+              "Title": "IAdminService.cs",
+              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\Interfaces\\IAdminService.cs",
+              "RelativeDocumentMoniker": "SIS.Application\\Interfaces\\IAdminService.cs",
+              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\Interfaces\\IAdminService.cs",
+              "RelativeToolTip": "SIS.Application\\Interfaces\\IAdminService.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAA3wBwAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-14T14:21:03.88Z",
+              "WhenOpened": "2026-07-15T15:47:15.772Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "DashboardService.cs",
-              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\Services\\DashboardService.cs",
-              "RelativeDocumentMoniker": "SIS.Application\\Services\\DashboardService.cs",
-              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\Services\\DashboardService.cs",
-              "RelativeToolTip": "SIS.Application\\Services\\DashboardService.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAawGkAAABXAAAAAAAAAA==",
+              "Title": "AdminService.cs",
+              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\Services\\AdminService.cs",
+              "RelativeDocumentMoniker": "SIS.Application\\Services\\AdminService.cs",
+              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\Services\\AdminService.cs",
+              "RelativeToolTip": "SIS.Application\\Services\\AdminService.cs",
+              "ViewState": "AgIAADIAAAAAAAAAAAAlwEQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-14T14:08:59.512Z",
+              "WhenOpened": "2026-07-15T15:40:21.69Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "StudentRepository.cs",
-              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Infrastructure\\Persistence\\SqlServer\\Repositories\\StudentRepository.cs",
-              "RelativeDocumentMoniker": "SIS.Infrastructure\\Persistence\\SqlServer\\Repositories\\StudentRepository.cs",
-              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Infrastructure\\Persistence\\SqlServer\\Repositories\\StudentRepository.cs",
-              "RelativeToolTip": "SIS.Infrastructure\\Persistence\\SqlServer\\Repositories\\StudentRepository.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAA1wB8AAAAMAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "AcademicTermRepository.cs",
+              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Infrastructure\\Persistence\\SqlServer\\Repositories\\AcademicTermRepository.cs",
+              "RelativeDocumentMoniker": "SIS.Infrastructure\\Persistence\\SqlServer\\Repositories\\AcademicTermRepository.cs",
+              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Infrastructure\\Persistence\\SqlServer\\Repositories\\AcademicTermRepository.cs",
+              "RelativeToolTip": "SIS.Infrastructure\\Persistence\\SqlServer\\Repositories\\AcademicTermRepository.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAxwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-14T14:18:09.39Z",
+              "WhenOpened": "2026-07-15T15:39:54.84Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "20260714112626_AddTargetRoleToAnnouncement.cs",
-              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Infrastructure\\Migrations\\20260714112626_AddTargetRoleToAnnouncement.cs",
-              "RelativeDocumentMoniker": "SIS.Infrastructure\\Migrations\\20260714112626_AddTargetRoleToAnnouncement.cs",
-              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Infrastructure\\Migrations\\20260714112626_AddTargetRoleToAnnouncement.cs",
-              "RelativeToolTip": "SIS.Infrastructure\\Migrations\\20260714112626_AddTargetRoleToAnnouncement.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-14T11:26:28.657Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "IAnnouncementService.cs",
-              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\Interfaces\\IAnnouncementService.cs",
-              "RelativeDocumentMoniker": "SIS.Application\\Interfaces\\IAnnouncementService.cs",
-              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\Interfaces\\IAnnouncementService.cs",
-              "RelativeToolTip": "SIS.Application\\Interfaces\\IAnnouncementService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAABZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-14T11:14:38.439Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "AnnouncementService.cs",
-              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\Services\\AnnouncementService.cs",
-              "RelativeDocumentMoniker": "SIS.Application\\Services\\AnnouncementService.cs",
-              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\Services\\AnnouncementService.cs",
-              "RelativeToolTip": "SIS.Application\\Services\\AnnouncementService.cs",
-              "ViewState": "AgIAABQAAAAAAAAAAAAzwBsAAAA+AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-14T11:09:31.202Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Announcement.cs",
-              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Domain\\Models\\Announcement.cs",
-              "RelativeDocumentMoniker": "SIS.Domain\\Models\\Announcement.cs",
-              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Domain\\Models\\Announcement.cs",
-              "RelativeToolTip": "SIS.Domain\\Models\\Announcement.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAxAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-14T11:04:10.288Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "AnnouncementsController.cs",
-              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Api\\Controllers\\AnnouncementsController.cs",
-              "RelativeDocumentMoniker": "SIS.Api\\Controllers\\AnnouncementsController.cs",
-              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Api\\Controllers\\AnnouncementsController.cs",
-              "RelativeToolTip": "SIS.Api\\Controllers\\AnnouncementsController.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAQwBkAAABPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-14T11:15:22.531Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "IAnnouncementRepository.cs",
-              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Domain\\Interfaces\\IAnnouncementRepository.cs",
-              "RelativeDocumentMoniker": "SIS.Domain\\Interfaces\\IAnnouncementRepository.cs",
-              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Domain\\Interfaces\\IAnnouncementRepository.cs",
-              "RelativeToolTip": "SIS.Domain\\Interfaces\\IAnnouncementRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-14T11:10:22.439Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "MapperProfile.cs",
-              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\Profiles\\MapperProfile.cs",
-              "RelativeDocumentMoniker": "SIS.Application\\Profiles\\MapperProfile.cs",
-              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\Profiles\\MapperProfile.cs",
-              "RelativeToolTip": "SIS.Application\\Profiles\\MapperProfile.cs",
-              "ViewState": "AgIAAFUAAAAAAAAAAAAQwGAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-14T11:08:16.668Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "AnnouncementDto.cs",
-              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\DTOs\\AnnouncementDto.cs",
-              "RelativeDocumentMoniker": "SIS.Application\\DTOs\\AnnouncementDto.cs",
-              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\DTOs\\AnnouncementDto.cs",
-              "RelativeToolTip": "SIS.Application\\DTOs\\AnnouncementDto.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABAAAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-14T11:06:29.882Z"
             }
           ]
         }

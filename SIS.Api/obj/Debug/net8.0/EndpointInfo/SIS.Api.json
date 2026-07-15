@@ -326,6 +326,18 @@
         }
       }
     },
+    "/api/Admin/terms/active": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Announcements": {
       "get": {
         "tags": [

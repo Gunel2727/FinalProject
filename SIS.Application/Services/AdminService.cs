@@ -59,6 +59,14 @@ namespace SIS.Application.Services
             await _uow.SaveChangesAsync();
         }
 
+        public async Task<AcademicTermDto> GetActiveTermAsync()
+        {
+            var activeTerm = await _uow.AcademicTerms.GetActiveTermAsync();
+            if (activeTerm == null)
+                throw new NotFoundException(ErrorMessages.NoActiveTerm);
+            return _mapper.Map<AcademicTermDto>(activeTerm);
+        }
+
         public async Task<IList<DepartmentDto>> GetAllDepartmentsAsync()
         {
             var departments = await _uow.Departments.GetAllAsync();
@@ -122,6 +130,16 @@ namespace SIS.Application.Services
             var term = await _uow.AcademicTerms.GetByIdAsync(id);
             if (term == null)
                 throw new NotFoundException(ErrorMessages.TermNotFound);
+
+            if (dto.IsActive)
+            {
+                var allTerms = await _uow.AcademicTerms.GetAllAsync();
+                foreach (var t in allTerms.Where(t => t.Id != id && t.IsActive))
+                {
+                    t.IsActive = false;
+                    _uow.AcademicTerms.Update(t);
+                }
+            }
 
             term.Name = dto.Name;
             term.StartDate = dto.StartDate;

@@ -26,5 +26,6 @@ namespace SIS.Application.Interfaces
         Task<IList<AcademicTermDto>> GetAllTermsAsync();
         Task<AcademicTermDto> CreateTermAsync(CreateAcademicTermDto dto);
         Task<AcademicTermDto> UpdateTermAsync(int id, AcademicTermDto dto);
+        Task<AcademicTermDto> GetActiveTermAsync();
     }
 }

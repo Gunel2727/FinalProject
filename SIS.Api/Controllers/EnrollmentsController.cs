@@ -26,6 +26,8 @@ namespace SIS.Api.Controllers
             return Ok(ResponseModel<IList<EnrollmentDto>>.Ok(enrollments));
         }
 
+
+
         [HttpPost]
         [Authorize(Roles = "Admin,Student")]
         public async Task<IActionResult> Enroll([FromBody] CreateEnrollmentDto dto)

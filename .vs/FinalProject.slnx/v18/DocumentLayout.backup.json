@@ -3,6 +3,18 @@
   "WorkspaceRootPath": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{1CFCC321-E45D-4C95-B53F-5CCF2FC6F404}|SIS.Api\\SIS.Api.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\sis.api\\controllers\\enrollmentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1CFCC321-E45D-4C95-B53F-5CCF2FC6F404}|SIS.Api\\SIS.Api.csproj|solutionrelative:sis.api\\controllers\\enrollmentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1CFCC321-E45D-4C95-B53F-5CCF2FC6F404}|SIS.Api\\SIS.Api.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\sis.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1CFCC321-E45D-4C95-B53F-5CCF2FC6F404}|SIS.Api\\SIS.Api.csproj|solutionrelative:sis.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1CFCC321-E45D-4C95-B53F-5CCF2FC6F404}|SIS.Api\\SIS.Api.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\sis.api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{1CFCC321-E45D-4C95-B53F-5CCF2FC6F404}|SIS.Api\\SIS.Api.csproj|solutionrelative:sis.api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{20825702-498F-4425-A5D2-A06176750F9C}|SIS.Infrastructure\\SIS.Infrastructure.csproj|c:\\users\\gunel\\onedrive\\desktop\\finalproject\\sis.infrastructure\\persistence\\sqlserver\\repositories\\attendancerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{20825702-498F-4425-A5D2-A06176750F9C}|SIS.Infrastructure\\SIS.Infrastructure.csproj|solutionrelative:sis.infrastructure\\persistence\\sqlserver\\repositories\\attendancerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -59,19 +71,56 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "AttendanceRepository.cs",
-              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Infrastructure\\Persistence\\SqlServer\\Repositories\\AttendanceRepository.cs",
-              "RelativeDocumentMoniker": "SIS.Infrastructure\\Persistence\\SqlServer\\Repositories\\AttendanceRepository.cs",
-              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Infrastructure\\Persistence\\SqlServer\\Repositories\\AttendanceRepository.cs",
-              "RelativeToolTip": "SIS.Infrastructure\\Persistence\\SqlServer\\Repositories\\AttendanceRepository.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAAYwB8AAAAfAAAAAAAAAA==",
+              "Title": "EnrollmentsController.cs",
+              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Api\\Controllers\\EnrollmentsController.cs",
+              "RelativeDocumentMoniker": "SIS.Api\\Controllers\\EnrollmentsController.cs",
+              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Api\\Controllers\\EnrollmentsController.cs",
+              "RelativeToolTip": "SIS.Api\\Controllers\\EnrollmentsController.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAzwBwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-15T17:30:32.089Z",
+              "WhenOpened": "2026-07-16T19:30:38.536Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Api\\Program.cs",
+              "RelativeDocumentMoniker": "SIS.Api\\Program.cs",
+              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Api\\Program.cs",
+              "RelativeToolTip": "SIS.Api\\Program.cs",
+              "ViewState": "AgIAAF0AAAAAAAAAAAAAAHAAAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-15T21:10:58.828Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Api\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "SIS.Api\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Api\\Properties\\launchSettings.json",
+              "RelativeToolTip": "SIS.Api\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-07-15T21:07:00.476Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AttendanceRepository.cs",
+              "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Infrastructure\\Persistence\\SqlServer\\Repositories\\AttendanceRepository.cs",
+              "RelativeDocumentMoniker": "SIS.Infrastructure\\Persistence\\SqlServer\\Repositories\\AttendanceRepository.cs",
+              "ToolTip": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Infrastructure\\Persistence\\SqlServer\\Repositories\\AttendanceRepository.cs",
+              "RelativeToolTip": "SIS.Infrastructure\\Persistence\\SqlServer\\Repositories\\AttendanceRepository.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAYwCAAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-15T17:30:32.089Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "AttendanceService.cs",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\Services\\AttendanceService.cs",
               "RelativeDocumentMoniker": "SIS.Application\\Services\\AttendanceService.cs",
@@ -79,12 +128,11 @@
               "RelativeToolTip": "SIS.Application\\Services\\AttendanceService.cs",
               "ViewState": "AgIAACUAAAAAAAAAAAA7wDMAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-15T17:28:21.952Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-15T17:28:21.952Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "GradeService.cs",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\Services\\GradeService.cs",
               "RelativeDocumentMoniker": "SIS.Application\\Services\\GradeService.cs",
@@ -92,12 +140,11 @@
               "RelativeToolTip": "SIS.Application\\Services\\GradeService.cs",
               "ViewState": "AgIAAEgAAAAAAAAAAAAowFsAAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-15T17:18:23.059Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-15T17:18:23.059Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "GradeDto.cs",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\DTOs\\GradeDto.cs",
               "RelativeDocumentMoniker": "SIS.Application\\DTOs\\GradeDto.cs",
@@ -105,12 +152,11 @@
               "RelativeToolTip": "SIS.Application\\DTOs\\GradeDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-15T17:15:07.649Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-15T17:15:07.649Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "GradeRepository.cs",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Infrastructure\\Persistence\\SqlServer\\Repositories\\GradeRepository.cs",
               "RelativeDocumentMoniker": "SIS.Infrastructure\\Persistence\\SqlServer\\Repositories\\GradeRepository.cs",
@@ -118,12 +164,11 @@
               "RelativeToolTip": "SIS.Infrastructure\\Persistence\\SqlServer\\Repositories\\GradeRepository.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAAAABUAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-15T17:13:29.37Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-15T17:13:29.37Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "AttendanceController.cs",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Api\\Controllers\\AttendanceController.cs",
               "RelativeDocumentMoniker": "SIS.Api\\Controllers\\AttendanceController.cs",
@@ -131,12 +176,11 @@
               "RelativeToolTip": "SIS.Api\\Controllers\\AttendanceController.cs",
               "ViewState": "AgIAABsAAAAAAAAAAAAYwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-15T17:10:59.369Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-15T17:10:59.369Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 9,
               "Title": "GradesController.cs",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Api\\Controllers\\GradesController.cs",
               "RelativeDocumentMoniker": "SIS.Api\\Controllers\\GradesController.cs",
@@ -144,12 +188,11 @@
               "RelativeToolTip": "SIS.Api\\Controllers\\GradesController.cs",
               "ViewState": "AgIAADEAAAAAAAAAAAAkwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-15T17:06:43.143Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-15T17:06:43.143Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 10,
               "Title": "MapperProfile.cs",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\Profiles\\MapperProfile.cs",
               "RelativeDocumentMoniker": "SIS.Application\\Profiles\\MapperProfile.cs",
@@ -157,12 +200,11 @@
               "RelativeToolTip": "SIS.Application\\Profiles\\MapperProfile.cs",
               "ViewState": "AgIAAB8AAAAAAAAAAAAQwDcAAAA6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-15T16:55:34.173Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-15T16:55:34.173Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 11,
               "Title": "Enrollment.cs",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Domain\\Models\\Enrollment.cs",
               "RelativeDocumentMoniker": "SIS.Domain\\Models\\Enrollment.cs",
@@ -170,12 +212,11 @@
               "RelativeToolTip": "SIS.Domain\\Models\\Enrollment.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-15T16:55:13.819Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-15T16:55:13.819Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 12,
               "Title": "EnrollmentRepository.cs",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Infrastructure\\Persistence\\SqlServer\\Repositories\\EnrollmentRepository.cs",
               "RelativeDocumentMoniker": "SIS.Infrastructure\\Persistence\\SqlServer\\Repositories\\EnrollmentRepository.cs",
@@ -183,12 +224,11 @@
               "RelativeToolTip": "SIS.Infrastructure\\Persistence\\SqlServer\\Repositories\\EnrollmentRepository.cs",
               "ViewState": "AgIAABIAAAAAAAAAAAAYwB8AAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-15T16:54:28.019Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-15T16:54:28.019Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 13,
               "Title": "EnrollmentService.cs",
               "DocumentMoniker": "C:\\Users\\gunel\\OneDrive\\Desktop\\FinalProject\\SIS.Application\\Services\\EnrollmentService.cs",
               "RelativeDocumentMoniker": "SIS.Application\\Services\\EnrollmentService.cs",
@@ -196,8 +236,7 @@
               "RelativeToolTip": "SIS.Application\\Services\\EnrollmentService.cs",
               "ViewState": "AgIAABMAAAAAAAAAAAAzwCMAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-15T16:53:28.577Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-15T16:53:28.577Z"
             }
           ]
         }

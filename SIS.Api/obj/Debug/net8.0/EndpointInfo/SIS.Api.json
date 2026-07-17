@@ -1324,60 +1324,6 @@
         }
       }
     },
-    "/api/Messages/conversation/{otherUserId}": {
-      "get": {
-        "tags": [
-          "Messages"
-        ],
-        "parameters": [
-          {
-            "name": "otherUserId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Messages": {
-      "post": {
-        "tags": [
-          "Messages"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/SendMessageDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/SendMessageDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/SendMessageDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/api/Students": {
       "get": {
         "tags": [
@@ -1986,20 +1932,6 @@
             "nullable": true
           },
           "resetToken": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "SendMessageDto": {
-        "type": "object",
-        "properties": {
-          "receiverId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "content": {
             "type": "string",
             "nullable": true
           }

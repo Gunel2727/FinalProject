@@ -51,7 +51,10 @@ C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Api\bin\Debug\net8.0\Microsoft.
 C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Api\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.SqlServer.dll
 C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Api\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Api\bin\Debug\net8.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Api\bin\Debug\net8.0\Microsoft.Extensions.Diagnostics.Abstractions.dll
+C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Api\bin\Debug\net8.0\Microsoft.Extensions.Hosting.Abstractions.dll
 C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Api\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Api\bin\Debug\net8.0\Microsoft.Extensions.ObjectPool.dll
 C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Api\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
 C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Api\bin\Debug\net8.0\Microsoft.Extensions.Primitives.dll
 C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Api\bin\Debug\net8.0\Microsoft.Identity.Client.dll
@@ -84,6 +87,7 @@ C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Api\bin\Debug\net8.0\System.For
 C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Api\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Api\bin\Debug\net8.0\System.Management.dll
 C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Api\bin\Debug\net8.0\System.Memory.Data.dll
+C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Api\bin\Debug\net8.0\System.Net.WebSockets.WebSocketProtocol.dll
 C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Api\bin\Debug\net8.0\System.Runtime.Caching.dll
 C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Api\bin\Debug\net8.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Api\bin\Debug\net8.0\System.Security.Permissions.dll
@@ -199,8 +203,3 @@ C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Api\obj\Debug\net8.0\refint\SIS
 C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Api\obj\Debug\net8.0\SIS.Api.pdb
 C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Api\obj\Debug\net8.0\SIS.Api.genruntimeconfig.cache
 C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Api\obj\Debug\net8.0\ref\SIS.Api.dll
-C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Api\bin\Debug\net8.0\Microsoft.Extensions.Diagnostics.Abstractions.dll
-C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Api\bin\Debug\net8.0\Microsoft.Extensions.Hosting.Abstractions.dll
-C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Api\bin\Debug\net8.0\Microsoft.Extensions.ObjectPool.dll
-C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Api\bin\Debug\net8.0\System.Net.WebSockets.WebSocketProtocol.dll
-C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Api\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

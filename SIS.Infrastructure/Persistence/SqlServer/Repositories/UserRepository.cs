@@ -37,5 +37,15 @@ namespace SIS.Infrastructure.Persistence.SqlServer.Repositories
         {
             _context.Users.Update(user);
         }
+
+        public async Task<User?> GetByStudentIdAsync(int studentId)
+        {
+            return await _context.Users.FirstOrDefaultAsync(u => u.StudentId == studentId);
+        }
+
+        public async Task<User?> GetByTeacherIdAsync(int teacherId)
+        {
+            return await _context.Users.FirstOrDefaultAsync(u => u.TeacherId == teacherId);
+        }
     }
 }

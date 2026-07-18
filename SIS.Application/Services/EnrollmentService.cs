@@ -41,6 +41,22 @@ namespace SIS.Application.Services
             return _mapper.Map<EnrollmentDto>(enrollmentWithDetails);
         }
 
+        public async Task<IList<EnrollmentDto>> GetByCourseIdAsync(int courseId)
+        {
+            var enrollments = await _uow.Enrollments.GetByCourseIdAsync(courseId);
+            var enrollmentsList = enrollments.ToList();
+            var dtos = _mapper.Map<List<EnrollmentDto>>(enrollmentsList);
+
+            foreach (var dto in dtos)
+            {
+                var enrollment = enrollmentsList.First(e => e.Id == dto.Id);
+                var user = await _uow.Users.GetByStudentIdAsync(enrollment.StudentId);
+                if (user != null) dto.StudentUserId = user.Id;
+            }
+
+            return dtos;
+        }
+
         public async Task<IList<EnrollmentDto>> GetByStudentIdAsync(int studentId)
         {
             var enrollments = await _uow.Enrollments.GetByStudentIdAsync(studentId);

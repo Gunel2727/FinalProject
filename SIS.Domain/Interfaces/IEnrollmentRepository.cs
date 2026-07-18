@@ -8,5 +8,6 @@ namespace StudentInformationSystem.Domain.Interfaces
         Task<IList<Enrollment>> GetByStudentIdAsync(int studentId);
         Task<Enrollment?> GetByStudentAndCourseAsync(int studentId, int courseId);
         void Delete(Enrollment enrollment);
+        Task<IList<Enrollment>> GetByCourseIdAsync(int courseId);
     }
 }

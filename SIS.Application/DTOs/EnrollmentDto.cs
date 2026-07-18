@@ -13,6 +13,7 @@ namespace SIS.Application.DTOs
         public string CourseName { get; set; } = string.Empty;
         public string CourseCode { get; set; } = string.Empty;
         public DateTime EnrolledAt { get; set; }
+        public int StudentUserId { get; set; }
     }
 
    

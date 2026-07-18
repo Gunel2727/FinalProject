@@ -706,6 +706,22 @@
   },
   {
     "ContainingType": "SIS.Api.Controllers.EnrollmentsController",
+    "Method": "GetByCourse",
+    "RelativePath": "api/Enrollments/course/{courseId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "courseId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SIS.Api.Controllers.EnrollmentsController",
     "Method": "GetByStudent",
     "RelativePath": "api/Enrollments/student/{studentId}",
     "HttpMethod": "GET",

@@ -15,6 +15,7 @@ namespace SIS.Application.DTOs
         
         public string TeacherFullName { get; set; } = string.Empty;
         public string AcademicTermName { get; set; } = string.Empty;
+        public int TeacherUserId { get; set; }
     }
 
     public class CreateCourseDto

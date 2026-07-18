@@ -16,5 +16,7 @@ namespace SIS.Domain.Interfaces
         Task<bool> TeacherIdExistsAsync(int teacherId);
         Task<bool> StudentIdExistsAsync(int studentId);
         void Update(User user);
+        Task<User?> GetByStudentIdAsync(int studentId);
+        Task<User?> GetByTeacherIdAsync(int teacherId);
     }
 }

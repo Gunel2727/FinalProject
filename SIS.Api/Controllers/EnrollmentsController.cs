@@ -43,5 +43,12 @@ namespace SIS.Api.Controllers
             await _enrollmentService.UnenrollAsync(id);
             return Ok(ResponseModel<bool>.Ok(true));
         }
+
+        [HttpGet("course/{courseId}")]
+        public async Task<IActionResult> GetByCourse(int courseId)
+        {
+            var enrollments = await _enrollmentService.GetByCourseIdAsync(courseId);
+            return Ok(ResponseModel<IList<EnrollmentDto>>.Ok(enrollments));
+        }
     }
 }

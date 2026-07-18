@@ -20,6 +20,15 @@ namespace SIS.Infrastructure.Persistence.SqlServer.Repositories
             _context.Enrollments.Remove(enrollment);
         }
 
+        public async Task<IList<Enrollment>> GetByCourseIdAsync(int courseId)
+        {
+            return await _context.Enrollments
+                .Include(e => e.Student)
+                .Include(e => e.Course)
+                .Where(e => e.CourseId == courseId)
+                .ToListAsync();
+        }
+
         public async Task<Enrollment?> GetByStudentAndCourseAsync(int studentId, int courseId)
         {
             return await _context.Enrollments

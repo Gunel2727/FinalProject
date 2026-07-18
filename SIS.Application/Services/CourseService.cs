@@ -47,7 +47,17 @@ namespace SIS.Application.Services
         public async Task<IList<CourseDto>> GetAllAsync()
         {
             var courses = await _uow.Courses.GetAllAsync();
-            return _mapper.Map<IList<CourseDto>>(courses);
+            var coursesList = courses.ToList();
+            var dtos = _mapper.Map<List<CourseDto>>(coursesList);
+
+            foreach (var dto in dtos)
+            {
+                var course = coursesList.First(c => c.Id == dto.Id);
+                var user = await _uow.Users.GetByTeacherIdAsync(course.TeacherId);
+                if (user != null) dto.TeacherUserId = user.Id;
+            }
+
+            return dtos;
         }
 
         public async Task<CourseDto> GetByIdAsync(int id)
@@ -55,13 +65,30 @@ namespace SIS.Application.Services
             var course = await _uow.Courses.GetByIdAsync(id);
             if (course == null)
                 throw new NotFoundException(ErrorMessages.CourseNotFound);
-            return _mapper.Map<CourseDto>(course);
+
+            var dto = _mapper.Map<CourseDto>(course);
+
+            var user = await _uow.Users.GetByTeacherIdAsync(course.TeacherId);
+            if (user != null) dto.TeacherUserId = user.Id;
+
+            return dto;
+
         }
 
         public async Task<IList<CourseDto>> GetByTeacherIdAsync(int teacherId)
         {
             var courses = await _uow.Courses.GetByTeacherIdAsync(teacherId);
-            return _mapper.Map<IList<CourseDto>>(courses);
+            var coursesList = courses.ToList();
+            var dtos = _mapper.Map<List<CourseDto>>(coursesList);
+
+            foreach (var dto in dtos)
+            {
+                var course = coursesList.First(c => c.Id == dto.Id);
+                var user = await _uow.Users.GetByTeacherIdAsync(course.TeacherId);
+                if (user != null) dto.TeacherUserId = user.Id;
+            }
+
+            return dtos;
         }
 
         public async Task<IList<CourseDto>> GetFilteredAsync(string? search, int? teacherId, int? academicTermId)

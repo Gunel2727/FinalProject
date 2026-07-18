@@ -203,3 +203,4 @@ C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Api\obj\Debug\net8.0\refint\SIS
 C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Api\obj\Debug\net8.0\SIS.Api.pdb
 C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Api\obj\Debug\net8.0\SIS.Api.genruntimeconfig.cache
 C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Api\obj\Debug\net8.0\ref\SIS.Api.dll
+C:\Users\gunel\OneDrive\Desktop\FinalProject\SIS.Api\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

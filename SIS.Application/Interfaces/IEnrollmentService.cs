@@ -12,5 +12,6 @@ namespace SIS.Application.Interfaces
         Task<IList<EnrollmentDto>> GetByStudentIdAsync(int studentId);
         Task<EnrollmentDto> EnrollAsync(CreateEnrollmentDto dto);
         Task UnenrollAsync(int enrollmentId);
+        Task<IList<EnrollmentDto>> GetByCourseIdAsync(int courseId);
     }
 }

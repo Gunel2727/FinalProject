@@ -31,8 +31,8 @@ namespace SIS.Infrastructure.ExternalServices
             var grades = await _uow.Grades.GetByStudentIdAsync(studentId);
             var gradesList = grades.ToList();
 
-            var scores = gradesList.Select(g => g.Score).ToList();
-            var gpa = _gpaCalculator.Calculate(scores);
+            var gradesWithCredits = grades.Select(g => (g.Score, g.Course.Credits)).ToList();
+            var gpa = _gpaCalculator.Calculate(gradesWithCredits);
 
             var document = Document.Create(container =>
             {

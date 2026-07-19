@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace SIS.Application.Interfaces
 {
-    public interface IGpaCalculatorService
-    {
-        
-        double Calculate(IList<double> scores);
-        
-        string GetLetterGrade(double score);
-    }
+   public interface IGpaCalculatorService
+{
+    double Calculate(IList<(double Score, int Credits)> gradesWithCredits);
+    string GetLetterGrade(double score);
+}
 }

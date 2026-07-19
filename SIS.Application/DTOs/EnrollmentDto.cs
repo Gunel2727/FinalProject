@@ -9,6 +9,7 @@ namespace SIS.Application.DTOs
     public class EnrollmentDto
     {
         public int Id { get; set; }
+        public int StudentId { get; set; }
         public string StudentFullName { get; set; } = string.Empty;
         public string CourseName { get; set; } = string.Empty;
         public string CourseCode { get; set; } = string.Empty;

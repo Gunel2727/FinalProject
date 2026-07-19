@@ -55,7 +55,7 @@ namespace SIS.Application.Services
 
             var grades = await _uow.Grades.GetByStudentIdAsync(studentId);
             var gradesList = grades.ToList();
-            var scores = gradesList.Select(g => g.Score).ToList(); 
+            var gradesWithCredits = grades.Select(g => (g.Score, g.Course.Credits)).ToList();
 
             var attendance = await _uow.Attendances.GetByStudentIdAsync(studentId);
             var attendanceList = attendance.ToList();
@@ -65,7 +65,7 @@ namespace SIS.Application.Services
                 FullName = $"{student.FirstName} {student.LastName}",
                 ProgrammeName = student.Programme?.Name ?? string.Empty,
                 AcademicYear = student.AcademicYear,
-                Gpa = _gpaCalculator.Calculate(scores),
+                Gpa = _gpaCalculator.Calculate(gradesWithCredits),
                 Grades = _mapper.Map<List<GradeDto>>(gradesList),
                 TotalAttendanceRecords = attendanceList.Count,
                 PresentCount = attendanceList.Count(a => a.Status == AttendanceStatus.Present),
@@ -103,7 +103,7 @@ namespace SIS.Application.Services
                      .Select(g => new SemesterGpaDto
                      {
                          SemesterName = g.Key,
-                         Gpa = _gpaCalculator.Calculate(g.Select(x => x.Score).ToList())
+                         Gpa = _gpaCalculator.Calculate(g.Select(x => (x.Score, x.Course.Credits)).ToList())
                      })
                      .ToList();
             return grouped;
@@ -130,7 +130,7 @@ namespace SIS.Application.Services
 
            
             var grades = await _uow.Grades.GetByStudentIdAsync(studentId);
-            var scores = grades.Select(g => g.Score).ToList();
+            var gradesWithCredits = grades.Select(g => (g.Score, g.Course.Credits)).ToList();
 
 
             var enrollments = await _uow.Enrollments.GetByStudentIdAsync(studentId);
@@ -146,7 +146,7 @@ namespace SIS.Application.Services
                 ProgrammeName = student.Programme?.Name ?? string.Empty,
                 AcademicYear = student.AcademicYear,
                 
-                Gpa = _gpaCalculator.Calculate(scores),
+                Gpa = _gpaCalculator.Calculate(gradesWithCredits),
                 Courses = _mapper.Map<List<CourseDto>>(courses),
                 RecentAnnouncements = _mapper.Map<List<AnnouncementDto>>(recent)
             };

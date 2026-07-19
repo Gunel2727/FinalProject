@@ -37,7 +37,13 @@ namespace SIS.Application.Services
 
         public async Task<AttendanceDto> RecordAsync(CreateAttendanceDto dto)
         {
-            
+            var isEnrolled = await _uow.Enrollments.GetByStudentAndCourseAsync(
+        dto.StudentId, dto.CourseId);
+
+            if (isEnrolled == null)
+                throw new BadRequestException(
+                    "Bu tələbə bu kursa yazılmayıb, davamiyyəti qeyd edilə bilməz.");
+
             var existing = await _uow.Attendances.GetByCourseAndDateAsync(
                 dto.CourseId, dto.Date);
 

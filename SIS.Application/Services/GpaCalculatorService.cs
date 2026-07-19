@@ -9,16 +9,22 @@ namespace SIS.Application.Services
 {
     public class GpaCalculatorService : IGpaCalculatorService
     {
-        public double Calculate(IList<double> scores)
+        public double Calculate(IList<(double Score, int Credits)> gradesWithCredits)
         {
-            var list = scores.ToList();
+            if (gradesWithCredits.Count == 0) return 0;
 
-            if (list.Count == 0) return 0.0;
+            double totalWeightedPoints = 0;
+            int totalCredits = 0;
 
-            var points = list.Select(s => GetGpaPoint(s));
-            return Math.Round(points.Average(), 2);
+            foreach (var (score, credits) in gradesWithCredits)
+            {
+                double gradePoint = ScoreToGradePoint(score); // 90→4.0, 80→3.0 və s.
+                totalWeightedPoints += gradePoint * credits;
+                totalCredits += credits;
+            }
+
+            return totalCredits == 0 ? 0 : Math.Round(totalWeightedPoints / totalCredits, 2);
         }
-
         public string GetLetterGrade(double score)
         {
             switch (score)
@@ -40,25 +46,13 @@ namespace SIS.Application.Services
             }
         }
 
-        public static double GetGpaPoint(double score)
+        private double ScoreToGradePoint(double score)
         {
-            switch (score)
-            {
-                case >= 90:
-                    return 4.0;
-
-                case >= 80:
-                    return 3.0;
-
-                case >= 70:
-                    return 2.0;
-
-                case >= 60:
-                    return 1.0;
-
-                default:
-                    return 0.0;
-            }
+            if (score >= 90) return 4.0;
+            if (score >= 80) return 3.0;
+            if (score >= 70) return 2.0;
+            if (score >= 60) return 1.0;
+            return 0.0;
         }
 
 

@@ -30,7 +30,6 @@ namespace SIS.Infrastructure.Persistence.SqlServer.Configurations
             builder.HasIndex(t => t.Email)
                 .IsUnique();
 
-            // Teacher → Department (many-to-one)
             builder.HasOne(t => t.Department)
                 .WithMany(d => d.Teachers)
                 .HasForeignKey(t => t.DepartmentId)

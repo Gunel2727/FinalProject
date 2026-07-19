@@ -30,7 +30,10 @@ namespace SIS.Application.Services
         }
         public async Task<GradeDto> CreateAsync(CreateGradeDto dto)
         {
-            
+            var isEnrolled = await _uow.Enrollments.GetByStudentAndCourseAsync(dto.StudentId, dto.CourseId);
+            if (isEnrolled == null)
+                throw new BadRequestException("Bu tələbə bu kursa yazılmayıb, qiymət verilə bilməz.");
+
             var existing = await _uow.Grades.GetByStudentAndCourseAsync(
                 dto.StudentId, dto.CourseId);
 

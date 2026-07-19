@@ -51,5 +51,12 @@ namespace SIS.Infrastructure.Persistence.SqlServer.Repositories
         {
             _context.Teachers.Update(teacher);
         }
+
+        public new async Task<IList<Teacher>> GetAllAsync()
+        {
+            return await _context.Teachers
+                .Include (t => t.Department)
+                .ToListAsync();
+        }
     }
 }

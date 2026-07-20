@@ -32,6 +32,18 @@ namespace SIS.Application.Services
             return _mapper.Map<IList<ChatMessageDto>>(messages);
         }
 
+        public async Task MarkAsReadAsync(int currentUserId, int otherUserId)
+        {
+            var messages = await _uow.ChatMessages.GetConversationAsync(currentUserId, otherUserId);
+            var unread = messages.Where(m => m.ReceiverId == currentUserId && m.SenderId == otherUserId && !m.IsRead).ToList();
+            if (unread.Count == 0) return;
+            foreach (var m in unread)
+                m.IsRead = true;
+
+            await _uow.SaveChangesAsync();
+            await _chatNotifier.NotifyMessagesReadAsync(otherUserId, currentUserId);
+        }
+
         public async Task<ChatMessageDto> SendMessageAsync(int senderId, SendMessageDto dto)
         {
             var sender = await _uow.Users.GetByIdAsync(senderId);

@@ -33,5 +33,13 @@ namespace SIS.Api.Controllers
            var result= await _messageService.SendMessageAsync(myUserId, dto);
             return StatusCode(201, ResponseModel<ChatMessageDto>.Created(result));
         }
+
+        [HttpPut("read/{otherUserId}")]
+        public async Task<IActionResult> MarkAsRead(int otherUserId)
+        {
+            var currentUserId = int.Parse(User.FindFirst("userId")!.Value);
+            await _messageService.MarkAsReadAsync(currentUserId, otherUserId);
+            return Ok(ResponseModel<object>.Ok(null));
+        }
     }
 }

@@ -875,6 +875,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "SIS.Api.Controllers.MessagesController",
+    "Method": "MarkAsRead",
+    "RelativePath": "api/Messages/read/{otherUserId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "otherUserId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "SIS.Api.Controllers.StudentsController",
     "Method": "GetAll",
     "RelativePath": "api/Students",

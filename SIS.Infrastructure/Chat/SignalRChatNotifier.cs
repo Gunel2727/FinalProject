@@ -24,5 +24,10 @@ namespace SIS.Infrastructure.Chat
              .Group($"user-{receiverId}")
              .SendAsync("ReceiveMessage", message);
         }
+        public async Task NotifyMessagesReadAsync(int notifyUserId, int readByUserId)
+        {
+            await _hubContext.Clients.Group($"user-{notifyUserId}")
+                .SendAsync("MessagesRead", new { readByUserId });
+        }
     }
 }

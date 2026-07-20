@@ -11,5 +11,6 @@ namespace SIS.Application.Interfaces
     {
         Task<ChatMessageDto> SendMessageAsync(int senderId,SendMessageDto dto);
         Task<IList<ChatMessageDto>> GetConversationAsync(int userId1, int userId2);
+        Task MarkAsReadAsync(int currentUserId, int otherUserId);
     }
 }

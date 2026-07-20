@@ -10,5 +10,6 @@ namespace SIS.Application.Interfaces
     public interface IChatNotifier
     {
         Task NotifyNewMessageAsync(int receiverId, ChatMessageDto message);
+        Task NotifyMessagesReadAsync(int notifyUserId, int readByUserId);
     }
 }

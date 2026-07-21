@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using SIS.Application.Common;
 using SIS.Application.DTOs;
 using SIS.Application.Interfaces;
+using System.Security.Claims;
 
 namespace SIS.Api.Controllers
 {
@@ -22,13 +23,18 @@ namespace SIS.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var announcements = await _announcementService.GetAllAsync();
+            var role = User.FindFirst(ClaimTypes.Role)?.Value;
+            var announcements = await _announcementService.GetVisibleForRoleAsync(role);
             return Ok(ResponseModel<IList<AnnouncementDto>>.Ok(announcements));
         }
 
         [HttpGet("filtered")]
         public async Task<IActionResult> GetFiltered([FromQuery] string? targetRole, [FromQuery] int? courseId)
         {
+            var callerRole = User.FindFirst(ClaimTypes.Role)?.Value;
+            if (!string.Equals(callerRole, "Admin", StringComparison.OrdinalIgnoreCase))
+                targetRole = callerRole;   
+
             var announcements = await _announcementService.GetFilteredAsync(targetRole, courseId);
             return Ok(ResponseModel<IList<AnnouncementDto>>.Ok(announcements));
         }

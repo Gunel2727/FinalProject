@@ -41,6 +41,11 @@ namespace SIS.Infrastructure
             services.Configure<GoogleAuthSettings>(
                 configuration.GetSection("GoogleAuthSettings"));
 
+            services.Configure<GeminiSettings>(
+            configuration.GetSection("GeminiSettings"));
+
+            services.AddHttpClient<IAiChatService, GeminiChatService>();
+
             services.AddScoped<IJwtTokenService, JwtTokenService>();
             services.AddScoped<IPasswordHasher, PasswordHasher>();
             services.AddScoped<ITranscriptService, TranscriptService>();

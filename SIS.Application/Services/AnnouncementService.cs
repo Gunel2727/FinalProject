@@ -61,5 +61,11 @@ namespace SIS.Application.Services
             var announcements = await _uow.Announcements.GetFilteredAsync(targetRole, courseId);
             return _mapper.Map<IList<AnnouncementDto>>(announcements);
         }
+
+        public async Task<IList<AnnouncementDto>> GetVisibleForRoleAsync(string? role)
+        {
+            var announcements = await _uow.Announcements.GetVisibleForRoleAsync(role);
+            return _mapper.Map<IList<AnnouncementDto>>(announcements);
+        }
     }
 }

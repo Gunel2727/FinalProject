@@ -204,6 +204,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "SIS.Api.Controllers.AiController",
+    "Method": "Chat",
+    "RelativePath": "api/Ai/chat",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "SIS.Application.DTOs.AiChatDto\u002BAiChatRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "SIS.Api.Controllers.AnnouncementsController",
     "Method": "GetAll",
     "RelativePath": "api/Announcements",

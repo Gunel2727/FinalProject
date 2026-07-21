@@ -31,18 +31,31 @@ namespace SIS.Infrastructure.Persistence.SqlServer.Repositories
 
         public async Task<IList<Announcement>> GetFilteredAsync(string? targetRole, int? courseId)
         {
-            var query = _context.Announcements
-                .AsQueryable();
+            var query = _context.Announcements.AsQueryable();
 
             if (!string.IsNullOrEmpty(targetRole))
             {
                 var role = Enum.Parse<UserRole>(targetRole, ignoreCase: true);
-                query = query.Where(a => a.TargetRole == role);
+                query = query.Where(a => a.IsGlobal || a.TargetRole == null || a.TargetRole == role);
             }
 
             if (courseId.HasValue)
             {
                 query = query.Where(a => a.CourseId == courseId.Value || a.IsGlobal);
+            }
+
+            return await query.OrderByDescending(a => a.CreatedAt).ToListAsync();
+        }
+
+        public async Task<IList<Announcement>> GetVisibleForRoleAsync(string? role)
+        {
+            var query = _context.Announcements.AsQueryable();
+
+            if (!string.IsNullOrEmpty(role)
+                && !role.Equals("Admin", StringComparison.OrdinalIgnoreCase)
+                && Enum.TryParse<UserRole>(role, true, out var userRole))
+            {
+                query = query.Where(a => a.IsGlobal || a.TargetRole == null || a.TargetRole == userRole);
             }
 
             return await query.OrderByDescending(a => a.CreatedAt).ToListAsync();

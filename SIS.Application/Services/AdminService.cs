@@ -55,6 +55,10 @@ namespace SIS.Application.Services
             if (department == null)
                 throw new NotFoundException(ErrorMessages.DepartmentNotFound);
 
+            var linkedProgrammes = await _uow.Programmes.GetFilteredAsync(null, id);
+            if (linkedProgrammes.Any())
+                throw new BadRequestException(ErrorMessages.DepartmentHasProgrammes);
+
             _uow.Departments.Delete(department);
             await _uow.SaveChangesAsync();
         }

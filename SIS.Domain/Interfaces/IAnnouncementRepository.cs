@@ -8,5 +8,6 @@ namespace StudentInformationSystem.Domain.Interfaces
         Task<IList<Announcement>> GetByCourseIdAsync(int courseId);
         void Delete(Announcement announcement);
         Task<IList<Announcement>> GetFilteredAsync(string? targetRole, int? courseId);
+        Task<IList<Announcement>> GetVisibleForRoleAsync(string? role);
     }
 }

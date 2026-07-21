@@ -14,5 +14,6 @@ namespace SIS.Application.Interfaces
         Task<AnnouncementDto> CreateAsync(CreateAnnouncementDto dto);
         Task DeleteAsync(int id);
         Task<IList<AnnouncementDto>> GetFilteredAsync(string? targetRole, int? courseId);
+        Task<IList<AnnouncementDto>> GetVisibleForRoleAsync(string? role);
     }
 }

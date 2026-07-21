@@ -8,8 +8,8 @@ namespace SIS.Application.Common
 {
     public static class ErrorMessages
     {
+        public const string DepartmentHasProgrammes = "Bu departamentə bağlı proqramlar mövcuddur, əvvəlcə onları silin";
 
-       
         public const string UserNotFound = "İstifadəçi tapılmadı";
 
         public const string EmailAlreadyExists = "Bu email artıq qeydiyyatdadır";

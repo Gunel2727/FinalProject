@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<title>Giriş — SIS</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+<script src="js/api.js"></script>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+<a href="index.html" style="position:fixed;top:20px;left:24px;font-size:13px;color:var(--text-muted);text-decoration:none;font-weight:600">← Ana səhifə</a>
+<button class="theme-toggle theme-toggle-fixed" onclick="toggleTheme()" title="Tema dəyiş" aria-label="Tema dəyiş">
+  <span class="icon-sun">☀</span><span class="icon-moon">☾</span>
+</button>
+<div class="auth-wrap" x-data="loginPage()">
+  <div class="auth-card">
+    <div class="auth-icon">⚡</div>
+    <h1>Student Portal</h1>
+    <p class="sub">Tələbə, müəllim və admin hesabları üçün təhlükəsiz giriş</p>
+
+    <div class="alert alert-error" x-show="error" x-text="error"></div>
+
+    <form @submit.prevent="submit">
+      <div class="form-row">
+        <label>Email</label>
+        <input type="email" x-model="email" required autocomplete="username" placeholder="sən@sis.edu.az">
+      </div>
+      <div class="form-row">
+        <div class="flex-row" style="justify-content:space-between;margin-bottom:5px">
+          <label style="margin-bottom:0">Şifrə</label>
+          <a href="forgot-password.html" style="font-size:12px;color:var(--cyan);text-decoration:none;font-weight:600">Şifrəni unutmusan?</a>
+        </div>
+        <input type="password" x-model="password" required autocomplete="current-password" placeholder="••••••••">
+      </div>
+      <button type="submit" class="btn btn-primary" :disabled="loading">
+        <span x-show="!loading">Sistemə daxil ol</span>
+        <span x-show="loading">Yoxlanılır...</span>
+      </button>
+    </form>
+
+    <div class="flex-row" style="margin:16px 0">
+      <span style="flex:1;height:1px;background:var(--border)"></span>
+      <span style="font-size:11px;color:var(--text-faint)">VƏ YA</span>
+      <span style="flex:1;height:1px;background:var(--border)"></span>
+    </div>
+
+    <div id="g_id_onload"
+         data-client_id="344787536767-lbancua0idl4tgvp2iee52r61rteio42.apps.googleusercontent.com"
+         data-callback="handleGoogleCredential"
+         data-auto_prompt="false">
+    </div>
+    <div class="g_id_signin" data-type="standard" data-shape="rectangular" data-theme="filled_black" data-size="large" data-width="308"></div>
+
+    <p style="font-size:11.5px;color:var(--text-faint);text-align:center;margin-top:16px">
+      Hesabınız Admin tərəfindən yaradılır — qeydiyyat forması yoxdur.
+    </p>
+  </div>
+</div>
+
+<script>
+function loginPage() {
+  return {
+    email: "", password: "", error: "", loading: false,
+    async submit() {
+      this.error = ""; this.loading = true;
+      try {
+        const res = await apiRequest("/auth/login", "POST", { email: this.email, password: this.password });
+        setCurrentUser(res.data);
+        window.location.href = res.data.mustChangePassword ? "force-change-password.html" : "dashboard.html";
+      } catch (e) {
+        this.error = e.message;
+      } finally {
+        this.loading = false;
+      }
+    }
+  };
+}
+
+async function handleGoogleCredential(response) {
+  try {
+    const res = await apiRequest("/auth/google-login", "POST", { idToken: response.credential });
+    setCurrentUser(res.data);
+    window.location.href = res.data.mustChangePassword ? "force-change-password.html" : "dashboard.html";
+  } catch (e) {
+    alert("Google giriş uğursuz oldu: " + e.message + "\n\nBu email əvvəlcə Admin tərəfindən sistemə əlavə edilmiş olmalıdır.");
+  }
+}
+</script>
+</body>
+</html>

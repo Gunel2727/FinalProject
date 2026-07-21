@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<title>Admin panel — SIS</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+</head>
+<body>
+<div class="shell">
+  <div id="nav-mount"></div>
+  <main class="main">
+  <div class="container" x-data="adminPage()" x-init="init()">
+    <div class="page-title">Admin Paneli</div>
+    <div class="page-subtitle">Departament, proqram, semestr və müəllim idarəetməsi</div>
+
+    <div class="alert alert-error" x-show="error" x-text="error"></div>
+    <div class="alert alert-success" x-show="success" x-text="success"></div>
+
+    <div class="tabbar">
+      <button class="btn" :class="tab==='overview' ? 'btn-primary' : 'btn-secondary'" @click="tab='overview'">Tələbə İcmalı</button>
+      <button class="btn" :class="tab==='departments' ? 'btn-primary' : 'btn-secondary'" @click="tab='departments'">Departamentlər</button>
+      <button class="btn" :class="tab==='programmes' ? 'btn-primary' : 'btn-secondary'" @click="tab='programmes'">Proqramlar</button>
+      <button class="btn" :class="tab==='terms' ? 'btn-primary' : 'btn-secondary'" @click="tab='terms'">Semestrlər</button>
+      <button class="btn" :class="tab==='teachers' ? 'btn-primary' : 'btn-secondary'" @click="tab='teachers'">Müəllimlər</button>
+    </div>
+
+    <!-- STUDENT OVERVIEW -->
+    <div x-show="tab==='overview'">
+      <div class="card">
+        <div class="card-title">Tələbənin akademik icmalı</div>
+        <div class="flex-row" style="align-items:flex-start">
+          <div class="combo" style="min-width:240px" x-show="!overviewStudentId">
+            <input type="text" placeholder="Tələbə axtar (ad, soyad)..." x-model="studentQuery"
+                   @focus="studentMenuOpen = true" @input="studentMenuOpen = true">
+            <div class="combo-menu" x-show="studentMenuOpen" @click.outside="studentMenuOpen = false">
+              <template x-for="s in filteredStudents" :key="s.id">
+                <button type="button" class="combo-item" @click="overviewStudentId = s.id; studentQuery = ''; studentMenuOpen = false; loadOverview()">
+                  <span x-text="s.firstName + ' ' + s.lastName"></span>
+                  <span class="sub" x-text="s.programmeName"></span>
+                </button>
+              </template>
+              <div class="combo-empty" x-show="filteredStudents.length === 0">Nəticə tapılmadı</div>
+            </div>
+          </div>
+          <span class="combo-chip" x-show="overviewStudentId">
+            <span x-text="studentLabel(overviewStudentId)"></span>
+            <button type="button" @click="overviewStudentId = null; overview = null" aria-label="Seçimi ləğv et">✕</button>
+          </span>
+          <button class="btn btn-primary" @click="loadOverview()" x-show="overviewStudentId">Göstər</button>
+        </div>
+      </div>
+      <template x-if="overview">
+        <div>
+          <div class="stat-grid">
+            <div class="stat-card"><div class="label">Ad Soyad</div><div class="value" style="font-size:15px" x-text="overview.fullName"></div></div>
+            <div class="stat-card"><div class="label">Proqram</div><div class="value" style="font-size:15px" x-text="overview.programmeName"></div></div>
+            <div class="stat-card"><div class="label">GPA</div><div class="value accent" x-text="overview.gpa.toFixed(2) + ' / 4.0'"></div></div>
+          </div>
+          <div class="stat-grid">
+            <div class="stat-card"><div class="label">Cəmi Davamiyyət</div><div class="value" x-text="overview.totalAttendanceRecords"></div></div>
+            <div class="stat-card"><div class="label">İştirak</div><div class="value" style="color:var(--green)" x-text="overview.presentCount"></div></div>
+            <div class="stat-card"><div class="label">Yoxdur</div><div class="value" style="color:var(--red)" x-text="overview.absentCount"></div></div>
+            <div class="stat-card"><div class="label">Gecikmə</div><div class="value" style="color:var(--amber)" x-text="overview.lateCount"></div></div>
+          </div>
+          <div class="card">
+            <div class="card-title">Qiymətlər</div>
+            <table>
+              <thead><tr><th>Kurs</th><th>Bal</th><th>Hərf</th></tr></thead>
+              <tbody><template x-for="g in overview.grades" :key="g.id"><tr><td x-text="g.courseName"></td><td x-text="g.score"></td><td><span class="badge badge-blue" x-text="g.letter"></span></td></tr></template></tbody>
+            </table>
+            <div class="empty-state" x-show="overview.grades.length===0">Qiymət yoxdur</div>
+          </div>
+        </div>
+      </template>
+    </div>
+
+    <!-- DEPARTMENTS -->
+    <div x-show="tab==='departments'">
+      <div class="card">
+        <div class="card-title">Yeni departament</div>
+        <div class="flex-row">
+          <input x-model="newDept" placeholder="Departament adı" style="flex:1">
+          <button class="btn btn-primary" @click="createDepartment()">Əlavə et</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="search-bar" style="margin-bottom:14px"><input placeholder="Departament axtar..." x-model="deptSearch" @input.debounce.400ms="loadDepartments()"></div>
+        <table><thead><tr><th>Ad</th><th>Əməliyyat</th></tr></thead>
+          <tbody><template x-for="d in departments" :key="d.id"><tr><td x-text="d.name"></td><td><button class="btn btn-danger btn-sm" @click="removeDepartment(d.id)">Sil</button></td></tr></template></tbody>
+        </table>
+        <div class="empty-state" x-show="departments.length===0">Departament yoxdur</div>
+      </div>
+    </div>
+
+    <!-- PROGRAMMES -->
+    <div x-show="tab==='programmes'">
+      <div class="card">
+        <div class="card-title">Yeni proqram</div>
+        <div class="flex-row">
+          <input x-model="newProg.name" placeholder="Proqram adı" style="flex:1">
+          <select x-model.number="newProg.departmentId" style="min-width:180px">
+            <option value="">Departament seçin...</option>
+            <template x-for="d in allDepartments" :key="d.id"><option :value="d.id" x-text="d.name"></option></template>
+          </select>
+          <button class="btn btn-primary" @click="createProgramme()">Əlavə et</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="flex-row" style="margin-bottom:14px">
+          <div class="search-bar"><input placeholder="Proqram axtar..." x-model="progSearch" @input.debounce.400ms="loadProgrammes()"></div>
+          <select x-model.number="progDeptFilter" @change="loadProgrammes()" style="max-width:200px">
+            <option value="">Bütün departamentlər</option>
+            <template x-for="d in allDepartments" :key="d.id"><option :value="d.id" x-text="d.name"></option></template>
+          </select>
+        </div>
+        <table><thead><tr><th>Ad</th><th>Departament</th></tr></thead>
+          <tbody><template x-for="p in programmes" :key="p.id"><tr><td x-text="p.name"></td><td x-text="p.departmentName"></td></tr></template></tbody>
+        </table>
+        <div class="empty-state" x-show="programmes.length===0">Proqram yoxdur</div>
+      </div>
+    </div>
+
+    <!-- TERMS -->
+    <div x-show="tab==='terms'">
+      <div class="card">
+        <div class="card-title">Yeni semestr</div>
+        <div class="flex-row">
+          <input x-model="newTerm.name" placeholder="Semestr adı (2025-2026 Payız)" style="flex:1;min-width:200px">
+          <input type="date" x-model="newTerm.startDate">
+          <input type="date" x-model="newTerm.endDate">
+          <button class="btn btn-primary" @click="createTerm()">Əlavə et</button>
+        </div>
+      </div>
+      <div class="card">
+        <table>
+          <thead><tr><th>Ad</th><th>Başlanğıc</th><th>Bitmə</th><th>Vəziyyət</th><th>Əməliyyat</th></tr></thead>
+          <tbody>
+            <template x-for="t in terms" :key="t.id">
+              <tr>
+                <td x-text="t.name"></td>
+                <td x-text="new Date(t.startDate).toLocaleDateString()"></td>
+                <td x-text="new Date(t.endDate).toLocaleDateString()"></td>
+                <td><span class="badge" :class="t.isActive?'badge-green':'badge-red'" x-text="t.isActive?'Aktiv':'Deaktiv'"></span></td>
+                <td><button class="btn btn-secondary btn-sm" x-show="!t.isActive" @click="activateTerm(t)">Aktiv et</button></td>
+              </tr>
+            </template>
+          </tbody>
+        </table>
+        <div class="empty-state" x-show="terms.length===0">Semestr yoxdur</div>
+      </div>
+    </div>
+
+    <!-- TEACHERS -->
+    <div x-show="tab==='teachers'">
+      <div class="card">
+        <div class="card-title">Yeni müəllim</div>
+        <div class="flex-row">
+          <input x-model="newTeacher.firstName" placeholder="Ad" style="flex:1;min-width:120px">
+          <input x-model="newTeacher.lastName" placeholder="Soyad" style="flex:1;min-width:120px">
+          <input type="email" x-model="newTeacher.email" placeholder="Email" style="flex:1;min-width:180px">
+          <select x-model.number="newTeacher.departmentId" style="min-width:160px">
+            <option value="">Departament seçin...</option>
+            <template x-for="d in allDepartments" :key="d.id"><option :value="d.id" x-text="d.name"></option></template>
+          </select>
+          <button class="btn btn-primary" @click="createTeacher()">Əlavə et</button>
+        </div>
+        <p style="font-size:12px;color:var(--text-muted);margin-top:8px">Müəllim yaradıldıqdan sonra, ona göndərilən email-dəki müvəqqəti şifrə ilə birbaşa daxil ola bilər.</p>
+      </div>
+      <div class="card" x-show="createdTeacherPassword">
+        <p style="font-size:13px;color:var(--text-muted)">Müvəqqəti şifrə (yalnız indi göstərilir):</p>
+        <p style="font-size:16px;font-weight:800;color:var(--cyan);margin-top:6px" x-text="createdTeacherPassword"></p>
+      </div>
+      <div class="card">
+        <div class="flex-row" style="margin-bottom:14px">
+          <div class="search-bar"><input placeholder="Müəllim axtar..." x-model="teacherSearch" @input.debounce.400ms="loadTeachers()"></div>
+          <select x-model.number="teacherDeptFilter" @change="loadTeachers()" style="max-width:200px">
+            <option value="">Bütün departamentlər</option>
+            <template x-for="d in allDepartments" :key="d.id"><option :value="d.id" x-text="d.name"></option></template>
+          </select>
+        </div>
+        <table><thead><tr><th>ID</th><th>Ad Soyad</th><th>Email</th><th>Departament</th><th>Əməliyyat</th></tr></thead>
+          <tbody><template x-for="t in teachers" :key="t.id"><tr><td x-text="t.id"></td><td x-text="t.firstName + ' ' + t.lastName"></td><td x-text="t.email"></td><td x-text="t.departmentName"></td><td><button class="btn btn-danger btn-sm" @click="removeTeacher(t.id)">Sil</button></td></tr></template></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  </main>
+</div>
+
+<script>
+function adminPage() {
+  return {
+    tab: "overview", overviewStudentId: null, overview: null,
+    departments: [], allDepartments: [], programmes: [], terms: [], teachers: [],
+    deptSearch: "", progSearch: "", progDeptFilter: "", teacherSearch: "", teacherDeptFilter: "",
+    newDept: "", newProg: { name: "", departmentId: "" }, newTerm: { name: "", startDate: "", endDate: "" },
+    newTeacher: { firstName: "", lastName: "", email: "", departmentId: "" },
+    createdTeacherPassword: "",
+    allStudents: [], studentQuery: "", studentMenuOpen: false,
+    error: "", success: "",
+
+    // Searchable name lookup replacing the raw "type a student ID" input
+    get filteredStudents() {
+      const q = this.studentQuery.trim().toLowerCase();
+      const list = !q ? this.allStudents : this.allStudents.filter(s =>
+        (s.firstName + " " + s.lastName).toLowerCase().includes(q)
+      );
+      return list.slice(0, 8);
+    },
+
+    studentLabel(id) {
+      const s = this.allStudents.find(x => x.id === id);
+      return s ? s.firstName + " " + s.lastName : "#" + id;
+    },
+
+    async init() {
+      const user = requireRole(["Admin"]);
+      if (!user) return;
+      mountNav("admin.html");
+      const [d, s] = await Promise.all([apiRequest("/admin/departments"), apiRequest("/students")]);
+      this.allDepartments = d.data;
+      this.allStudents = s.data;
+      await Promise.all([this.loadDepartments(), this.loadProgrammes(), this.loadTerms(), this.loadTeachers()]);
+    },
+
+    async loadDepartments() {
+      const q = this.deptSearch ? `?search=${encodeURIComponent(this.deptSearch)}` : "";
+      const res = await apiRequest(`/admin/departments/filtered${q}`);
+      this.departments = res.data;
+    },
+    async loadProgrammes() {
+      const params = new URLSearchParams();
+      if (this.progSearch) params.set("search", this.progSearch);
+      if (this.progDeptFilter) params.set("departmentId", this.progDeptFilter);
+      const q = params.toString();
+      const res = await apiRequest(`/admin/programmes/filtered${q ? "?" + q : ""}`);
+      this.programmes = res.data;
+    },
+    async loadTerms() {
+      const res = await apiRequest("/admin/terms");
+      this.terms = res.data;
+    },
+    async loadTeachers() {
+      const params = new URLSearchParams();
+      if (this.teacherSearch) params.set("search", this.teacherSearch);
+      if (this.teacherDeptFilter) params.set("departmentId", this.teacherDeptFilter);
+      const q = params.toString();
+      const res = await apiRequest(q ? `/teachers/filtered?${q}` : "/teachers");
+      this.teachers = res.data;
+    },
+
+    async createDepartment() {
+      this.error = ""; this.success = "";
+      try {
+        await apiRequest("/admin/departments", "POST", { name: this.newDept });
+        this.newDept = ""; this.success = "Departament yaradıldı";
+        const d = await apiRequest("/admin/departments");
+        this.allDepartments = d.data;
+        await this.loadDepartments();
+      } catch (e) { this.error = e.message; }
+    },
+    async createProgramme() {
+      this.error = ""; this.success = "";
+      try {
+        await apiRequest("/admin/programmes", "POST", this.newProg);
+        this.newProg = { name: "", departmentId: "" }; this.success = "Proqram yaradıldı";
+        await this.loadProgrammes();
+      } catch (e) { this.error = e.message; }
+    },
+    async createTerm() {
+      this.error = ""; this.success = "";
+      try {
+        await apiRequest("/admin/terms", "POST", this.newTerm);
+        this.newTerm = { name: "", startDate: "", endDate: "" }; this.success = "Semestr yaradıldı";
+        await this.loadTerms();
+      } catch (e) { this.error = e.message; }
+    },
+    async activateTerm(t) {
+      this.error = ""; this.success = "";
+      try {
+        await apiRequest(`/admin/terms/${t.id}`, "PUT", {
+          name: t.name, startDate: t.startDate, endDate: t.endDate, isActive: true
+        });
+        this.success = `"${t.name}" indi cari semestrdir`;
+        await this.loadTerms();
+      } catch (e) { this.error = e.message; }
+    },
+    async loadOverview() {
+      this.error = "";
+      if (!this.overviewStudentId) { this.error = "Tələbəni seçin"; return; }
+      try {
+        const res = await apiRequest(`/dashboard/advisor/${this.overviewStudentId}`);
+        this.overview = res.data;
+      } catch (e) { this.error = e.message; this.overview = null; }
+    },
+    async createTeacher() {
+      this.error = ""; this.success = "";
+      try {
+        const res = await apiRequest("/teachers", "POST", this.newTeacher);
+        this.success = "Müəllim yaradıldı və email göndərildi";
+        this.createdTeacherPassword = res.data.temporaryPassword || "";
+        this.newTeacher = { firstName: "", lastName: "", email: "", departmentId: "" };
+        await this.loadTeachers();
+      } catch (e) { this.error = e.message; }
+    },
+    async removeDepartment(id) {
+      if (!confirm("Bu departamenti silmək istədiyinizə əminsiniz?")) return;
+      this.error = ""; this.success = "";
+      try {
+        await apiRequest(`/admin/departments/${id}`, "DELETE");
+        this.success = "Departament silindi";
+        const d = await apiRequest("/admin/departments");
+        this.allDepartments = d.data;
+        await this.loadDepartments();
+      } catch (e) { this.error = e.message; }
+    },
+    async removeTeacher(id) {
+      if (!confirm("Bu müəllimi silmək istədiyinizə əminsiniz?")) return;
+      this.error = ""; this.success = "";
+      try {
+        await apiRequest(`/teachers/${id}`, "DELETE");
+        this.success = "Müəllim silindi";
+        await this.loadTeachers();
+      } catch (e) { this.error = e.message; }
+    }
+  };
+}
+</script>
+</body>
+</html>

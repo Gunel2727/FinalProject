@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Elanlar — SIS</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+<style>
+  /* ============ Announcements page — modern cards (scoped to announcements.html) ============ */
+  .ann-toolbar { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 18px; }
+  .ann-search { position: relative; flex: 1; min-width: 220px; }
+  .ann-search input { padding-left: 34px; }
+  .ann-search::before { content: "\26B2"; position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-faint); font-size: 13px; }
+  .ann-toolbar select, .ann-toolbar input[type="number"] { max-width: 180px; flex-shrink: 0; }
+
+  .ann-list { display: flex; flex-direction: column; gap: 14px; }
+  .ann-card {
+    display: flex; gap: 16px; padding: 18px 20px; border-radius: var(--radius);
+    background: linear-gradient(180deg, rgba(var(--glass-rgb-1),.6), rgba(var(--glass-rgb-2),.6));
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border); border-left: 3px solid var(--cyan);
+    box-shadow: var(--shadow); transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  .ann-card.course { border-left-color: var(--amber); }
+  .ann-card:hover { transform: translateY(-2px); box-shadow: var(--glow); border-color: var(--border-strong); }
+
+  .ann-icon { width: 42px; height: 42px; border-radius: 12px; flex-shrink: 0; font-size: 18px; display: flex; align-items: center; justify-content: center; }
+  .ann-icon.global { background: rgba(52,217,232,.14); color: var(--cyan); }
+  .ann-icon.course { background: var(--amber-soft); color: var(--amber); }
+
+  .ann-body { flex: 1; min-width: 0; }
+  .ann-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+  .ann-title { font-size: 14.5px; font-weight: 700; color: var(--text); }
+  .ann-content { font-size: 13px; color: var(--text-muted); margin-top: 5px; line-height: 1.6; }
+  .ann-badges { display: flex; gap: 6px; align-items: center; margin-top: 12px; flex-wrap: wrap; }
+  .ann-time { font-size: 11px; color: var(--text-faint); margin-left: auto; }
+
+  .badge-role-student { background: var(--student-soft); color: var(--student); }
+  .badge-role-teacher { background: rgba(59,130,246,.14); color: var(--blue); }
+  .badge-role-all { background: var(--surface-2); color: var(--text-muted); }
+
+  .ann-delete {
+    width: 30px; height: 30px; border-radius: 8px; border: none; background: var(--red-soft); color: var(--red);
+    cursor: pointer; flex-shrink: 0; font-size: 13px; display: flex; align-items: center; justify-content: center;
+    transition: background-color .15s ease;
+  }
+  .ann-delete:hover { background: rgba(248,113,113,.25); }
+
+  @media (max-width: 640px) {
+    .ann-toolbar { flex-direction: column; align-items: stretch; }
+    .ann-toolbar select, .ann-toolbar input[type="number"] { max-width: none; }
+    .ann-card { flex-direction: column; }
+    .ann-head { align-items: center; }
+    .ann-time { margin-left: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+  <div id="nav-mount"></div>
+  <main class="main">
+  <div class="container" x-data="announcementsPage()" x-init="init()">
+    <div class="page-title">Elanlar</div>
+    <div class="page-subtitle">İnstitut-geniş və kurs-spesifik bildirişlər</div>
+
+    <div class="alert alert-error" x-show="error" x-text="error"></div>
+    <div class="alert alert-success" x-show="success" x-text="success"></div>
+
+    <div class="card" x-show="canManage">
+      <div class="card-title">Yeni elan yarat</div>
+      <form @submit.prevent="create">
+        <div class="form-row"><label>Başlıq</label><input x-model="form.title" required></div>
+        <div class="form-row"><label>Məzmun</label><textarea x-model="form.content" rows="3" required></textarea></div>
+        <div class="flex-row">
+          <div class="form-row" style="flex:1"><label><input type="checkbox" x-model="form.isGlobal" style="width:auto;display:inline-block"> Bütün instituta aid (global)</label></div>
+          <div class="form-row" style="flex:1">
+            <label>Hədəf rol</label>
+            <select x-model="form.targetRole">
+              <option value="">Hamı</option>
+              <option value="Student">Yalnız tələbələr</option>
+              <option value="Teacher">Yalnız müəllimlər</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row" x-show="!form.isGlobal">
+          <label>Kurs</label>
+          <div class="flex-row" style="align-items:flex-start">
+            <div class="combo" style="min-width:220px" x-show="!form.courseId">
+              <input type="text" placeholder="Kurs axtar (ad, kod)..." x-model="formCourseQuery"
+                     @focus="formCourseMenuOpen = true" @input="formCourseMenuOpen = true">
+              <div class="combo-menu" x-show="formCourseMenuOpen" @click.outside="formCourseMenuOpen = false">
+                <template x-for="c in filteredCourses(formCourseQuery)" :key="c.id">
+                  <button type="button" class="combo-item" @click="form.courseId = c.id; formCourseQuery = ''; formCourseMenuOpen = false">
+                    <span x-text="c.name"></span>
+                    <span class="sub" x-text="c.code"></span>
+                  </button>
+                </template>
+                <div class="combo-empty" x-show="filteredCourses(formCourseQuery).length === 0">Nəticə tapılmadı</div>
+              </div>
+            </div>
+            <span class="combo-chip" x-show="form.courseId">
+              <span x-text="courseLabel(form.courseId)"></span>
+              <button type="button" @click="form.courseId = null" aria-label="Seçimi ləğv et">✕</button>
+            </span>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Elan et</button>
+      </form>
+    </div>
+
+    <div class="card">
+      <div class="ann-toolbar">
+        <div class="ann-search"><input type="text" placeholder="Elanlarda axtar..." x-model="searchQuery"></div>
+        <select x-model="roleFilter" @change="load()">
+          <option value="">Bütün rollar</option>
+          <option value="Student">Tələbələr</option>
+          <option value="Teacher">Müəllimlər</option>
+        </select>
+        <div class="combo" style="min-width:200px" x-show="!courseFilter">
+          <input type="text" placeholder="Kurs ilə filtr..." x-model="filterCourseQuery"
+                 @focus="filterCourseMenuOpen = true" @input="filterCourseMenuOpen = true">
+          <div class="combo-menu" x-show="filterCourseMenuOpen" @click.outside="filterCourseMenuOpen = false">
+            <template x-for="c in filteredCourses(filterCourseQuery)" :key="c.id">
+              <button type="button" class="combo-item" @click="courseFilter = c.id; filterCourseQuery = ''; filterCourseMenuOpen = false; load()">
+                <span x-text="c.name"></span>
+                <span class="sub" x-text="c.code"></span>
+              </button>
+            </template>
+            <div class="combo-empty" x-show="filteredCourses(filterCourseQuery).length === 0">Nəticə tapılmadı</div>
+          </div>
+        </div>
+        <span class="combo-chip" x-show="courseFilter">
+          <span x-text="courseLabel(courseFilter)"></span>
+          <button type="button" @click="courseFilter = ''; load()" aria-label="Seçimi ləğv et">✕</button>
+        </span>
+        <button class="btn btn-secondary btn-sm" @click="clearFilters()" x-show="roleFilter || courseFilter || searchQuery">Filtrləri sıfırla</button>
+      </div>
+
+      <div x-show="loading" class="empty-state">Yüklənir...</div>
+
+      <div class="ann-list" x-show="!loading">
+        <template x-for="a in filteredAnnouncements" :key="a.id">
+          <div class="ann-card" :class="a.isGlobal ? 'global' : 'course'">
+            <div class="ann-icon" :class="a.isGlobal ? 'global' : 'course'" x-text="a.isGlobal ? '⚡' : '▦'"></div>
+            <div class="ann-body">
+              <div class="ann-head">
+                <div class="ann-title" x-text="a.title"></div>
+                <button class="ann-delete" x-show="canManage" @click="remove(a.id)" title="Sil" aria-label="Elanı sil">✕</button>
+              </div>
+              <div class="ann-content" x-text="a.content"></div>
+              <div class="ann-badges">
+                <span class="badge" :class="a.isGlobal ? 'badge-blue' : 'badge-amber'" x-text="a.isGlobal ? 'Ümumi' : 'Kurs-spesifik'"></span>
+                <span class="badge" :class="a.targetRole === 'Student' ? 'badge-role-student' : (a.targetRole === 'Teacher' ? 'badge-role-teacher' : 'badge-role-all')"
+                      x-text="a.targetRole === 'Student' ? 'Tələbələr' : (a.targetRole === 'Teacher' ? 'Müəllimlər' : 'Hamı')"></span>
+                <span class="ann-time" x-text="new Date(a.createdAt).toLocaleDateString()"></span>
+              </div>
+            </div>
+          </div>
+        </template>
+      </div>
+
+      <div class="empty-state" x-show="!loading && announcements.length === 0">Elan yoxdur</div>
+      <div class="empty-state" x-show="!loading && announcements.length > 0 && filteredAnnouncements.length === 0">Axtarışa uyğun elan tapılmadı</div>
+    </div>
+  </div>
+  </main>
+</div>
+
+<script>
+function announcementsPage() {
+  return {
+    user: null, canManage: false, announcements: [],
+    roleFilter: "", courseFilter: "", searchQuery: "",
+    loading: true, error: "", success: "",
+    form: { title: "", content: "", isGlobal: true, courseId: null, targetRole: "" },
+    allCourses: [],
+    formCourseQuery: "", formCourseMenuOpen: false,
+    filterCourseQuery: "", filterCourseMenuOpen: false,
+
+    async init() {
+      this.user = requireAuth();
+      if (!this.user) return;
+      this.canManage = ["Admin", "Teacher"].includes(this.user.role);
+      mountNav("announcements.html");
+      const c = await apiRequest("/courses");
+      this.allCourses = c.data;
+      await this.load();
+    },
+
+    // Searchable name lookup replacing the raw "type a course ID" inputs
+    filteredCourses(query) {
+      const q = query.trim().toLowerCase();
+      const list = !q ? this.allCourses : this.allCourses.filter(c =>
+        c.name.toLowerCase().includes(q) || (c.code || "").toLowerCase().includes(q)
+      );
+      return list.slice(0, 8);
+    },
+
+    courseLabel(id) {
+      const c = this.allCourses.find(x => x.id === id);
+      return c ? c.name + " (" + c.code + ")" : "#" + id;
+    },
+
+    // Client-side text search over the already-loaded page (no search endpoint on the API)
+    get filteredAnnouncements() {
+      const q = this.searchQuery.trim().toLowerCase();
+      if (!q) return this.announcements;
+      return this.announcements.filter(a =>
+        (a.title || "").toLowerCase().includes(q) || (a.content || "").toLowerCase().includes(q)
+      );
+    },
+
+    async load() {
+      this.loading = true; this.error = "";
+      try {
+        const params = new URLSearchParams();
+        if (this.roleFilter) params.set("targetRole", this.roleFilter);
+        if (this.courseFilter) params.set("courseId", this.courseFilter);
+        const query = params.toString();
+        const res = await apiRequest(query ? `/announcements/filtered?${query}` : "/announcements");
+        // The backend's role filter also includes any announcement marked "global" regardless of
+        // its own targetRole (isGlobal just means "not tied to a course", unrelated to targetRole),
+        // so re-apply the role filter here to guarantee only the selected role's announcements show.
+        this.announcements = this.roleFilter
+          ? res.data.filter(a => !a.targetRole || a.targetRole === this.roleFilter)
+          : res.data;
+      } catch (e) {
+        this.error = e.message;
+      } finally {
+        this.loading = false;
+      }
+    },
+
+    clearFilters() {
+      this.roleFilter = ""; this.courseFilter = ""; this.searchQuery = ""; this.filterCourseQuery = "";
+      this.load();
+    },
+
+    async create() {
+      this.error = ""; this.success = "";
+      try {
+        await apiRequest("/announcements", "POST", {
+          title: this.form.title, content: this.form.content, isGlobal: this.form.isGlobal,
+          courseId: this.form.isGlobal ? null : this.form.courseId,
+          targetRole: this.form.targetRole || null
+        });
+        this.success = "Elan yaradıldı";
+        this.form = { title: "", content: "", isGlobal: true, courseId: null, targetRole: "" };
+        this.formCourseQuery = "";
+        await this.load();
+      } catch (e) {
+        this.error = e.message;
+      }
+    },
+
+    async remove(id) {
+      if (!confirm("Bu elanı silmək istədiyinizə əminsiniz?")) return;
+      try {
+        await apiRequest(`/announcements/${id}`, "DELETE");
+        this.success = "Elan silindi";
+        await this.load();
+      } catch (e) {
+        this.error = e.message;
+      }
+    }
+  };
+}
+</script>
+</body>
+</html>

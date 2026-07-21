@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<title>Qeydiyyat — SIS</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+</head>
+<body>
+<div class="shell">
+  <div id="nav-mount"></div>
+  <main class="main">
+  <div class="container" x-data="enrollmentsPage()" x-init="init()">
+    <div class="page-title">Kurs qeydiyyatı</div>
+    <div class="page-subtitle">Kurslara yazılma və qeydiyyat idarəetməsi</div>
+
+    <div class="alert alert-error" x-show="error" x-text="error"></div>
+    <div class="alert alert-success" x-show="success" x-text="success"></div>
+
+    <div class="card" x-show="isAdmin">
+      <label>Tələbə (Admin rejimi)</label>
+      <div class="flex-row" style="align-items:flex-start">
+        <div class="combo" style="min-width:240px" x-show="!targetStudentId">
+          <input type="text" placeholder="Tələbə axtar (ad, soyad)..." x-model="studentQuery"
+                 @focus="studentMenuOpen = true" @input="studentMenuOpen = true">
+          <div class="combo-menu" x-show="studentMenuOpen" @click.outside="studentMenuOpen = false">
+            <template x-for="s in filteredStudents" :key="s.id">
+              <button type="button" class="combo-item" @click="targetStudentId = s.id; studentQuery = ''; studentMenuOpen = false; load()">
+                <span x-text="s.firstName + ' ' + s.lastName"></span>
+                <span class="sub" x-text="s.programmeName"></span>
+              </button>
+            </template>
+            <div class="combo-empty" x-show="filteredStudents.length === 0">Nəticə tapılmadı</div>
+          </div>
+        </div>
+        <span class="combo-chip" x-show="targetStudentId">
+          <span x-text="studentLabel(targetStudentId)"></span>
+          <button type="button" @click="targetStudentId = null; enrollments = []" aria-label="Seçimi ləğv et">✕</button>
+        </span>
+        <button class="btn btn-secondary btn-sm" @click="load()" x-show="targetStudentId">Göstər</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Yeni kursa yazıl</div>
+      <div class="flex-row">
+        <select x-model.number="selectedCourseId" style="flex:1;min-width:200px">
+          <option value="">Kurs seçin...</option>
+          <template x-for="c in courses" :key="c.id">
+            <option :value="c.id" x-text="c.name + ' (' + c.code + ')'"></option>
+          </template>
+        </select>
+        <button class="btn btn-primary" @click="enroll()" :disabled="!selectedCourseId">Yaz</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Qeydiyyat olduğum kurslar</div>
+      <div x-show="loading" class="empty-state">Yüklənir...</div>
+      <table x-show="!loading">
+        <thead><tr><th>Kurs</th><th>Kod</th><th>Tarix</th><th>Əməliyyat</th></tr></thead>
+        <tbody>
+          <template x-for="e in enrollments" :key="e.id">
+            <tr>
+              <td x-text="e.courseName"></td>
+              <td x-text="e.courseCode"></td>
+              <td x-text="new Date(e.enrolledAt).toLocaleDateString()"></td>
+              <td><button class="btn btn-danger btn-sm" @click="unenroll(e.id)">Ləğv et</button></td>
+            </tr>
+          </template>
+        </tbody>
+      </table>
+      <div class="empty-state" x-show="!loading && enrollments.length === 0">Heç bir kursa yazılmamısınız</div>
+    </div>
+  </div>
+  </main>
+</div>
+
+<script>
+function enrollmentsPage() {
+  return {
+    user: null,
+    isAdmin: false,
+    courses: [],
+    enrollments: [],
+    selectedCourseId: "",
+    targetStudentId: null,
+    allStudents: [], studentQuery: "", studentMenuOpen: false,
+    loading: true,
+    error: "",
+    success: "",
+
+    get studentId() {
+      return this.isAdmin ? this.targetStudentId : this.user.studentId;
+    },
+
+    // Searchable name lookup replacing the raw "type a student ID" input
+    get filteredStudents() {
+      const q = this.studentQuery.trim().toLowerCase();
+      const list = !q ? this.allStudents : this.allStudents.filter(s =>
+        (s.firstName + " " + s.lastName).toLowerCase().includes(q)
+      );
+      return list.slice(0, 8);
+    },
+
+    studentLabel(id) {
+      const s = this.allStudents.find(x => x.id === id);
+      return s ? s.firstName + " " + s.lastName : "#" + id;
+    },
+
+    async init() {
+      this.user = requireRole(["Admin", "Student"]);
+      if (!this.user) return;
+      this.isAdmin = this.user.role === "Admin";
+      this.targetStudentId = this.isAdmin ? null : this.user.studentId;
+      mountNav("enrollments.html");
+
+      const c = await apiRequest("/courses");
+      this.courses = c.data;
+
+      if (this.isAdmin) {
+        const s = await apiRequest("/students");
+        this.allStudents = s.data;
+        this.loading = false;
+      } else {
+        await this.load();
+      }
+    },
+
+    async load() {
+      if (!this.studentId) { this.error = "Tələbəni seçin"; return; }
+      this.loading = true; this.error = "";
+      try {
+        const res = await apiRequest(`/enrollments/student/${this.studentId}`);
+        this.enrollments = res.data;
+      } catch (e) {
+        this.error = e.message;
+      } finally {
+        this.loading = false;
+      }
+    },
+
+    async enroll() {
+      this.error = ""; this.success = "";
+      if (!this.studentId) { this.error = "Tələbəni seçin"; return; }
+      try {
+        await apiRequest("/enrollments", "POST", { studentId: this.studentId, courseId: this.selectedCourseId });
+        this.success = "Kursa uğurla yazıldınız";
+        this.selectedCourseId = "";
+        await this.load();
+      } catch (e) {
+        this.error = e.message;
+      }
+    },
+
+    async unenroll(id) {
+      if (!confirm("Bu kursdan çıxmaq istədiyinizə əminsiniz?")) return;
+      try {
+        await apiRequest(`/enrollments/${id}`, "DELETE");
+        this.success = "Qeydiyyat ləğv edildi";
+        await this.load();
+      } catch (e) {
+        this.error = e.message;
+      }
+    }
+  };
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<title>Kurslar — SIS</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+</head>
+<body>
+<div class="shell">
+  <div id="nav-mount"></div>
+  <main class="main">
+  <div class="container" x-data="coursesPage()" x-init="init()">
+    <div class="flex-between">
+      <div>
+        <div class="page-title">Kurs kataloqu</div>
+        <div class="page-subtitle">Müəllim təyinatı, kredit, semestr</div>
+      </div>
+      <button class="btn btn-primary" x-show="isAdmin" @click="openCreate()">+ Yeni kurs</button>
+    </div>
+
+    <div class="alert alert-error" x-show="error" x-text="error"></div>
+    <div class="alert alert-success" x-show="success" x-text="success"></div>
+
+    <div class="card" x-show="showForm">
+      <div class="card-title" x-text="editingId ? 'Kursu redaktə et' : 'Yeni kurs yarat'"></div>
+      <form @submit.prevent="submitForm">
+        <div class="flex-row">
+          <div class="form-row" style="flex:1;min-width:180px"><label>Kurs adı</label><input x-model="form.name" required></div>
+          <div class="form-row" style="flex:1;min-width:100px" x-show="!editingId"><label>Kod</label><input x-model="form.code" required></div>
+          <div class="form-row" style="width:100px"><label>Kredit</label><input type="number" min="1" max="10" x-model.number="form.credits" required></div>
+        </div>
+        <div class="flex-row">
+          <div class="form-row" style="flex:1;min-width:180px">
+            <label>Müəllim</label>
+            <select x-model.number="form.teacherId">
+              <option value="">Seçin...</option>
+              <template x-for="t in teachers" :key="t.id"><option :value="t.id" x-text="t.firstName + ' ' + t.lastName"></option></template>
+            </select>
+          </div>
+          <div class="form-row" style="flex:1;min-width:180px" x-show="!editingId">
+            <label>Semestr</label>
+            <select x-model.number="form.academicTermId">
+              <option value="">Seçin...</option>
+              <template x-for="t in terms" :key="t.id"><option :value="t.id" x-text="t.name"></option></template>
+            </select>
+          </div>
+        </div>
+        <div class="flex-row">
+          <button type="submit" class="btn btn-primary">Yadda saxla</button>
+          <button type="button" class="btn btn-secondary" @click="showForm=false">Ləğv et</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="card">
+      <div class="flex-row" style="margin-bottom:16px">
+        <div class="search-bar"><input placeholder="Kurs adı və ya kodu axtar..." x-model="search" @input.debounce.400ms="load()"></div>
+        <select x-model.number="teacherFilter" @change="load()" style="max-width:200px">
+          <option value="">Bütün müəllimlər</option>
+          <template x-for="t in teachers" :key="t.id"><option :value="t.id" x-text="t.firstName + ' ' + t.lastName"></option></template>
+        </select>
+        <select x-model.number="termFilter" @change="load()" style="max-width:180px" x-show="terms.length">
+          <option value="">Bütün semestrlər</option>
+          <template x-for="t in terms" :key="t.id"><option :value="t.id" x-text="t.name"></option></template>
+        </select>
+      </div>
+
+      <div x-show="loading" class="empty-state">Yüklənir...</div>
+      <table x-show="!loading">
+        <thead><tr><th>Kurs</th><th>Kod</th><th>Kredit</th><th>Müəllim</th><th>Semestr</th><th x-show="isAdmin">Əməliyyat</th></tr></thead>
+        <tbody>
+          <template x-for="c in courses" :key="c.id">
+            <tr>
+              <td x-text="c.name"></td><td x-text="c.code"></td><td x-text="c.credits"></td>
+              <td x-text="c.teacherFullName"></td><td x-text="c.academicTermName"></td>
+              <td x-show="isAdmin">
+                <button class="btn btn-secondary btn-sm" @click="openEdit(c)">Redaktə</button>
+                <button class="btn btn-danger btn-sm" @click="remove(c.id)">Sil</button>
+              </td>
+            </tr>
+          </template>
+        </tbody>
+      </table>
+      <div class="empty-state" x-show="!loading && courses.length === 0">Heç bir kurs tapılmadı</div>
+    </div>
+  </div>
+  </main>
+</div>
+
+<script>
+function coursesPage() {
+  return {
+    user: null, isAdmin: false, courses: [], teachers: [], terms: [],
+    search: "", teacherFilter: "", termFilter: "",
+    loading: true, error: "", success: "", showForm: false, editingId: null,
+    form: { name: "", code: "", credits: 3, teacherId: "", academicTermId: "" },
+
+    async init() {
+      this.user = requireAuth();
+      if (!this.user) return;
+      this.isAdmin = this.user.role === "Admin";
+      mountNav("courses.html");
+      const t = await apiRequest("/teachers");
+      this.teachers = t.data;
+      if (this.isAdmin) {
+        const terms = await apiRequest("/admin/terms");
+        this.terms = terms.data;
+      }
+      await this.load();
+    },
+
+    async load() {
+      this.loading = true; this.error = "";
+      try {
+        const params = new URLSearchParams();
+        if (this.search) params.set("search", this.search);
+        if (this.teacherFilter) params.set("teacherId", this.teacherFilter);
+        if (this.termFilter) params.set("academicTermId", this.termFilter);
+        const query = params.toString();
+        const res = await apiRequest(query ? `/courses/filter?${query}` : "/courses");
+        this.courses = res.data;
+      } catch (e) {
+        this.error = e.message;
+      } finally {
+        this.loading = false;
+      }
+    },
+
+    openCreate() {
+      this.editingId = null;
+      this.form = { name: "", code: "", credits: 3, teacherId: "", academicTermId: "" };
+      this.showForm = true;
+    },
+
+    openEdit(c) {
+      this.editingId = c.id;
+      const teacher = this.teachers.find(t => (t.firstName + " " + t.lastName) === c.teacherFullName);
+      this.form = { name: c.name, credits: c.credits, teacherId: teacher ? teacher.id : "" };
+      this.showForm = true;
+    },
+
+    async submitForm() {
+      this.error = ""; this.success = "";
+      try {
+        if (this.editingId) {
+          await apiRequest(`/courses/${this.editingId}`, "PUT", {
+            name: this.form.name, credits: this.form.credits, teacherId: this.form.teacherId
+          });
+          this.success = "Kurs yeniləndi";
+        } else {
+          await apiRequest("/courses", "POST", {
+            name: this.form.name, code: this.form.code, credits: this.form.credits,
+            teacherId: this.form.teacherId, academicTermId: this.form.academicTermId
+          });
+          this.success = "Kurs yaradıldı";
+        }
+        this.showForm = false;
+        await this.load();
+      } catch (e) {
+        this.error = e.message;
+      }
+    },
+
+    async remove(id) {
+      if (!confirm("Bu kursu silmək istədiyinizə əminsiniz?")) return;
+      try {
+        await apiRequest(`/courses/${id}`, "DELETE");
+        this.success = "Kurs silindi";
+        await this.load();
+      } catch (e) {
+        this.error = e.message;
+      }
+    }
+  };
+}
+</script>
+</body>
+</html>

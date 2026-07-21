@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<title>Davamiyyət — SIS</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+</head>
+<body>
+<div class="shell">
+  <div id="nav-mount"></div>
+  <main class="main">
+  <div class="container" x-data="attendancePage()" x-init="init()">
+    <div class="page-title">Davamiyyət</div>
+    <div class="page-subtitle">Dərs-dərs davamiyyət qeydiyyatı</div>
+
+    <div class="alert alert-error" x-show="error" x-text="error"></div>
+    <div class="alert alert-success" x-show="success" x-text="success"></div>
+
+    <!-- TEACHER: qeyd et -->
+    <div class="card" x-show="isTeacher" :class="studentMenuOpen ? 'combo-active' : ''">
+      <div class="card-title">Davamiyyət qeyd et</div>
+      <div class="flex-row">
+        <select x-model.number="selectedCourseId" style="flex:1;min-width:200px" @change="loadCourseAttendance()">
+          <option value="">Kurs seçin...</option>
+          <template x-for="c in myCourses" :key="c.id">
+            <option :value="c.id" x-text="c.name + ' (' + c.code + ')'"></option>
+          </template>
+        </select>
+      </div>
+      <div class="flex-row" style="margin-top:10px;align-items:flex-start" x-show="selectedCourseId">
+        <div class="combo" style="min-width:220px" x-show="!newRecord.studentId">
+          <input type="text" placeholder="Tələbə axtar (ad, soyad)..." x-model="studentQuery"
+                 @focus="studentMenuOpen = true" @input="studentMenuOpen = true">
+          <div class="combo-menu" x-show="studentMenuOpen" @click.outside="studentMenuOpen = false">
+            <template x-for="s in filteredStudents" :key="s.studentId">
+              <button type="button" class="combo-item" @click="newRecord.studentId = s.studentId; studentQuery = ''; studentMenuOpen = false">
+                <span x-text="s.studentFullName"></span>
+              </button>
+            </template>
+            <div class="combo-empty" x-show="filteredStudents.length === 0">Nəticə tapılmadı</div>
+          </div>
+        </div>
+        <span class="combo-chip" x-show="newRecord.studentId">
+          <span x-text="studentLabel(newRecord.studentId)"></span>
+          <button type="button" @click="newRecord.studentId = null" aria-label="Seçimi ləğv et">✕</button>
+        </span>
+        <input type="date" x-model="newRecord.date" style="max-width:160px">
+        <select x-model="newRecord.status" style="max-width:140px">
+          <option value="Present">Present</option>
+          <option value="Absent">Absent</option>
+          <option value="Late">Late</option>
+        </select>
+        <button class="btn btn-primary" @click="record()">Qeyd et</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title" x-text="isTeacher ? 'Bu kursun davamiyyəti' : 'Davamiyyətim'"></div>
+      <div x-show="loading" class="empty-state">Yüklənir...</div>
+      <table x-show="!loading">
+        <thead><tr><th x-show="isTeacher">Tələbə</th><th x-show="!isTeacher">Kurs</th><th>Tarix</th><th>Status</th></tr></thead>
+        <tbody>
+          <template x-for="a in records" :key="a.id">
+            <tr>
+              <td x-show="isTeacher" x-text="a.studentFullName"></td>
+              <td x-show="!isTeacher" x-text="a.courseName"></td>
+              <td x-text="new Date(a.date).toLocaleDateString()"></td>
+              <td>
+                <span class="badge"
+                  :class="a.status === 'Present' ? 'badge-green' : (a.status === 'Late' ? 'badge-amber' : 'badge-red')"
+                  x-text="a.status"></span>
+              </td>
+            </tr>
+          </template>
+        </tbody>
+      </table>
+      <div class="empty-state" x-show="!loading && records.length === 0">Qeyd tapılmadı</div>
+    </div>
+  </div>
+  </main>
+</div>
+
+<script>
+function attendancePage() {
+  return {
+    user: null,
+    isTeacher: false,
+    myCourses: [],
+    records: [],
+    selectedCourseId: "",
+    newRecord: { studentId: null, date: "", status: "Present" },
+    courseStudents: [], studentQuery: "", studentMenuOpen: false,
+    loading: true,
+    error: "",
+    success: "",
+
+    async init() {
+      this.user = requireRole(["Teacher", "Student"]);
+      if (!this.user) return;
+      this.isTeacher = this.user.role === "Teacher";
+      mountNav("attendance.html");
+
+      if (this.isTeacher) {
+        const c = await apiRequest(`/courses/teacher/${this.user.teacherId}`);
+        this.myCourses = c.data;
+        this.loading = false;
+      } else if (this.user.role === "Student") {
+        await this.loadStudentAttendance();
+      } else {
+        this.loading = false;
+      }
+    },
+
+    // Searchable name lookup — scoped to students actually enrolled in the selected course
+    get filteredStudents() {
+      const q = this.studentQuery.trim().toLowerCase();
+      const list = !q ? this.courseStudents : this.courseStudents.filter(s =>
+        s.studentFullName.toLowerCase().includes(q)
+      );
+      return list.slice(0, 8);
+    },
+
+    studentLabel(id) {
+      const s = this.courseStudents.find(x => x.studentId === id);
+      return s ? s.studentFullName : "#" + id;
+    },
+
+    async loadStudentAttendance() {
+      this.loading = true; this.error = "";
+      try {
+        const res = await apiRequest(`/attendance/student/${this.user.studentId}`);
+        this.records = res.data;
+      } catch (e) {
+        this.error = e.message;
+      } finally {
+        this.loading = false;
+      }
+    },
+
+    async loadCourseAttendance() {
+      this.newRecord.studentId = null; this.studentQuery = "";
+      if (!this.selectedCourseId) { this.records = []; this.courseStudents = []; return; }
+      this.loading = true; this.error = "";
+      try {
+        const [recordsRes, enrollRes] = await Promise.all([
+          apiRequest(`/attendance/course/${this.selectedCourseId}`),
+          apiRequest(`/enrollments/course/${this.selectedCourseId}`)
+        ]);
+        this.records = recordsRes.data;
+        this.courseStudents = enrollRes.data;
+      } catch (e) {
+        this.error = e.message;
+      } finally {
+        this.loading = false;
+      }
+    },
+
+    async record() {
+      this.error = ""; this.success = "";
+      if (!this.newRecord.studentId || !this.newRecord.date) {
+        this.error = "Tələbəni seçin və tarix daxil edin"; return;
+      }
+      try {
+        await apiRequest("/attendance", "POST", {
+          studentId: this.newRecord.studentId,
+          courseId: this.selectedCourseId,
+          date: this.newRecord.date,
+          status: this.newRecord.status
+        });
+        this.success = "Davamiyyət qeyd edildi";
+        this.newRecord = { studentId: null, date: "", status: "Present" };
+        this.studentQuery = "";
+        await this.loadCourseAttendance();
+      } catch (e) {
+        this.error = e.message;
+      }
+    }
+  };
+}
+</script>
+</body>
+</html>

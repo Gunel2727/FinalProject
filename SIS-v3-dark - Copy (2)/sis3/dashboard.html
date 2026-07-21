@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard — SIS</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+</head>
+<body>
+<div id="page-root">
+  <div id="nav-mount"></div>
+  <div id="app"></div>
+</div>
+
+<script>
+async function init() {
+  const user = requireAuth();
+  if (!user) return;
+
+  const root = document.getElementById("page-root");
+  if (user.role === "Admin") {
+    root.classList.add("shell");
+    mountNav("dashboard.html");
+  } else {
+    document.body.classList.add(user.role === "Teacher" ? "teacher-mode" : "student-mode");
+    document.getElementById("nav-mount").outerHTML = renderTopNav(user.role, "dashboard.html");
+  }
+
+  const app = document.getElementById("app");
+
+  try {
+    if (user.role === "Student") {
+      const [dash, gpaRes] = await Promise.all([
+        apiRequest(`/dashboard/student/${user.studentId}`),
+        apiRequest(`/dashboard/chart/gpa-progress/${user.studentId}`)
+      ]);
+      renderStudent(app, dash.data, gpaRes.data);
+    } else if (user.role === "Teacher") {
+      const [dash, avgRes] = await Promise.all([
+        apiRequest(`/dashboard/teacher/${user.teacherId}`),
+        apiRequest(`/dashboard/chart/average-grade-per-course/${user.teacherId}`)
+      ]);
+      renderTeacher(app, dash.data, avgRes.data, user);
+    } else {
+      const [dash, byProgramme, byDept, gradeDist] = await Promise.all([
+        apiRequest("/dashboard/admin"),
+        apiRequest("/dashboard/chart/students-by-programme"),
+        apiRequest("/dashboard/chart/students-by-department"),
+        apiRequest("/dashboard/chart/grade-distribution")
+      ]);
+      renderAdmin(app, dash.data, byProgramme.data, byDept.data, gradeDist.data);
+    }
+  } catch (e) {
+    app.innerHTML = `<main class="main"><div class="container"><div class="alert alert-error">${e.message}</div></div></main>`;
+  }
+}
+
+// Sticky glass topbar shared by Student and Teacher dashboards (Admin keeps the sidebar)
+function renderTopNav(role, activePage) {
+  const user = getCurrentUser();
+  const links = getNavLinks(role)
+    .map(l => `<a href="${l.href}" class="${activePage === l.href ? 'active' : ''}">${l.label}</a>`)
+    .join("");
+  return `
+    <header class="student-topbar">
+      <span class="brand">Scholar</span>
+      <nav>${links}</nav>
+      <span class="user-chip">${user.email}</span>
+      <button class="theme-toggle" onclick="toggleTheme()" title="Tema dəyiş" aria-label="Tema dəyiş">
+        <span class="icon-sun">☀</span><span class="icon-moon">☾</span>
+      </button>
+      <button class="logout" onclick="logout()">Çıxış</button>
+    </header>`;
+}
+
+// ---------- STUDENT: a personal page, hero + course tiles ----------
+function renderStudent(app, d, gpaProgress) {
+  const marks = ["●","◆","▲","■","✦","❀"];
+  app.innerHTML = `
+    <div class="student-container">
+      <div class="student-hero">
+        <div class="eyebrow">Xoş gəldin</div>
+        <h1>${d.programmeName}</h1>
+        <div class="meta">${d.academicYear}-ci kurs tələbəsi</div>
+        <div class="student-hero-stats">
+          <div class="student-hero-stat"><div class="n">${d.gpa.toFixed(2)}</div><div class="l">GPA / 4.0</div></div>
+          <div class="student-hero-stat"><div class="n">${d.courses.length}</div><div class="l">Aktiv kurs</div></div>
+          <div class="student-hero-stat"><div class="n">${d.recentAnnouncements.length}</div><div class="l">Yeni elan</div></div>
+        </div>
+      </div>
+
+      ${gpaProgress && gpaProgress.length ? `
+      <div class="card">
+        <div class="card-title">GPA inkişafı</div>
+        ${lineChart(gpaProgress.map(g => ({ label: g.semesterName, count: g.gpa })), 4)}
+      </div>` : ""}
+
+      <div class="student-section-title">Kurslarım<span class="line"></span></div>
+      <div class="course-row-grid">
+        ${d.courses.length === 0 ? '<div class="empty-state">Hələ heç bir kursa qeydiyyatdan keçməmisiniz</div>' :
+          d.courses.map((c, i) => `
+            <div class="course-tile">
+              <div class="subject-mark">${marks[i % marks.length]}</div>
+              <div class="name">${c.name}</div>
+              <div class="meta">${c.code} · ${c.credits} kredit</div>
+              <div class="meta">${c.teacherFullName}</div>
+            </div>`).join("")}
+      </div>
+
+      <div class="student-section-title">Son elanlar<span class="line"></span></div>
+      ${renderNotifications(d.recentAnnouncements)}
+    </div>
+    ${renderAiWidget()}`;
+  initAiWidget();
+}
+
+// ---------- AI Assistant — floating widget, Student dashboard only ----------
+let aiMessages = [];
+let aiLoading = false;
+const aiSuggestions = ["GPA-m necə hesablanır?", "Bu semestr neçə kursum var?", "Davamiyyətim haqqında məlumat ver"];
+
+function renderAiWidget() {
+  return `
+    <button id="aiFab" class="ai-fab" onclick="toggleAiPanel()" aria-label="AI Köməkçi" title="AI Köməkçi">✨</button>
+    <div id="aiPanel" class="ai-panel" style="display:none">
+      <div class="ai-panel-head">
+        <div class="ai-panel-avatar">✨</div>
+        <div>
+          <div class="ai-panel-title">AI Köməkçi</div>
+          <div class="ai-panel-sub"><span class="dot"></span>Sualların üçün buradayam</div>
+        </div>
+        <button type="button" class="ai-panel-close" onclick="toggleAiPanel()" aria-label="Bağla">✕</button>
+      </div>
+      <div id="aiMessages" class="ai-messages"></div>
+      <div id="aiSuggestRow" class="ai-suggest-row">
+        ${aiSuggestions.map(s => `<button type="button" class="ai-suggest-chip" data-ai-suggest="${escapeHtml(s)}">${s}</button>`).join("")}
+      </div>
+      <div class="ai-input-bar">
+        <input id="aiInput" type="text" placeholder="Sualını yaz..." onkeydown="if(event.key==='Enter') sendAiMessage()">
+        <button type="button" id="aiSendBtn" onclick="sendAiMessage()" aria-label="Göndər">➤</button>
+      </div>
+    </div>`;
+}
+
+function initAiWidget() {
+  aiMessages = [];
+  renderAiMessages();
+  // Event delegation instead of inline onclick — embedding raw question text into an
+  // onclick="..." attribute breaks on any quote character inside the string.
+  document.getElementById("aiSuggestRow").addEventListener("click", (e) => {
+    const chip = e.target.closest(".ai-suggest-chip");
+    if (chip) sendAiMessage(chip.dataset.aiSuggest);
+  });
+}
+
+function toggleAiPanel() {
+  const panel = document.getElementById("aiPanel");
+  const fab = document.getElementById("aiFab");
+  const opening = panel.style.display === "none";
+  panel.style.display = opening ? "flex" : "none";
+  fab.classList.toggle("open", opening);
+  if (opening && aiMessages.length === 0) {
+    aiMessages.push({ role: "ai", text: "Salam! Kurslar, qiymətlər, davamiyyət, GPA və ya elanlar haqqında nə bilmək istəyirsən?" });
+    renderAiMessages();
+  }
+  if (opening) document.getElementById("aiInput").focus();
+}
+
+function renderAiMessages() {
+  const box = document.getElementById("aiMessages");
+  if (!box) return;
+  box.innerHTML = aiMessages.map(m => `
+    <div class="ai-row ${m.role === "user" ? "mine" : ""}">
+      <div class="ai-row-avatar">${m.role === "user" ? "🧑" : "✨"}</div>
+      <div class="ai-bubble ${m.error ? "error" : ""}">${escapeHtml(m.text)}</div>
+    </div>`).join("") + (aiLoading ? `
+    <div class="ai-row">
+      <div class="ai-row-avatar">✨</div>
+      <div class="ai-bubble"><div class="ai-typing"><span></span><span></span><span></span></div></div>
+    </div>` : "");
+  box.scrollTop = box.scrollHeight;
+}
+
+function escapeHtml(str) {
+  const div = document.createElement("div");
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+async function sendAiMessage(presetText) {
+  if (aiLoading) return;
+  const input = document.getElementById("aiInput");
+  const text = (presetText ?? input.value).trim();
+  if (!text) return;
+
+  document.getElementById("aiSuggestRow").style.display = "none";
+  aiMessages.push({ role: "user", text });
+  input.value = "";
+  aiLoading = true;
+  document.getElementById("aiSendBtn").disabled = true;
+  renderAiMessages();
+
+  try {
+    const res = await apiRequest("/ai/chat", "POST", { message: text });
+    aiMessages.push({ role: "ai", text: res.data.reply });
+  } catch (e) {
+    aiMessages.push({ role: "ai", text: e.message || "Cavab alınarkən xəta baş verdi.", error: true });
+  } finally {
+    aiLoading = false;
+    document.getElementById("aiSendBtn").disabled = false;
+    renderAiMessages();
+  }
+}
+
+// ---------- TEACHER: a workday-focused card layout, not a sidebar list ----------
+function renderTeacher(app, d, avgGrades, user) {
+  const initials = d.fullName.split(" ").map(s => s[0]).join("").slice(0,2).toUpperCase();
+  app.innerHTML = `
+    <main class="main"><div class="container">
+      <div class="teacher-banner">
+        <div class="avatar">${initials}</div>
+        <div>
+          <h1>Salam, ${d.fullName}</h1>
+          <div class="meta">${d.departmentName} · ${d.courses.length} kurs tədris edirsiniz</div>
+        </div>
+      </div>
+
+      <div class="student-section-title" style="color:var(--text)">Kurslarım<span class="line"></span></div>
+      <div class="class-card-grid">
+        ${d.courses.map(c => `
+          <div class="class-card">
+            <div class="code">${c.code}</div>
+            <div class="name">${c.name}</div>
+            <div class="credits">${c.credits} kredit</div>
+          </div>`).join("") || '<div class="empty-state">Kurs yoxdur</div>'}
+      </div>
+
+      ${avgGrades && avgGrades.length ? `
+      <div class="card" style="margin-top:20px">
+        <div class="card-title">Kurs üzrə orta qiymət</div>
+        ${barChart(avgGrades.map(g => ({ label: g.courseName, count: g.averageScore })), 100)}
+      </div>` : ""}
+
+      <div class="student-section-title" style="color:var(--text)">Son elanlar<span class="line"></span></div>
+      ${renderNotifications(d.recentAnnouncements)}
+    </div></main>`;
+}
+
+// ---------- ADMIN: command-center banner + stat tiles + charts ----------
+function renderAdmin(app, d, byProgramme, byDept, gradeDist) {
+  app.innerHTML = `
+    <main class="main"><div class="container">
+      <div class="admin-banner">
+        <div class="eyebrow">İdarəetmə Mərkəzi</div>
+        <h1>Sistemin ümumi vəziyyəti</h1>
+      </div>
+
+      <div class="stat-grid">
+        <div class="stat-card"><div class="stat-icon">▤</div><div class="label">Tələbələr</div><div class="value accent">${d.totalStudents}</div></div>
+        <div class="stat-card"><div class="stat-icon">★</div><div class="label">Müəllimlər</div><div class="value accent">${d.totalTeachers}</div></div>
+        <div class="stat-card"><div class="stat-icon">▦</div><div class="label">Kurslar</div><div class="value accent">${d.totalCourses}</div></div>
+        <div class="stat-card"><div class="stat-icon">⚙</div><div class="label">Departamentlər</div><div class="value accent">${d.totalDepartments}</div></div>
+      </div>
+
+      <div class="dash-grid-2">
+        <div class="card">
+          <div class="card-title">Tələbələr — Proqram üzrə</div>
+          ${barChart(byProgramme)}
+        </div>
+        <div class="card">
+          <div class="card-title">Tələbələr — Departament üzrə</div>
+          ${barChart(byDept)}
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Qiymət Bölgüsü</div>
+        ${barChart(gradeDist)}
+      </div>
+
+      <div class="student-section-title" style="color:var(--text)">Son elanlar<span class="line"></span></div>
+      ${renderNotifications(d.recentAnnouncements)}
+    </div></main>`;
+}
+
+function renderNotifications(items) {
+  if (!items || items.length === 0) return '<div class="empty-state">Elan yoxdur</div>';
+  return items.map(a => `
+    <div class="notif-item">
+      <div class="notif-icon global">⚡</div>
+      <div class="notif-body">
+        <div class="notif-title">${a.title}</div>
+        <div class="notif-content">${a.content}</div>
+      </div>
+    </div>`).join("");
+}
+
+// Horizontal bar list — used for categorical comparisons (students by programme/department, grade distribution, avg grade per course)
+function barChart(points, maxOverride) {
+  if (!points || points.length === 0) return '<div class="empty-state">Məlumat yoxdur</div>';
+  const max = maxOverride || Math.max(...points.map(p => p.count), 1);
+  return `<div class="hbar-chart">` + points.map((p) => {
+    const pct = Math.max(3, Math.min(100, (p.count / max * 100))).toFixed(0);
+    const val = typeof p.count === "number" && p.count % 1 !== 0 ? p.count.toFixed(2) : p.count;
+    return `
+      <div class="hbar-row">
+        <div class="hbar-top"><span class="hbar-label" title="${p.label}">${p.label}</span><span class="hbar-value">${val}</span></div>
+        <div class="hbar-track"><div class="hbar-fill" style="width:${pct}%"></div></div>
+      </div>`;
+  }).join("") + `</div>`;
+}
+
+// SVG trend/area chart — used for time-series data (GPA progress across semesters)
+let lineChartSeq = 0;
+function lineChart(points, maxOverride) {
+  if (!points || points.length === 0) return '<div class="empty-state">Məlumat yoxdur</div>';
+  const max = maxOverride || Math.max(...points.map(p => p.count), 1);
+  const n = points.length;
+  const xs = points.map((_, i) => n > 1 ? 6 + (88 * i / (n - 1)) : 50);
+  const ys = points.map(p => 78 - Math.max(0, Math.min(1, p.count / max)) * 56);
+  const linePath = xs.map((x, i) => (i === 0 ? "M" : "L") + x.toFixed(1) + "," + ys[i].toFixed(1)).join(" ");
+  const areaPath = linePath + ` L${xs[n - 1].toFixed(1)},96 L${xs[0].toFixed(1)},96 Z`;
+  const gradId = "lineFill" + (++lineChartSeq);
+  const overlayHtml = points.map((p, i) => {
+    const val = typeof p.count === "number" && p.count % 1 !== 0 ? p.count.toFixed(2) : p.count;
+    return `
+      <div class="line-value" style="left:${xs[i]}%;top:${ys[i]}%">${val}</div>
+      <div class="line-dot" style="left:${xs[i]}%;top:${ys[i]}%" title="${p.label}: ${val}"></div>`;
+  }).join("");
+  const labelsHtml = points.map((p, i) => `<span style="left:${xs[i]}%">${p.label}</span>`).join("");
+  return `
+    <div class="line-chart-wrap">
+      <svg class="line-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="${gradId}" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" style="stop-color:var(--cyan);stop-opacity:.32"></stop>
+            <stop offset="100%" style="stop-color:var(--cyan);stop-opacity:0"></stop>
+          </linearGradient>
+        </defs>
+        <path class="line-area" d="${areaPath}" style="fill:url(#${gradId})"></path>
+        <path class="line-stroke" d="${linePath}"></path>
+      </svg>
+      ${overlayHtml}
+    </div>
+    <div class="line-labels">${labelsHtml}</div>`;
+}
+
+init();
+</script>
+</body>
+</html>

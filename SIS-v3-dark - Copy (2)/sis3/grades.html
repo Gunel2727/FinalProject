@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<title>Qiymətlər — SIS</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+</head>
+<body>
+<div class="shell">
+  <div id="nav-mount"></div>
+  <main class="main">
+  <div class="container" x-data="gradesPage()" x-init="init()">
+    <div class="flex-between">
+      <div>
+        <div class="page-title">Qiymətlər</div>
+        <div class="page-subtitle">Qiymət girişi və transkript</div>
+      </div>
+      <button class="btn btn-primary" x-show="user && user.role==='Student'" @click="downloadTranscript()">Transkript endir (PDF)</button>
+    </div>
+
+    <div class="alert alert-error" x-show="error" x-text="error"></div>
+    <div class="alert alert-success" x-show="success" x-text="success"></div>
+
+    <div class="card" x-show="isTeacher" :class="studentMenuOpen ? 'combo-active' : ''">
+      <div class="card-title">Qiymət daxil et</div>
+      <div class="flex-row">
+        <select x-model.number="selectedCourseId" style="flex:1;min-width:200px" @change="loadCourseGrades(); loadCourseStudents()">
+          <option value="">Kurs seçin...</option>
+          <template x-for="c in myCourses" :key="c.id"><option :value="c.id" x-text="c.name + ' (' + c.code + ')'"></option></template>
+        </select>
+      </div>
+      <div class="flex-row" style="margin-top:10px;align-items:flex-start" x-show="selectedCourseId">
+        <div class="combo" style="min-width:220px" x-show="!newGrade.studentId">
+          <input type="text" placeholder="Tələbə axtar (ad, soyad)..." x-model="studentQuery"
+                 @focus="studentMenuOpen = true" @input="studentMenuOpen = true">
+          <div class="combo-menu" x-show="studentMenuOpen" @click.outside="studentMenuOpen = false">
+            <template x-for="s in filteredStudents" :key="s.studentId">
+              <button type="button" class="combo-item" @click="newGrade.studentId = s.studentId; studentQuery = ''; studentMenuOpen = false">
+                <span x-text="s.studentFullName"></span>
+              </button>
+            </template>
+            <div class="combo-empty" x-show="filteredStudents.length === 0">Nəticə tapılmadı</div>
+          </div>
+        </div>
+        <span class="combo-chip" x-show="newGrade.studentId">
+          <span x-text="studentLabel(newGrade.studentId)"></span>
+          <button type="button" @click="newGrade.studentId = null" aria-label="Seçimi ləğv et">✕</button>
+        </span>
+        <input type="number" placeholder="Bal (0-100)" min="0" max="100" x-model.number="newGrade.score" style="max-width:140px">
+        <button class="btn btn-primary" @click="createGrade()">Yaz</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="flex-between" style="margin-bottom:0">
+        <div class="card-title" x-text="isTeacher ? 'Bu kursun qiymətləri' : 'Qiymətlərim'" style="margin-bottom:0"></div>
+      </div>
+      <div class="search-bar" style="margin-bottom:14px" x-show="isTeacher && selectedCourseId">
+        <input placeholder="Tələbə adına görə axtar..." x-model="search" @input.debounce.400ms="loadCourseGrades()">
+      </div>
+
+      <div x-show="loading" class="empty-state">Yüklənir...</div>
+      <table x-show="!loading">
+        <thead><tr><th x-show="isTeacher">Tələbə</th><th x-show="!isTeacher">Kurs</th><th>Bal</th><th>Hərf</th><th x-show="isTeacher">Əməliyyat</th></tr></thead>
+        <tbody>
+          <template x-for="g in grades" :key="g.id">
+            <tr>
+              <td x-show="isTeacher" x-text="g.studentFullName"></td>
+              <td x-show="!isTeacher" x-text="g.courseName"></td>
+              <td x-text="g.score"></td>
+              <td><span class="badge badge-blue" x-text="g.letter"></span></td>
+              <td x-show="isTeacher">
+                <input type="number" min="0" max="100" style="width:70px;display:inline-block"
+                  :value="g.score" @change="updateGrade(g.id, $event.target.value)">
+              </td>
+            </tr>
+          </template>
+        </tbody>
+      </table>
+      <div class="empty-state" x-show="!loading && grades.length === 0">Qiymət tapılmadı</div>
+    </div>
+  </div>
+  </main>
+</div>
+
+<script>
+function gradesPage() {
+  return {
+    user: null, isTeacher: false, myCourses: [], grades: [], search: "",
+    selectedCourseId: "", newGrade: { studentId: null, score: null },
+    courseStudents: [], studentQuery: "", studentMenuOpen: false,
+    loading: true, error: "", success: "",
+
+    async init() {
+      this.user = requireRole(["Teacher", "Student"]);
+      if (!this.user) return;
+      this.isTeacher = this.user.role === "Teacher";
+      mountNav("grades.html");
+
+      if (this.isTeacher) {
+        const c = await apiRequest(`/courses/teacher/${this.user.teacherId}`);
+        this.myCourses = c.data;
+        this.loading = false;
+      } else if (this.user.role === "Student") {
+        await this.loadStudentGrades();
+      } else {
+        this.loading = false;
+      }
+    },
+
+    // Searchable name lookup — scoped to students actually enrolled in the selected course
+    get filteredStudents() {
+      const q = this.studentQuery.trim().toLowerCase();
+      const list = !q ? this.courseStudents : this.courseStudents.filter(s =>
+        s.studentFullName.toLowerCase().includes(q)
+      );
+      return list.slice(0, 8);
+    },
+
+    studentLabel(id) {
+      const s = this.courseStudents.find(x => x.studentId === id);
+      return s ? s.studentFullName : "#" + id;
+    },
+
+    async loadCourseStudents() {
+      this.newGrade.studentId = null; this.studentQuery = "";
+      if (!this.selectedCourseId) { this.courseStudents = []; return; }
+      try {
+        const res = await apiRequest(`/enrollments/course/${this.selectedCourseId}`);
+        this.courseStudents = res.data;
+      } catch (e) {
+        this.courseStudents = [];
+      }
+    },
+
+    async loadStudentGrades() {
+      this.loading = true; this.error = "";
+      try {
+        const res = await apiRequest(`/grades/student/${this.user.studentId}`);
+        this.grades = res.data;
+      } catch (e) {
+        this.error = e.message;
+      } finally {
+        this.loading = false;
+      }
+    },
+
+    async loadCourseGrades() {
+      if (!this.selectedCourseId) { this.grades = []; return; }
+      this.loading = true; this.error = "";
+      try {
+        const params = new URLSearchParams();
+        params.set("courseId", this.selectedCourseId);
+        if (this.search) params.set("search", this.search);
+        const res = await apiRequest(`/grades/filtered?${params.toString()}`);
+        this.grades = res.data;
+      } catch (e) {
+        this.error = e.message;
+      } finally {
+        this.loading = false;
+      }
+    },
+
+    async createGrade() {
+      this.error = ""; this.success = "";
+      if (!this.newGrade.studentId || this.newGrade.score === null) {
+        this.error = "Tələbəni seçin və bal daxil edin"; return;
+      }
+      try {
+        await apiRequest("/grades", "POST", {
+          studentId: this.newGrade.studentId, courseId: this.selectedCourseId, score: this.newGrade.score
+        });
+        this.success = "Qiymət əlavə edildi";
+        this.newGrade = { studentId: null, score: null };
+        this.studentQuery = "";
+        await this.loadCourseGrades();
+      } catch (e) {
+        this.error = e.message;
+      }
+    },
+
+    async updateGrade(id, newScore) {
+      try {
+        await apiRequest(`/grades/${id}`, "PUT", { score: Number(newScore) });
+        this.success = "Qiymət yeniləndi";
+        await this.loadCourseGrades();
+      } catch (e) {
+        this.error = e.message;
+      }
+    },
+
+    async downloadTranscript() {
+      try {
+        await apiDownload(`/grades/student/${this.user.studentId}/transcript`, `transcript_${this.user.studentId}.pdf`);
+      } catch (e) {
+        this.error = e.message;
+      }
+    }
+  };
+}
+</script>
+</body>
+</html>

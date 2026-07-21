@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Söhbət — SIS</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/toast.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.0/signalr.min.js"></script>
+<style>
+  /* ============ Chat page — Messenger/Discord style (scoped to chat.html) ============ */
+  .chat-shell { display: flex; gap: 16px; height: clamp(420px, calc(100vh - 260px), 720px); margin-top: 4px; }
+
+  .chat-sidebar {
+    width: 280px; flex-shrink: 0;
+    background: linear-gradient(180deg, rgba(var(--glass-rgb-1),.6), rgba(var(--glass-rgb-2),.6));
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    border: 1px solid var(--border); border-radius: var(--radius);
+    display: flex; flex-direction: column; overflow: hidden;
+  }
+  .chat-sidebar-head {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 16px; font-size: 13px; font-weight: 700; color: var(--text);
+    border-bottom: 1px solid var(--border); flex-shrink: 0;
+  }
+  .conn-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--text-faint); box-shadow: 0 0 0 3px transparent; transition: background-color .3s ease, box-shadow .3s ease; }
+  .conn-dot.online { background: var(--green); box-shadow: 0 0 0 3px rgba(52,211,153,.18); }
+  .conn-dot.connecting { background: var(--amber); box-shadow: 0 0 0 3px rgba(251,191,36,.18); animation: chat-pulse 1.2s infinite; }
+  .conn-dot.offline { background: var(--red); box-shadow: 0 0 0 3px rgba(248,113,113,.18); }
+  @keyframes chat-pulse { 0%, 100% { opacity: 1; } 50% { opacity: .4; } }
+
+  .chat-new-row { display: flex; gap: 6px; padding: 12px 14px; border-bottom: 1px solid var(--border); flex-shrink: 0; }
+  .chat-new-row input { font-size: 12.5px; padding: 8px 10px; }
+
+  .conv-list { flex: 1; overflow-y: auto; padding: 6px; display: flex; flex-direction: column; gap: 2px; }
+  .conv-item {
+    display: flex; align-items: center; gap: 10px; padding: 10px; border-radius: 10px;
+    background: none; border: none; text-align: left; cursor: pointer; width: 100%; font-family: inherit;
+    color: var(--text-muted); transition: background-color .15s ease;
+  }
+  .conv-item:hover { background: var(--surface); }
+  .conv-item.active { background: var(--grad-soft); color: var(--text); }
+  .conv-avatar {
+    width: 36px; height: 36px; border-radius: 50%; background: var(--grad); color: #06141F;
+    display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 11px; flex-shrink: 0;
+  }
+  .conv-avatar.av-0 { background: var(--grad); }
+  .conv-avatar.av-1 { background: linear-gradient(135deg, var(--student), var(--cyan-dim)); }
+  .conv-avatar.av-2 { background: linear-gradient(135deg, var(--amber), var(--cyan)); }
+  .conv-avatar.av-3 { background: linear-gradient(135deg, var(--green), var(--blue)); }
+  .chat-thread-head .conv-avatar { width: 40px; height: 40px; font-size: 12px; }
+  .avatar-wrap { position: relative; flex-shrink: 0; display: inline-flex; }
+  .presence-dot {
+    position: absolute; bottom: -1px; right: -1px; width: 10px; height: 10px; border-radius: 50%;
+    background: var(--text-faint); border: 2px solid var(--bg-elev);
+  }
+  .presence-dot.online { background: var(--green); }
+  .conv-meta { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+  .conv-name { font-size: 13px; font-weight: 600; color: var(--text); }
+  .conv-name.unread { font-weight: 800; }
+  .conv-preview { font-size: 11.5px; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .conv-preview.unread { color: var(--text); font-weight: 600; }
+  .conv-time { font-size: 10px; color: var(--text-faint); flex-shrink: 0; display: flex; align-items: center; gap: 6px; margin-top: 2px; }
+  .unread-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 0 3px rgba(52,217,232,.18); flex-shrink: 0; }
+
+  .chat-main {
+    flex: 1; min-width: 0; display: flex; flex-direction: column;
+    background: linear-gradient(180deg, rgba(var(--glass-rgb-1),.6), rgba(var(--glass-rgb-2),.6));
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden;
+  }
+  .chat-thread { display: flex; flex-direction: column; height: 100%; }
+  .chat-thread-head { display: flex; align-items: center; gap: 12px; padding: 14px 18px; border-bottom: 1px solid var(--border); flex-shrink: 0; }
+  .chat-thread-title { font-size: 14px; font-weight: 700; color: var(--text); }
+  .chat-thread-sub { font-size: 11.5px; color: var(--text-muted); margin-top: 2px; display: flex; align-items: center; gap: 6px; }
+  .chat-close-btn {
+    width: 32px; height: 32px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface-2);
+    color: var(--text-muted); font-size: 13px; cursor: pointer; flex-shrink: 0; transition: all .15s var(--ease);
+  }
+  .chat-close-btn:hover { color: var(--text); border-color: var(--border-strong); background: rgba(255,80,80,.12); color: #ff6b6b; }
+
+  .chat-messages { flex: 1; overflow-y: auto; padding: 18px; display: flex; flex-direction: column; gap: 10px; }
+  .chat-date-sep { text-align: center; font-size: 11px; font-weight: 700; color: var(--text-faint); margin: 6px 0 4px; text-transform: uppercase; letter-spacing: .04em; }
+  .bubble-row { display: flex; }
+  .bubble-row.mine { justify-content: flex-end; }
+  .bubble {
+    max-width: 68%; padding: 9px 13px; border-radius: 16px; border-bottom-left-radius: 4px;
+    font-size: 13.5px; line-height: 1.45; background: var(--surface-2); color: var(--text);
+  }
+  .bubble-row.mine .bubble { background: var(--grad); color: #06141F; border-bottom-left-radius: 16px; border-bottom-right-radius: 4px; }
+  .bubble-time { font-size: 10px; opacity: .65; margin-top: 4px; display: flex; align-items: center; gap: 4px; }
+  .msg-status { display: inline-flex; align-items: center; gap: 3px; font-weight: 600; }
+  .read-tick { font-size: 11px; letter-spacing: -2px; }
+  .bubble-time .read-tick { color: rgba(6,20,31,.6); }
+  .msg-status.read .read-tick, .msg-status.read span:last-child { color: var(--green); }
+  .conv-time .read-tick { color: var(--text-faint); font-size: 12px; }
+  .conv-time .read-tick.read { color: var(--green); font-weight: 700; }
+
+  .chat-input-bar { display: flex; gap: 10px; padding: 14px 16px; border-top: 1px solid var(--border); flex-shrink: 0; }
+  .chat-input-bar input { flex: 1; border-radius: 24px; padding: 11px 18px; }
+  .chat-send { border-radius: 24px; padding: 10px 22px; flex-shrink: 0; }
+
+  .chat-empty { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; color: var(--text-faint); font-size: 13px; text-align: center; padding: 20px; }
+  .chat-empty-ic { width: 48px; height: 48px; border-radius: 50%; background: var(--grad-soft); color: var(--cyan); display: flex; align-items: center; justify-content: center; font-size: 20px; }
+
+  @media (max-width: 780px) {
+    .chat-shell { flex-direction: column; height: auto; }
+    .chat-sidebar { width: 100%; max-height: 240px; }
+    .chat-main { height: 480px; }
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+  <div id="nav-mount"></div>
+  <main class="main">
+  <div class="container" x-data="chatPage()" x-init="init()">
+    <div class="page-title">Söhbət</div>
+    <div class="page-subtitle">Yalnız öz kursunuzdakı müəllim/tələbələrlə yazışa bilərsiniz</div>
+
+    <div class="alert alert-error" x-show="error" x-text="error"></div>
+
+    <div class="chat-shell">
+      <aside class="chat-sidebar">
+        <div class="chat-sidebar-head">
+          <span>Söhbətlər</span>
+          <span class="conn-dot" :class="connectionStatus" :title="connectionLabel"></span>
+        </div>
+        <div class="chat-new-row">
+          <div class="combo" style="flex:1">
+            <input type="text" :placeholder="(contactRoleLabel || 'Ad') + ' axtar...'" x-model="contactQuery"
+                   @focus="contactMenuOpen = true" @input="contactMenuOpen = true">
+            <div class="combo-menu" x-show="contactMenuOpen" @click.outside="contactMenuOpen = false">
+              <template x-for="c in filteredContacts" :key="c.id">
+                <button type="button" class="combo-item" @click="startWithContact(c)">
+                  <span x-text="c.fullName"></span>
+                  <span class="sub" x-text="contactRoleLabel"></span>
+                </button>
+              </template>
+              <div class="combo-empty" x-show="filteredContacts.length === 0">Nəticə tapılmadı</div>
+            </div>
+          </div>
+        </div>
+        <div class="conv-list">
+          <template x-for="c in conversations" :key="c.userId">
+            <button class="conv-item" :class="c.userId === otherUserId ? 'active' : ''" @click="selectConversation(c.userId)">
+              <span class="avatar-wrap">
+                <span class="conv-avatar" :class="avatarClass(c.userId)" x-text="initials(c.userId)"></span>
+                <span class="presence-dot" :class="isOnline(c.userId) ? 'online' : ''" :title="isOnline(c.userId) ? 'Onlayn' : 'Oflayn'"></span>
+              </span>
+              <span class="conv-meta">
+                <span class="conv-name" :class="c.unread ? 'unread' : ''" x-text="contactName(c.userId)"></span>
+                <span class="conv-preview" :class="c.unread ? 'unread' : ''" x-text="c.lastMessage || 'Yeni söhbət'"></span>
+              </span>
+              <span class="conv-time">
+                <span class="unread-dot" x-show="c.unread"></span>
+                <span x-show="Number(c.lastSenderId) === Number(user.userId)" class="read-tick" :class="c.lastIsRead ? 'read' : ''">&#10003;&#10003;</span>
+                <span x-text="formatTime(c.lastAt)"></span>
+              </span>
+            </button>
+          </template>
+          <div class="empty-state" x-show="conversations.length === 0" style="padding:26px 12px">Hələ söhbət yoxdur</div>
+        </div>
+      </aside>
+
+      <section class="chat-main">
+        <div class="chat-thread" x-show="activeConversation">
+          <div class="chat-thread-head">
+            <span class="avatar-wrap">
+              <span class="conv-avatar" :class="avatarClass(otherUserId)" x-text="initials(otherUserId)"></span>
+              <span class="presence-dot" :class="isOnline(otherUserId) ? 'online' : ''"></span>
+            </span>
+            <div style="flex:1">
+              <div class="chat-thread-title" x-text="contactName(otherUserId)"></div>
+              <div class="chat-thread-sub" x-show="connectionStatus !== 'online'"><span class="conn-dot" :class="connectionStatus"></span><span x-text="connectionLabel"></span></div>
+              <div class="chat-thread-sub" x-show="connectionStatus === 'online'"><span class="conn-dot" :class="isOnline(otherUserId) ? 'online' : 'offline'"></span><span x-text="isOnline(otherUserId) ? 'Onlayndır' : 'Oflayndır'"></span></div>
+            </div>
+            <button type="button" class="chat-close-btn" @click="closeConversation()" aria-label="Söhbəti bağla" title="Söhbəti bağla">✕</button>
+          </div>
+          <div id="messageList" class="chat-messages">
+            <template x-for="(m, idx) in messages" :key="m.id">
+              <div>
+                <div class="chat-date-sep" x-show="idx === 0 || !sameDay(m.sentAt, messages[idx-1].sentAt)" x-text="formatDateSeparator(m.sentAt)"></div>
+                <div class="bubble-row" :class="m.senderId === user.userId ? 'mine' : ''">
+                  <div class="bubble">
+                    <div x-text="m.content"></div>
+                    <div class="bubble-time">
+                      <span x-text="parseServerDate(m.sentAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })"></span>
+                      <span x-show="m.senderId === user.userId" class="msg-status" :class="m.isRead ? 'read' : ''">
+                        <span class="read-tick" x-text="m.isRead ? '✓✓' : '✓'"></span>
+                        <span x-text="m.isRead ? 'Oxundu' : 'Göndərildi'"></span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </template>
+            <div class="empty-state" x-show="messages.length === 0">Hələ mesaj yoxdur — ilk mesajı sən yaz</div>
+          </div>
+          <div class="chat-input-bar">
+            <input placeholder="Mesaj yaz..." x-model="draft" @keydown.enter="send()">
+            <button class="btn btn-primary chat-send" @click="send()" :disabled="!draft.trim()">Göndər</button>
+          </div>
+        </div>
+
+        <div class="chat-empty" x-show="!activeConversation">
+          <div class="chat-empty-ic">✉</div>
+          <div>Mesajlaşmaq üçün soldan söhbət seçin<br>və ya yeni söhbət başladın</div>
+        </div>
+      </section>
+    </div>
+  </div>
+  </main>
+</div>
+
+<script>
+// The backend serializes SentAt without a timezone marker even though the value is UTC
+// (a common EF Core DateTime.Kind gotcha) — without this, the browser reads it as local
+// time and every timestamp shows ~4h off (Azerbaijan is UTC+4). Treat as UTC explicitly.
+function parseServerDate(iso) {
+  if (!iso) return new Date(NaN);
+  const hasTimezone = /Z$|[+-]\d{2}:?\d{2}$/.test(iso);
+  return new Date(hasTimezone ? iso : iso + "Z");
+}
+
+function chatPage() {
+  return {
+    user: null, otherUserId: null, activeConversation: false,
+    messages: [], draft: "", error: "", connection: null,
+    connectionStatus: "connecting", conversations: [],
+    contacts: [], contactQuery: "", contactMenuOpen: false, contactRoleLabel: "",
+    onlineMap: {},
+
+    async init() {
+      this.user = requireAuth();
+      if (!this.user) return;
+      mountNav("chat.html");
+      this.loadConversations();
+      await this.loadContacts();
+      await this.connectHub();
+      // Each page load is a fresh reload (not a SPA route), so the sidebar's cached preview can
+      // be stale if a message arrived while the user was on another page. Refresh it quietly —
+      // update the unread badge, but never force the thread open; the user picks what to read.
+      this.refreshConversationPreviews();
+    },
+
+    async refreshConversationPreviews() {
+      // Sweep every course contact, not just ones already in the sidebar — otherwise a
+      // brand-new conversation from someone never messaged before stays invisible until searched.
+      const known = new Set(this.conversations.map(c => c.userId));
+      const newContacts = this.contacts.filter(c => !known.has(c.id)).map(c => ({ userId: c.id }));
+      const targets = [...this.conversations, ...newContacts];
+      await Promise.all(targets.map(async (c) => {
+        try {
+          const res = await apiRequest(`/messages/conversation/${c.userId}`);
+          const sorted = this.sortBySentAt(res.data);
+          const last = sorted[sorted.length - 1];
+          if (!last) return;
+          // Trust the backend's own IsRead flag for unread state instead of guessing from
+          // timestamps — it's the actual source of truth and immune to date-comparison edge cases.
+          const isIncoming = Number(last.senderId) !== Number(this.user.userId);
+          const isOpen = this.activeConversation && Number(this.otherUserId) === Number(c.userId);
+          const isUnread = isIncoming && !last.isRead && !isOpen;
+          this.upsertConversation(c.userId, last, isUnread);
+          // Backend truth overrides any stale local flag either way (not just true→true).
+          const entry = this.conversations.find(x => x.userId === c.userId);
+          if (entry) { entry.unread = isUnread; this.saveConversations(); }
+        } catch (e) { /* ignore — leave cached preview as-is */ }
+      }));
+    },
+
+    // Contacts are built from the current user's own course relationships, so only people who
+    // actually share a course show up — matching the "same course only" chat rule server-side.
+    // Teacher: own courses -> enrollments per course (/enrollments/course/{id} fills studentUserId).
+    // Student: own enrollments (course codes) matched against the full /courses list
+    // (only /courses and /courses/teacher/{id} fill teacherUserId — the student dashboard endpoint doesn't).
+    async loadContacts() {
+      try {
+        if (this.user.role === "Teacher") {
+          const coursesRes = await apiRequest(`/courses/teacher/${this.user.teacherId}`);
+          const enrollmentLists = await Promise.all(
+            coursesRes.data.map(c => apiRequest(`/enrollments/course/${c.id}`).catch(() => ({ data: [] })))
+          );
+          const seen = new Map();
+          enrollmentLists.flatMap(r => r.data).forEach(e => {
+            // Guard against a missing/zero studentUserId silently colliding with a real one in the map
+            if (e.studentUserId && !seen.has(e.studentUserId)) {
+              seen.set(e.studentUserId, { id: e.studentUserId, fullName: e.studentFullName });
+            }
+          });
+          this.contacts = Array.from(seen.values());
+          this.contactRoleLabel = "Tələbə";
+        } else {
+          const [enrollRes, coursesRes] = await Promise.all([
+            apiRequest(`/enrollments/student/${this.user.studentId}`),
+            apiRequest("/courses")
+          ]);
+          const myCourseCodes = new Set(enrollRes.data.map(e => e.courseCode));
+          const seen = new Map();
+          coursesRes.data
+            .filter(c => myCourseCodes.has(c.code))
+            .forEach(c => {
+              if (c.teacherUserId && !seen.has(c.teacherUserId)) {
+                seen.set(c.teacherUserId, { id: c.teacherUserId, fullName: c.teacherFullName });
+              }
+            });
+          this.contacts = Array.from(seen.values());
+          this.contactRoleLabel = "Müəllim";
+        }
+      } catch (e) {
+        this.contacts = [];
+      }
+    },
+
+    get filteredContacts() {
+      const q = this.contactQuery.trim().toLowerCase();
+      const list = !q ? this.contacts : this.contacts.filter(c => c.fullName.toLowerCase().includes(q));
+      return list.slice(0, 8);
+    },
+
+    contactName(id) {
+      const c = this.contacts.find(x => x.id === id);
+      return c ? c.fullName : "İstifadəçi #" + id;
+    },
+
+    startWithContact(c) {
+      this.contactQuery = "";
+      this.contactMenuOpen = false;
+      this.selectConversation(c.id);
+    },
+
+    get connectionLabel() {
+      return { connecting: "Qoşulur...", online: "Canlı bağlantı aktivdir", offline: "Bağlantı yoxdur" }[this.connectionStatus];
+    },
+
+    storageKey() { return `sis_chat_conversations_${this.user.userId}`; },
+
+    loadConversations() {
+      try {
+        const raw = localStorage.getItem(this.storageKey());
+        this.conversations = raw ? JSON.parse(raw) : [];
+      } catch (e) { this.conversations = []; }
+    },
+
+    saveConversations() {
+      localStorage.setItem(this.storageKey(), JSON.stringify(this.conversations.slice(0, 30)));
+    },
+
+    // Client-side conversation list built from messages actually opened/sent/received
+    // (the API has no "list conversations" endpoint) so the API surface stays untouched.
+    upsertConversation(otherId, message, markUnread = false) {
+      const existing = this.conversations.find(c => c.userId === otherId);
+      const lastMessage = message ? message.content : (existing ? existing.lastMessage : "");
+      const lastAt = message ? message.sentAt : (existing ? existing.lastAt : new Date().toISOString());
+      const lastSenderId = message ? Number(message.senderId) : (existing ? existing.lastSenderId : null);
+      const lastIsRead = message ? !!message.isRead : (existing ? existing.lastIsRead : false);
+      if (existing) {
+        existing.lastMessage = lastMessage;
+        existing.lastAt = lastAt;
+        existing.lastSenderId = lastSenderId;
+        existing.lastIsRead = lastIsRead;
+        existing.unread = markUnread ? true : existing.unread || false;
+      } else {
+        this.conversations.push({ userId: otherId, lastMessage, lastAt, lastSenderId, lastIsRead, unread: markUnread });
+      }
+      this.conversations.sort((a, b) => parseServerDate(b.lastAt) - parseServerDate(a.lastAt));
+      this.saveConversations();
+    },
+
+    initials(id) {
+      const c = this.contacts.find(x => x.id === id);
+      if (c) {
+        const parts = c.fullName.trim().split(/\s+/);
+        return ((parts[0]?.[0] || "") + (parts[1]?.[0] || "")).toUpperCase();
+      }
+      const s = "U" + (id ?? "");
+      return s.length > 4 ? s.slice(0, 4) : s;
+    },
+
+    // Consistent per-person avatar color so contacts are easier to tell apart at a glance
+    avatarClass(id) {
+      const n = Number(id) || 0;
+      return "av-" + (n % 4);
+    },
+
+    formatTime(iso) {
+      if (!iso) return "";
+      const d = parseServerDate(iso);
+      const now = new Date();
+      return d.toDateString() === now.toDateString()
+        ? d.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", hour12: false })
+        : d.toLocaleDateString();
+    },
+
+    sameDay(isoA, isoB) {
+      return parseServerDate(isoA).toDateString() === parseServerDate(isoB).toDateString();
+    },
+
+    formatDateSeparator(iso) {
+      const d = parseServerDate(iso);
+      const today = new Date();
+      const yesterday = new Date(today); yesterday.setDate(today.getDate() - 1);
+      if (d.toDateString() === today.toDateString()) return "Bugün";
+      if (d.toDateString() === yesterday.toDateString()) return "Dünən";
+      return d.toLocaleDateString("az-AZ", { day: "numeric", month: "long", year: "numeric" });
+    },
+
+    async connectHub() {
+      // BASE_URL is ".../api" — the Hub lives one level up, at ".../chatHub"
+      const hubUrl = BASE_URL.replace(/\/api$/, "") + "/chatHub";
+      this.connection = new signalR.HubConnectionBuilder()
+        .withUrl(hubUrl, { accessTokenFactory: () => getToken() })
+        .withAutomaticReconnect()
+        .build();
+
+      this.connection.on("ReceiveMessage", (message) => this.handleIncoming(message));
+      this.connection.on("MessagesRead", (payload) => this.handleMessagesRead(payload));
+      // Presence — requires the backend's ChatHub to broadcast these (see GetOnlineUserIds/
+      // UserOnline/UserOffline). Harmless no-ops if the backend doesn't support them yet.
+      this.connection.on("UserOnline", (userId) => { this.onlineMap = { ...this.onlineMap, [userId]: true }; });
+      this.connection.on("UserOffline", (userId) => {
+        const next = { ...this.onlineMap };
+        delete next[userId];
+        this.onlineMap = next;
+      });
+      this.connection.onreconnecting(() => {
+        this.connectionStatus = "connecting";
+        showToast("Bağlantı kəsildi, yenidən qoşulur...", "warning");
+      });
+      this.connection.onreconnected(() => {
+        this.connectionStatus = "online";
+        showToast("Canlı bağlantı bərpa olundu", "success");
+        this.refreshOnlineUsers();
+      });
+      this.connection.onclose(() => {
+        this.connectionStatus = "offline";
+        showToast("Canlı bağlantı yoxdur", "error");
+      });
+
+      try {
+        await this.connection.start();
+        this.connectionStatus = "online";
+        await this.refreshOnlineUsers();
+        // Safety net: a missed UserOnline/UserOffline push (brief network hiccup, connecting
+        // before the other side did, etc.) would otherwise leave presence stuck stale forever.
+        setInterval(() => this.refreshOnlineUsers(), 15000);
+      } catch (e) {
+        this.connectionStatus = "offline";
+        this.error = "Canlı bağlantı qurulmadı: " + e.message;
+      }
+    },
+
+    async refreshOnlineUsers() {
+      if (!this.connection || this.connection.state !== "Connected") return;
+      try {
+        const ids = await this.connection.invoke("GetOnlineUserIds");
+        this.onlineMap = Object.fromEntries(ids.map(id => [id, true]));
+      } catch (e) { /* backend doesn't have GetOnlineUserIds yet — presence just stays empty */ }
+    },
+
+    isOnline(id) {
+      return !!this.onlineMap[Number(id)];
+    },
+
+    handleIncoming(message) {
+      // Coerce to Number: SignalR/JSON payloads can carry ids as strings depending on
+      // serializer config, and a strict === would silently fail to match otherUserId.
+      const myId = Number(this.user.userId);
+      const senderId = Number(message.senderId);
+      const otherId = senderId === myId ? Number(message.receiverId) : senderId;
+      const isViewingThisConvo = this.activeConversation && otherId === Number(this.otherUserId);
+      const isIncoming = senderId !== myId;
+      this.upsertConversation(otherId, message, isIncoming && !isViewingThisConvo);
+      if (isViewingThisConvo) {
+        const alreadyHave = this.messages.some(m => m.id === message.id);
+        if (!alreadyHave) {
+          this.messages.push(message);
+          this.$nextTick(() => this.scrollToBottom());
+        }
+        // The thread is already open, so a live incoming message is being read right now too —
+        // openConversation()'s mark-as-read call only covers messages that existed at open time.
+        if (isIncoming) {
+          apiRequest(`/messages/read/${otherId}`, "PUT").catch(() => {});
+        }
+      }
+    },
+
+    // Fired when the other side opens our conversation — flips our sent messages' ticks blue live
+    handleMessagesRead(payload) {
+      const readerId = Number(payload.readByUserId);
+      // Flip the sidebar preview's tick too, not just the open thread's bubbles.
+      const conv = this.conversations.find(c => Number(c.userId) === readerId);
+      if (conv && Number(conv.lastSenderId) === Number(this.user.userId)) {
+        conv.lastIsRead = true;
+        this.saveConversations();
+      }
+      if (readerId !== Number(this.otherUserId)) return;
+      this.messages.forEach(m => {
+        if (Number(m.senderId) === Number(this.user.userId)) m.isRead = true;
+      });
+    },
+
+    selectConversation(id) {
+      this.otherUserId = id;
+      const c = this.conversations.find(x => x.userId === id);
+      if (c) { c.unread = false; this.saveConversations(); }
+      this.openConversation();
+    },
+
+    // Leaves the thread view without disconnecting the live SignalR connection —
+    // new messages still arrive and update the sidebar/unread state in the background.
+    closeConversation() {
+      this.activeConversation = false;
+      this.otherUserId = null;
+      this.messages = [];
+    },
+
+    // The backend has no ORDER BY on this query, so row order is not guaranteed —
+    // sort explicitly by timestamp instead of trusting array position.
+    sortBySentAt(list) {
+      return [...list].sort((a, b) => parseServerDate(a.sentAt) - parseServerDate(b.sentAt));
+    },
+
+    async openConversation() {
+      this.error = "";
+      if (!this.otherUserId) { this.error = "Əvvəlcə söhbət seçin"; return; }
+      try {
+        const res = await apiRequest(`/messages/conversation/${this.otherUserId}`);
+        this.messages = this.sortBySentAt(res.data);
+        this.activeConversation = true;
+        this.upsertConversation(this.otherUserId, this.messages[this.messages.length - 1] || null);
+        this.$nextTick(() => this.scrollToBottom());
+        apiRequest(`/messages/read/${this.otherUserId}`, "PUT").catch(() => {});
+      } catch (e) {
+        // The API returns a bare 404 (no error body) when it can't resolve this conversation —
+        // usually because the two accounts don't share a course. Explain that instead of the raw code.
+        this.error = e.message.includes("404")
+          ? "Bu istifadəçi ilə söhbət açıla bilmədi. Ehtimal ki, eyni kursda deyilsiniz və ya bu şəxslə yazışmaq üçün icazəniz yoxdur."
+          : e.message;
+        this.activeConversation = false;
+      }
+    },
+
+    async send() {
+      if (!this.draft.trim()) return;
+      this.error = "";
+      try {
+        const res = await apiRequest("/messages", "POST", { receiverId: this.otherUserId, content: this.draft });
+        this.messages.push(res.data);
+        this.upsertConversation(this.otherUserId, res.data);
+        this.draft = "";
+        this.$nextTick(() => this.scrollToBottom());
+      } catch (e) {
+        this.error = e.message;
+      }
+    },
+
+    scrollToBottom() {
+      const el = document.getElementById("messageList");
+      if (el) el.scrollTop = el.scrollHeight;
+    }
+  };
+}
+</script>
+</body>
+</html>

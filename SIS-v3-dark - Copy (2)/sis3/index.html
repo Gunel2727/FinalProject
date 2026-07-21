@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Student Information System</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="js/api.js"></script>
+</head>
+<body>
+<script>if (getToken()) window.location.href = "dashboard.html";</script>
+
+<nav class="landing-nav">
+  <div class="brand"><span class="dot"></span>SIS</div>
+  <div class="landing-nav-links">
+    <a href="#features">Xüsusiyyətlər</a>
+    <a href="#stats">Platforma</a>
+    <a href="#faq">FAQ</a>
+  </div>
+  <span class="spacer"></span>
+  <button class="theme-toggle" onclick="toggleTheme()" title="Tema dəyiş" aria-label="Tema dəyiş" style="margin-right:12px">
+    <span class="icon-sun">☀</span><span class="icon-moon">☾</span>
+  </button>
+  <a href="login.html" class="cta">Daxil ol</a>
+</nav>
+
+<section class="landing-hero">
+  <div class="eyebrow">Bir platforma · Üç rol · Tam nəzarət</div>
+  <h1>Universitetinizin bütün <span class="accent">akademik həyatı</span>, bir yerdə</h1>
+  <p>Tələbə qeydiyyatından qiymətləndirməyə, davamiyyətdən real-vaxt GPA hesablanmasına qədər — Admin, Müəllim və Tələbə üçün fərqli, amma bir-birinə bağlı təcrübə.</p>
+  <div class="cta-row">
+    <a href="login.html" class="btn btn-primary">Sistemə daxil ol</a>
+    <a href="#features" class="btn btn-secondary">Xüsusiyyətlərə bax</a>
+  </div>
+</section>
+
+<div class="role-strip">
+  <div class="role"><div class="ic">⚙</div><div class="lbl">Admin</div></div>
+  <div class="role"><div class="ic">▦</div><div class="lbl">Müəllim</div></div>
+  <div class="role"><div class="ic">☆</div><div class="lbl">Tələbə</div></div>
+</div>
+
+<section class="landing-section" id="features">
+  <div class="section-header">
+    <div class="eyebrow">Xüsusiyyətlər</div>
+    <h2>Bütün akademik idarəetmə bir platformada</h2>
+    <p>Qeydiyyatdan transkriptə qədər hər addım üç rol üçün ayrıca dizayn olunub, amma eyni məlumat üzərində işləyir.</p>
+  </div>
+  <div class="feature-grid">
+    <div class="feature-card"><div class="ic">▤</div><div class="f-title">Tələbə Profili</div><div class="f-desc">Şəxsi məlumatlar, proqram və kurs ili bir yerdə idarə olunur.</div></div>
+    <div class="feature-card"><div class="ic">▦</div><div class="f-title">Kurs Kataloqu</div><div class="f-desc">Müəllim təyinatı və kredit məlumatları ilə tam kurs siyahısı.</div></div>
+    <div class="feature-card"><div class="ic">✓</div><div class="f-title">Qeydiyyat İdarəetməsi</div><div class="f-desc">Tələbələr kurslara asanlıqla yazılır və qeydiyyatlarını idarə edir.</div></div>
+    <div class="feature-card"><div class="ic">★</div><div class="f-title">Qiymət və Transkript</div><div class="f-desc">Müəllimlər qiymət daxil edir, tələbələr PDF transkript endirir.</div></div>
+    <div class="feature-card"><div class="ic">◷</div><div class="f-title">Davamiyyət Qeydiyyatı</div><div class="f-desc">Hər dərs sessiyası üçün ətraflı davamiyyət izlənməsi.</div></div>
+    <div class="feature-card"><div class="ic">◎</div><div class="f-title">Akademik Dashboard</div><div class="f-desc">Real-vaxt GPA hesablanması ilə fərdi performans mənzərəsi.</div></div>
+    <div class="feature-card"><div class="ic">⚡</div><div class="f-title">Elan Sistemi</div><div class="f-desc">İnstitut-geniş və kurs-spesifik bildirişlər anında çatdırılır.</div></div>
+    <div class="feature-card"><div class="ic">✉</div><div class="f-title">Daxili Söhbət</div><div class="f-desc">Kursdakı müəllim və tələbələr arasında birbaşa yazışma.</div></div>
+    <div class="feature-card"><div class="ic">⚙</div><div class="f-title">Admin İdarəetməsi</div><div class="f-desc">Departament, proqram və semestrlərin tam nəzarəti.</div></div>
+  </div>
+</section>
+
+<section class="stats-band" id="stats">
+  <div class="stats-grid">
+    <div class="stat-big"><div class="n">3</div><div class="l">Fərqli rol — Admin, Müəllim, Tələbə</div></div>
+    <div class="stat-big"><div class="n">100%</div><div class="l">Rəqəmsal qeydiyyat və davamiyyət</div></div>
+    <div class="stat-big"><div class="n" style="font-size:30px">Real-vaxt</div><div class="l">GPA və performans hesablanması</div></div>
+    <div class="stat-big"><div class="n">PDF</div><div class="l">Rəsmi transkript ixracı</div></div>
+  </div>
+</section>
+
+<section class="landing-section" id="faq">
+  <div class="section-header">
+    <div class="eyebrow">Tez-tez verilən suallar</div>
+    <h2>Bilməli olduqlarınız</h2>
+  </div>
+  <div class="faq-list">
+    <details class="faq-item" open>
+      <summary>Sistemə necə daxil ola bilərəm?<span class="chev">⌄</span></summary>
+      <div class="faq-a"><p>Hesabınız Admin tərəfindən yaradılır — açıq qeydiyyat forması yoxdur. Email və müvəqqəti şifrənizlə, yaxud institutun Google hesabı ilə "Daxil ol" səhifəsindən giriş edə bilərsiniz.</p></div>
+    </details>
+    <details class="faq-item">
+      <summary>Admin, Müəllim və Tələbə rolları nə ilə fərqlənir?<span class="chev">⌄</span></summary>
+      <div class="faq-a"><p>Hər rol öz iş axınına uyğun fərqli görünüş görür: Tələbə kurs/qiymət/davamiyyətini izləyir, Müəllim öz kurslarında qiymət və davamiyyət qeyd edir, Admin isə departament, proqram, semestr və istifadəçiləri idarə edir.</p></div>
+    </details>
+    <details class="faq-item">
+      <summary>GPA necə hesablanır?<span class="chev">⌄</span></summary>
+      <div class="faq-a"><p>GPA hər semestrdəki kurs qiymətləri və kreditlər əsasında avtomatik, real-vaxt rejimində hesablanır və tələbənin dashboard-unda dərhal görünür.</p></div>
+    </details>
+    <details class="faq-item">
+      <summary>Yalnız öz kursumdakı insanlarla yaza bilərəm?<span class="chev">⌄</span></summary>
+      <div class="faq-a"><p>Bəli — daxili söhbət yalnız eyni kursda olduğunuz müəllim və ya tələbələrlə yazışmağa icazə verir, bu da əlaqələri kurs kontekstində saxlayır.</p></div>
+    </details>
+    <details class="faq-item">
+      <summary>Transkriptimi necə əldə edə bilərəm?<span class="chev">⌄</span></summary>
+      <div class="faq-a"><p>Tələbələr "Qiymətlər" səhifəsindən bir kliklə rəsmi PDF transkriptini birbaşa endirə bilər.</p></div>
+    </details>
+  </div>
+</section>
+
+<section class="landing-section" style="padding-top:0">
+  <div class="cta-band">
+    <h2>Akademik idarəetməyə bu gün başlayın</h2>
+    <p>Admin tərəfindən yaradılmış hesabınızla daxil olun və tələbə, müəllim və ya admin təcrübəsini kəşf edin.</p>
+    <div class="cta-row">
+      <a href="login.html" class="btn btn-primary">Sistemə daxil ol</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer-expanded">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="brand"><span class="dot"></span>SIS</div>
+      <p>Universitet üçün vahid tələbə idarəetmə sistemi — qeydiyyatdan transkriptə qədər hər şey bir platformada.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Platforma</h4>
+      <a href="#features">Xüsusiyyətlər</a>
+      <a href="#stats">Platforma haqqında</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <h4>Rollar</h4>
+      <a href="login.html">Admin girişi</a>
+      <a href="login.html">Müəllim girişi</a>
+      <a href="login.html">Tələbə girişi</a>
+    </div>
+    <div class="footer-col">
+      <h4>Dəstək</h4>
+      <a href="forgot-password.html">Şifrəni bərpa et</a>
+      <a href="login.html">Sistemə daxil ol</a>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 Student Information System — Final Project</div>
+</footer>
+</body>
+</html>
